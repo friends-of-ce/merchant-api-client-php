@@ -1,0 +1,15 @@
+{
+	"sortParamsByRequiredFlag": true,
+	"ensureUniqueParams": true,
+	"allowUnicodeIdentifiers": false,
+	"modelPackage": "Model",
+	"apiPackage": "Api",
+	"variableNamingConvention": "camelCase",
+	"invokerPackage": "FriendsOfCE\\Merchant\\ApiClient",
+	"packagePath": "",
+	"composerVendorName": "friends-of-ce",
+	"gitUserId": "friends-of-ce",
+	"composerProjectName": "merchant-api-client-php",
+	"gitRepoId": "merchant-api-client-php",
+	"hideGenerationTimestamp": true
+}
