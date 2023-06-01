@@ -1,0 +1,10 @@
+# # MerchantReturnAcknowledgeRequest
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**returnId** | **int** |  | [optional]
+**merchantReturnNo** | **string** |  |
+
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
