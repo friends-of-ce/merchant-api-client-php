@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **merchantOrderNo** | **string** | The unique order reference used by the Merchant. | [optional]
 **channelShipmentNo** | **string** | The unique shipment reference used by the Channel. | [optional]
 **channelOrderNo** | **string** | The unique order reference used by the Channel. | [optional]
+**channelId** | **int** | The unique ID of the channel for this specific environment/account. | [optional]
+**globalChannelId** | **int** | The unique ID of the channel across all of ChannelEngine. | [optional]
 **lines** | [**\FriendsOfCE\Merchant\ApiClient\Model\MerchantShipmentLineResponse[]**](MerchantShipmentLineResponse.md) |  | [optional]
 **createdAt** | **\DateTime** | The date at which the shipment was created in ChannelEngine. | [optional]
 **updatedAt** | **\DateTime** | The date at which the shipment was last modified in ChannelEngine. | [optional]

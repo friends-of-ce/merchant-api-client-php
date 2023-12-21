@@ -4,13 +4,13 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**productAttributeGroupAddProductExtraData()**](ProductAttributeGroupApi.md#productAttributeGroupAddProductExtraData) | **PUT** /v2/product-attribute-group/{groupName}/add | Adds multiple product extra data to product attribute group. |
-| [**productAttributeGroupCreate()**](ProductAttributeGroupApi.md#productAttributeGroupCreate) | **POST** /v2/product-attribute-group | Create product attribute groups. |
-| [**productAttributeGroupDelete()**](ProductAttributeGroupApi.md#productAttributeGroupDelete) | **DELETE** /v2/product-attribute-group/{groupName} | Delete product attribute group. |
-| [**productAttributeGroupGetByFilter()**](ProductAttributeGroupApi.md#productAttributeGroupGetByFilter) | **GET** /v2/product-attribute-group | Get product attribute groups with the keys of all linked custom fields. |
-| [**productAttributeGroupGetWithChannelsByFilter()**](ProductAttributeGroupApi.md#productAttributeGroupGetWithChannelsByFilter) | **GET** /v2/product-attribute-group/linked-channels | Get product attribute groups with linked channels. |
-| [**productAttributeGroupRemoveProductExtraData()**](ProductAttributeGroupApi.md#productAttributeGroupRemoveProductExtraData) | **PUT** /v2/product-attribute-group/{groupName}/remove | Removes multiple product extra data from product attribute group. |
-| [**productAttributeGroupRenameProductAttributeGroup()**](ProductAttributeGroupApi.md#productAttributeGroupRenameProductAttributeGroup) | **POST** /v2/product-attribute-group/rename | Renames multiple product attribute groups. |
+| [**productAttributeGroupAddProductExtraData()**](ProductAttributeGroupApi.md#productAttributeGroupAddProductExtraData) | **PUT** /v2/product-attribute-group/{groupName}/add | Adds custom attributes to a group |
+| [**productAttributeGroupCreate()**](ProductAttributeGroupApi.md#productAttributeGroupCreate) | **POST** /v2/product-attribute-group | Creates a custom attribute group |
+| [**productAttributeGroupDelete()**](ProductAttributeGroupApi.md#productAttributeGroupDelete) | **DELETE** /v2/product-attribute-group/{groupName} | Deletes a custom attribute group |
+| [**productAttributeGroupGetByFilter()**](ProductAttributeGroupApi.md#productAttributeGroupGetByFilter) | **GET** /v2/product-attribute-group | Gets custom attribute groups |
+| [**productAttributeGroupGetWithChannelsByFilter()**](ProductAttributeGroupApi.md#productAttributeGroupGetWithChannelsByFilter) | **GET** /v2/product-attribute-group/linked-channels | Gets custom attribute groups and linked marketplaces |
+| [**productAttributeGroupRemoveProductExtraData()**](ProductAttributeGroupApi.md#productAttributeGroupRemoveProductExtraData) | **PUT** /v2/product-attribute-group/{groupName}/remove | Deletes custom attributes from a group |
+| [**productAttributeGroupRenameProductAttributeGroup()**](ProductAttributeGroupApi.md#productAttributeGroupRenameProductAttributeGroup) | **POST** /v2/product-attribute-group/rename | Renames custom attribute groups |
 
 
 ## `productAttributeGroupAddProductExtraData()`
@@ -19,9 +19,9 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 productAttributeGroupAddProductExtraData($groupName, $addProductExtraDataRequests): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
 ```
 
-Adds multiple product extra data to product attribute group.
+Adds custom attributes to a group
 
-Only existing and not already added product extra data can be added.
+Adds the provided custom attributes (a.k.a. extra data keys) to the custom attribute group.<br />**NB:** you can only add existing custom attributes to a group.
 
 ### Example
 
@@ -83,9 +83,9 @@ try {
 productAttributeGroupCreate($productAttributeGroupRequest): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
 ```
 
-Create product attribute groups.
+Creates a custom attribute group
 
-Create a product attribute groups based on group names.<br />Product attribute groups are linked with product extra data keys.
+Creates a custom attribute group based on the set of custom attributes (a.k.a. extra data keys).
 
 ### Example
 
@@ -145,9 +145,9 @@ try {
 productAttributeGroupDelete($groupName): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
 ```
 
-Delete product attribute group.
+Deletes a custom attribute group
 
-Delete a product attribute group based on group name.<br />Product attribute group can be deleted only if it has no channel linked.<br />Note that we do really delete a product attribute group.
+Deletes the custom attribute group based on the **Group name** provided.<br />**NB:** you can only delete a custom attribute group that does not have any markeplaces (a.k.a. channels) linked to it.
 
 ### Example
 
@@ -207,9 +207,9 @@ try {
 productAttributeGroupGetByFilter($groupNames, $page): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantProductAttributeGroupWithProductExtraDataResponse
 ```
 
-Get product attribute groups with the keys of all linked custom fields.
+Gets custom attribute groups
 
-Get product attribute group by filters, there is possible to filter by GroupName.
+Gets the custom attribute groups based on the **Group name** provided.
 
 ### Example
 
@@ -271,9 +271,9 @@ try {
 productAttributeGroupGetWithChannelsByFilter($groupNames, $page): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantProductAttributeGroupWithLinkedChannelsResponse
 ```
 
-Get product attribute groups with linked channels.
+Gets custom attribute groups and linked marketplaces
 
-Get product attribute group by filters, there is possible to filter by GroupName.
+Gets all custom attribute groups and marketplaces (a.k.a. channels) linked to them.
 
 ### Example
 
@@ -335,9 +335,9 @@ try {
 productAttributeGroupRemoveProductExtraData($groupName, $removeProductExtraDataRequests): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
 ```
 
-Removes multiple product extra data from product attribute group.
+Deletes custom attributes from a group
 
-Only existing product extra data can be removed.
+Removes the custom attributes (a.k.a. extra data keys) from the custom attribute group.<br />**NB:** you can only remove existing custom attributes from a group.
 
 ### Example
 
@@ -399,9 +399,9 @@ try {
 productAttributeGroupRenameProductAttributeGroup($renameProductAttributeGroupRequests): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
 ```
 
-Renames multiple product attribute groups.
+Renames custom attribute groups
 
-Renames existing product attribute groups.
+Renames the custom attribute groups.
 
 ### Example
 

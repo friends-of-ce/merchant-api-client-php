@@ -4,7 +4,7 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**channelPluginsGet()**](ChannelsApi.md#channelPluginsGet) | **GET** /v2/channels | Get Channels. |
+| [**channelPluginsGet()**](ChannelsApi.md#channelPluginsGet) | **GET** /v2/channels | Gets channels |
 
 
 ## `channelPluginsGet()`
@@ -13,9 +13,9 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 channelPluginsGet(): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfChannelGlobalChannelResponse
 ```
 
-Get Channels.
+Gets channels
 
-Get all channels (excluding deleted ones).<br />You can use the returned ids to query the listed products for this channel from the ListedProducts endpoint.
+Gets the complete list of channels available on ChannelEngine including their **Global channel ID**.
 
 ### Example
 

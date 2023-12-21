@@ -1,6 +1,6 @@
 {
     "name": "friends-of-ce/merchant-api-client-php",
-    "version": "2.13.0",
+    "version": "2.13.0.1",
     "description": "ChannelEngine API for merchants",
     "keywords": [
         "openapitools",
@@ -15,7 +15,7 @@
     "license": "unlicense",
     "authors": [
         {
-            "name": "OpenAPI-Generator contributors",
+            "name": "OpenAPI",
             "homepage": "https://openapi-generator.tech"
         }
     ],

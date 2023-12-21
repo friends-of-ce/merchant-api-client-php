@@ -4,12 +4,12 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**shipmentCreate()**](ShipmentApi.md#shipmentCreate) | **POST** /v2/shipments | Create Shipment. |
-| [**shipmentCreateForChannelMethod()**](ShipmentApi.md#shipmentCreateForChannelMethod) | **POST** /v2/shipments/channelmethod | Create shipment for channel provided shipping labels |
-| [**shipmentGetShipmentLabelCarriers()**](ShipmentApi.md#shipmentGetShipmentLabelCarriers) | **POST** /v2/carriers/{merchantOrderNo} | Get carriers for channel provided shipping labels |
-| [**shipmentIndex()**](ShipmentApi.md#shipmentIndex) | **GET** /v2/shipments/merchant | Get Shipments |
-| [**shipmentShippingLabel()**](ShipmentApi.md#shipmentShippingLabel) | **GET** /v2/orders/{merchantShipmentNo}/shippinglabel | Download shipping label. |
-| [**shipmentUpdate()**](ShipmentApi.md#shipmentUpdate) | **PUT** /v2/shipments/{merchantShipmentNo} | Update Shipment. |
+| [**shipmentCreate()**](ShipmentApi.md#shipmentCreate) | **POST** /v2/shipments | Creates shipments |
+| [**shipmentCreateForChannelMethod()**](ShipmentApi.md#shipmentCreateForChannelMethod) | **POST** /v2/shipments/channelmethod | Creates a shipment and initiates shipping label generation |
+| [**shipmentGetShipmentLabelCarriers()**](ShipmentApi.md#shipmentGetShipmentLabelCarriers) | **POST** /v2/carriers/{merchantOrderNo} | Gets carriers providing shipping labels |
+| [**shipmentIndex()**](ShipmentApi.md#shipmentIndex) | **GET** /v2/shipments/merchant | Gets shipments by filter |
+| [**shipmentShippingLabel()**](ShipmentApi.md#shipmentShippingLabel) | **GET** /v2/orders/{merchantShipmentNo}/shippinglabel | Gets a shipping label |
+| [**shipmentUpdate()**](ShipmentApi.md#shipmentUpdate) | **PUT** /v2/shipments/{merchantShipmentNo} | Updates a shipment |
 
 
 ## `shipmentCreate()`
@@ -18,9 +18,9 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 shipmentCreate($merchantShipmentRequest): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
 ```
 
-Create Shipment.
+Creates shipments
 
-Mark (part of) an order as shipped.
+Marks an order as fully or partially shipped, based on the order line and quantity input.<br />Indicate the **Stock location ID** if you make use of multiple stock locations.
 
 ### Example
 
@@ -80,9 +80,9 @@ try {
 shipmentCreateForChannelMethod($merchantChannelLabelShipmentRequest): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
 ```
 
-Create shipment for channel provided shipping labels
+Creates a shipment and initiates shipping label generation
 
-Create a shipment, which will request a shipping label from the channel
+Marks an order as either fully or partially shipped, based on the order line and quantity input.<br />It also provides the marketplace with information necessary to generate a shipping label.<br />If you make use of multiple stock locations, indicate the **Stock location ID**.<br /> <br />**NB:** to request a shipping label, include information on the package size (i.e.: dimensions and weight).
 
 ### Example
 
@@ -142,9 +142,9 @@ try {
 shipmentGetShipmentLabelCarriers($merchantOrderNo, $merchantShipmentLabelCarrierRequest): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantShipmentLabelCarrierResponse
 ```
 
-Get carriers for channel provided shipping labels
+Gets carriers providing shipping labels
 
-Get the carriers for buying a shipping label from the channel
+Posts a request to get the available marketplace carrier offers.<br /><br />**NB:** this endpoint is used to buy a shipping label through the marketplace.
 
 ### Example
 
@@ -206,9 +206,9 @@ try {
 shipmentIndex($merchantShipmentNos, $merchantOrderNos, $method, $shippedFromCountryCodes, $fromShipmentDate, $toShipmentDate, $fromCreateDate, $toCreateDate, $fromUpdateDate, $toUpdateDate, $fulfillmentType, $channelShipmentNos, $channelOrderNos, $page): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantShipmentResponse
 ```
 
-Get Shipments
+Gets shipments by filter
 
-Gets all shipments that meet conditions.<br />If all filters are empty return all in default order (from the oldest one).
+Gets the shipments based on the available filters.<br />Shipments are listed in chronological order, from old to new.
 
 ### Example
 
@@ -294,9 +294,9 @@ try {
 shipmentShippingLabel($merchantShipmentNo): \SplFileObject
 ```
 
-Download shipping label.
+Gets a shipping label
 
-Downloads the shipping label for the shipment. There may pass some time between creating the shipment<br />and the availability of the label. So '404 Not Found' might incidate it is not available yet.
+Downloads the shipping label for the shipment.<br /> <br /> **NB:** it may take some time between the creation of the shipment and the availability of the label.<br />A \"404 not found\" error might indicate that the label is not available yet.
 
 ### Example
 
@@ -356,9 +356,9 @@ try {
 shipmentUpdate($merchantShipmentNo, $merchantShipmentTrackingRequest): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
 ```
 
-Update Shipment.
+Updates a shipment
 
-Update an existing shipment with tracking information.
+Updates an existing shipment with tracking information and shipping method.
 
 ### Example
 

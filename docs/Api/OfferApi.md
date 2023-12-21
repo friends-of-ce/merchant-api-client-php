@@ -4,9 +4,9 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**offerGetStock()**](OfferApi.md#offerGetStock) | **GET** /v2/offer/stock | Get stock for products. |
-| [**offerStockPriceUpdate()**](OfferApi.md#offerStockPriceUpdate) | **PUT** /v2/offer | Update stock and/or price. |
-| [**offerStockUpdate()**](OfferApi.md#offerStockUpdate) | **PUT** /v2/offer/stock | Update only stock. |
+| [**offerGetStock()**](OfferApi.md#offerGetStock) | **GET** /v2/offer/stock | Gets product stock across all warehouses |
+| [**offerStockPriceUpdate()**](OfferApi.md#offerStockPriceUpdate) | **PUT** /v2/offer | Updates stock and price |
+| [**offerStockUpdate()**](OfferApi.md#offerStockUpdate) | **PUT** /v2/offer/stock | Updates stock |
 
 
 ## `offerGetStock()`
@@ -15,9 +15,9 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 offerGetStock($stockLocationIds, $skus, $pageIndex, $pageSize): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantOfferGetStockResponse
 ```
 
-Get stock for products.
+Gets product stock across all warehouses
 
-Get stock of products at stock location(s).
+Gets the stock available in the warehouses. The warehouses must be set up as stock locations on ChannelEngine.
 
 ### Example
 
@@ -83,9 +83,9 @@ try {
 offerStockPriceUpdate($merchantStockPriceUpdateRequest): \FriendsOfCE\Merchant\ApiClient\Model\SingleOfDictionaryOfStringAndListOfString
 ```
 
-Update stock and/or price.
+Updates stock and price
 
-Update stock and/or price of product(s).
+Updates product stock and price.
 
 ### Example
 
@@ -142,12 +142,12 @@ try {
 ## `offerStockUpdate()`
 
 ```php
-offerStockUpdate($merchantOfferStockUpdateRequest): \FriendsOfCE\Merchant\ApiClient\Model\SingleOfDictionaryOfStringAndListOfString
+offerStockUpdate($merchantOfferStockUpdateRequest): \FriendsOfCE\Merchant\ApiClient\Model\SingleOfStockUpdateResponse
 ```
 
-Update only stock.
+Updates stock
 
-Update only stock of product(s).
+Updates product stock.
 
 ### Example
 
@@ -168,7 +168,7 @@ $apiInstance = new FriendsOfCE\Merchant\ApiClient\Api\OfferApi(
     new GuzzleHttp\Client(),
     $config
 );
-$merchantOfferStockUpdateRequest = array(new \FriendsOfCE\Merchant\ApiClient\Model\MerchantOfferStockUpdateRequest()); // \FriendsOfCE\Merchant\ApiClient\Model\MerchantOfferStockUpdateRequest[] | References to the new values for the stock fields
+$merchantOfferStockUpdateRequest = array(new \FriendsOfCE\Merchant\ApiClient\Model\MerchantOfferStockUpdateRequest()); // \FriendsOfCE\Merchant\ApiClient\Model\MerchantOfferStockUpdateRequest[] | References to the new values for the stock fields.
 
 try {
     $result = $apiInstance->offerStockUpdate($merchantOfferStockUpdateRequest);
@@ -182,11 +182,11 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **merchantOfferStockUpdateRequest** | [**\FriendsOfCE\Merchant\ApiClient\Model\MerchantOfferStockUpdateRequest[]**](../Model/MerchantOfferStockUpdateRequest.md)| References to the new values for the stock fields | |
+| **merchantOfferStockUpdateRequest** | [**\FriendsOfCE\Merchant\ApiClient\Model\MerchantOfferStockUpdateRequest[]**](../Model/MerchantOfferStockUpdateRequest.md)| References to the new values for the stock fields. | |
 
 ### Return type
 
-[**\FriendsOfCE\Merchant\ApiClient\Model\SingleOfDictionaryOfStringAndListOfString**](../Model/SingleOfDictionaryOfStringAndListOfString.md)
+[**\FriendsOfCE\Merchant\ApiClient\Model\SingleOfStockUpdateResponse**](../Model/SingleOfStockUpdateResponse.md)
 
 ### Authorization
 

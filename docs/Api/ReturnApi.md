@@ -4,13 +4,13 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**returnAcknowledge()**](ReturnApi.md#returnAcknowledge) | **POST** /v2/returns/merchant/acknowledge | Acknowledge Return. |
-| [**returnDeclareForMerchant()**](ReturnApi.md#returnDeclareForMerchant) | **POST** /v2/returns/merchant | Create Return. |
-| [**returnGetByMerchantOrderNo()**](ReturnApi.md#returnGetByMerchantOrderNo) | **GET** /v2/returns/merchant/{merchantOrderNo} | Get Return. |
-| [**returnGetDeclaredByChannel()**](ReturnApi.md#returnGetDeclaredByChannel) | **GET** /v2/returns/merchant | Get Returns. |
-| [**returnGetReturns()**](ReturnApi.md#returnGetReturns) | **GET** /v2/returns | Get Returns. |
-| [**returnGetUnhandled()**](ReturnApi.md#returnGetUnhandled) | **GET** /v2/returns/merchant/new | Get Unhandled Returns. |
-| [**returnUpdateForMerchant()**](ReturnApi.md#returnUpdateForMerchant) | **PUT** /v2/returns | Mark a return as received. |
+| [**returnAcknowledge()**](ReturnApi.md#returnAcknowledge) | **POST** /v2/returns/merchant/acknowledge | Acknowledges a return |
+| [**returnDeclareForMerchant()**](ReturnApi.md#returnDeclareForMerchant) | **POST** /v2/returns/merchant | Creates merchant return |
+| [**returnGetByMerchantOrderNo()**](ReturnApi.md#returnGetByMerchantOrderNo) | **GET** /v2/returns/merchant/{merchantOrderNo} | Gets a return |
+| [**returnGetDeclaredByChannel()**](ReturnApi.md#returnGetDeclaredByChannel) | **GET** /v2/returns/merchant | Gets marketplace returns |
+| [**returnGetReturns()**](ReturnApi.md#returnGetReturns) | **GET** /v2/returns | Gets returns by filter |
+| [**returnGetUnhandled()**](ReturnApi.md#returnGetUnhandled) | **GET** /v2/returns/merchant/new | Gets unhandled returns |
+| [**returnUpdateForMerchant()**](ReturnApi.md#returnUpdateForMerchant) | **PUT** /v2/returns | Marks returns as received |
 
 
 ## `returnAcknowledge()`
@@ -19,7 +19,9 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 returnAcknowledge($merchantReturnAcknowledgeRequest): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
 ```
 
-Acknowledge Return.
+Acknowledges a return
+
+Acknowledges a return based on the **Return ID** provided.<br /><br />**NB:** by acknowledging a return, you signal that it was registered in your system.<br />You can later filter your returns on the **Is acknowledged** parameter.
 
 ### Example
 
@@ -79,9 +81,9 @@ try {
 returnDeclareForMerchant($merchantReturnRequest): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
 ```
 
-Create Return.
+Creates merchant return
 
-Mark (part of) an order as returned by the customer.
+Marks an order as either fully or partially returned.<br /><br />**NB:** this endpoint is used for merchant returns (i.e.: returns dealt with by the merchant).
 
 ### Example
 
@@ -141,9 +143,9 @@ try {
 returnGetByMerchantOrderNo($merchantOrderNo): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantSingleOrderReturnResponse
 ```
 
-Get Return.
+Gets a return
 
-Retrieve returns based on the supplied merchant order number. May return more than 1 result.<br />This call is supposed to be used by merchants. Channels should use the 'GET /v2/returns/channel'<br />call.
+Gets the returns based on the **Merchant order number** provided.<br /><br />**NB:** this endpoint is meant for merchants. Marketplaces should use the **GET /v2/returns/channel** call instead.
 
 ### Example
 
@@ -203,9 +205,9 @@ try {
 returnGetDeclaredByChannel($channelIds, $merchantOrderNos, $channelOrderNos, $fulfillmentType, $statuses, $reasons, $fromDate, $toDate, $isAcknowledged, $page): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantReturnResponse
 ```
 
-Get Returns.
+Gets marketplace returns
 
-Get all returns created by the channel. This call is supposed<br />to be used by merchants. Channels should use the 'GET /v2/returns/channel'<br />call.
+Gets all returns created by the marketplace.<br /><br />**NB:** this endpoint is used for both marketplace and marketplace-fulfilled returns.
 
 ### Example
 
@@ -283,9 +285,9 @@ try {
 returnGetReturns($creatorType, $channelIds, $merchantOrderNos, $channelOrderNos, $fulfillmentType, $statuses, $reasons, $fromDate, $toDate, $isAcknowledged, $page): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantReturnResponse
 ```
 
-Get Returns.
+Gets returns by filter
 
-Get all returns created by the merchant. This call is supposed<br />to be used by merchants. To get returns created by channels, the 'GET /v2/returns/merchant' endpoint should be used.<br />Channels should use the 'GET /v2/returns/channel' call.
+Gets the returns based on the filter provided.<br /><br />**NB:** this endpoint is used to retrieve all types of returns: merchant, marketplace, mixed, and marketplace-fulfilled.
 
 ### Example
 
@@ -365,9 +367,9 @@ try {
 returnGetUnhandled($channelIds, $page): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantReturnResponse
 ```
 
-Get Unhandled Returns.
+Gets unhandled returns
 
-Get all new / unhandled returns created by channels. This call is supposed<br />to be used by merchants. Channels should use the 'GET /v2/returns/channel'<br />call.
+Gets all marketplace returns with the status **In progress**.
 
 ### Example
 
@@ -429,9 +431,9 @@ try {
 returnUpdateForMerchant($merchantReturnUpdateRequest): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
 ```
 
-Mark a return as received.
+Marks returns as received
 
-Mark a return as received.
+Marks a return as either fully or partially received.<br /> <br />**NB:** this endpoint is used for marketplace returns, and you can only accept or reject a return once.
 
 ### Example
 

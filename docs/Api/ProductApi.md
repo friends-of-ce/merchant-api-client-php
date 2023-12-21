@@ -4,15 +4,15 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**productBulkDelete()**](ProductApi.md#productBulkDelete) | **POST** /v2/products/bulkdelete | Delete multiple Products. |
-| [**productBulkPatch()**](ProductApi.md#productBulkPatch) | **PATCH** /v2/products | Bulk Patch Products |
-| [**productBulkPatchExtraDataItems()**](ProductApi.md#productBulkPatchExtraDataItems) | **PATCH** /v2/products/extra-data/bulk | Add/Update/Delete product extra data items. |
-| [**productCreate()**](ProductApi.md#productCreate) | **POST** /v2/products | Upsert Products. |
-| [**productDelete()**](ProductApi.md#productDelete) | **DELETE** /v2/products/{merchantProductNo} | Delete Product. |
-| [**productGetByFilter()**](ProductApi.md#productGetByFilter) | **GET** /v2/products | Get Products. |
-| [**productGetByMerchantProductNo()**](ProductApi.md#productGetByMerchantProductNo) | **GET** /v2/products/{merchantProductNo} | Get Product. |
-| [**productPatch()**](ProductApi.md#productPatch) | **PATCH** /v2/products/{merchantProductNo} | Patch product |
-| [**productPatchExtraDataItems()**](ProductApi.md#productPatchExtraDataItems) | **PATCH** /v2/products/extra-data | Add/Update/Delete a product&#39;s extra data items |
+| [**productBulkDelete()**](ProductApi.md#productBulkDelete) | **POST** /v2/products/bulkdelete | Deletes products |
+| [**productBulkPatch()**](ProductApi.md#productBulkPatch) | **PATCH** /v2/products | Updates products attributes |
+| [**productBulkPatchExtraDataItems()**](ProductApi.md#productBulkPatchExtraDataItems) | **PATCH** /v2/products/extra-data/bulk | Adds, updates, or deletes custom attributes |
+| [**productCreate()**](ProductApi.md#productCreate) | **POST** /v2/products | Updates or creates products |
+| [**productDelete()**](ProductApi.md#productDelete) | **DELETE** /v2/products/{merchantProductNo} | Deletes a product |
+| [**productGetByFilter()**](ProductApi.md#productGetByFilter) | **GET** /v2/products | Gets products |
+| [**productGetByMerchantProductNo()**](ProductApi.md#productGetByMerchantProductNo) | **GET** /v2/products/{merchantProductNo} | Gets a product |
+| [**productPatch()**](ProductApi.md#productPatch) | **PATCH** /v2/products/{merchantProductNo} | Updates product attributes |
+| [**productPatchExtraDataItems()**](ProductApi.md#productPatchExtraDataItems) | **PATCH** /v2/products/extra-data | Adds, updates, or deletes a custom attribute |
 
 
 ## `productBulkDelete()`
@@ -21,9 +21,9 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 productBulkDelete($requestBody): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
 ```
 
-Delete multiple Products.
+Deletes products
 
-Delete the products based on the merchant references.<br />Note that we do not really delete products, as the products<br />might still be referenced by orders. Therefore, the references<br />used for these products cannot be reused. We do however deactivate the products<br />which means that they will not be sent to channels.
+Deletes a products based on the **Merchant product number**.<br /> <br />**NB:** ChannelEngine deactivates but does not delete the products entirely, as they might be still referenced in orders.<br />Therefore, the references used for these products cannot be reused.
 
 ### Example
 
@@ -83,9 +83,9 @@ try {
 productBulkPatch($patchMerchantProductDto): \FriendsOfCE\Merchant\ApiClient\Model\SingleOfProductCreationResult
 ```
 
-Bulk Patch Products
+Updates products attributes
 
-This endpoint allows you to update multiple fields on a multiple products.<br />Products sent in a request can only be updated for the fields listed in object 'PropertiesToUpdate'. <br />In other words, you specify which products you want to update and which fields should be updated for all products.<br /><br />Sample request:<br /><br /> PATCH /v2/products<br /> {<br /> \"PropertiesToUpdate\": [<br /> \"name\",<br /> \"description\"<br /> ],<br /> \"MerchantProductRequestModels\": [<br /> {<br /> \"MerchantProductNo\": \"testMerchantProductNo\",<br /> \"Name\": \"testName\",<br /> \"Description\": \"testDescription\",<br /> },<br /> {<br /> \"MerchantProductNo\": \"testMerchantProductNo2\",<br /> \"Name\": \"testName3\",<br /> \"Description\": \"testDescription1\",<br /> }<br /> ]<br /> }
+Updates specific attributes of product data. You can update single or multiple attributes for one or multiple products.<br />You can also add custom attributes via this endpoint. The format of this endpoint is JSON Patch.<br />Products are updated for the fields listed in the array **PropertiesToUpdate**:<br />[name, <br />description, <br />details, <br />brand, <br />size, <br />color, <br />ean, <br />groupno **or** ParentMerchantProductNo, <br />groupno2 **or** ParentMerchantProductNo2, <br />type, <br />merchantproductno,<br />vendorproductno, <br />stock, <br />price, <br />listprice **or** MSRP, <br />purchaseprice, <br />minprice, <br />maxprice, <br />discountrate, <br />vatrate, <br />margin, <br />shippingcost, <br />shippingtime, <br />url, <br />imageurl, <br />extraimageurl1, <br />extraimageurl2, <br />extraimageurl3, <br />extraimageurl4, <br />extraimageurl5, <br />extraimageurl6, <br />extraimageurl7, <br />extraimageurl8, <br />extraimageurl9, <br />categoryid,<br />vatratetype]<br /> <br />Sample request:<br /><pre><br />PATCH /v2/products<br />{<br /> \"PropertiesToUpdate\": [<br /> \"name\",<br /> \"description\"<br /> ],<br /> \"MerchantProductRequestModels\": [<br /> {<br /> \"MerchantProductNo\": \"testMerchantProductNo\",<br /> \"Name\": \"testName\",<br /> \"Description\": \"testDescription\",<br /> },<br /> {<br /> \"MerchantProductNo\": \"testMerchantProductNo2\",<br /> \"Name\": \"testName3\",<br /> \"Description\": \"testDescription1\",<br /> }<br /> ]<br />}<br /></pre>
 
 ### Example
 
@@ -145,9 +145,9 @@ try {
 productBulkPatchExtraDataItems($merchantProductExtraDataRequest): \FriendsOfCE\Merchant\ApiClient\Model\SingleOfProductCreationResult
 ```
 
-Add/Update/Delete product extra data items.
+Adds, updates, or deletes custom attributes
 
-Add/Update/Delete product extra data items. This endpoint allows you to add, update or delete single datas on multiple products using operations,<br />without having to supply the other product information.<br /> <br />The supplied MerchantProductNo's need to be unique.<br /><br /> <br />ExtraData generated by our translation service are ignored and cannot be updated.<br /><br />Sample request:<br /> <br /> PATCH /v2/products/extra-data/bulk<br /> [<br /> {<br /> \"MerchantProductNo\": \"{merchantProductNo}\",<br /> \"Operations\": [<br /> {<br /> \"Op\": \"add\",<br /> \"Key\": \"{Key}\",<br /> \"Value\": \"{Value}\"<br /> }<br /> ]<br /> },<br /> {<br /> \"MerchantProductNo\": \"{merchantProductNo}\",<br /> \"Operations\": [<br /> {<br /> \"Op\": \"replace\",<br /> \"Key\": \"{Key}\",<br /> \"Value\": \"{Value}\"<br /> },<br /> {<br /> \"Op\": \"add\",<br /> \"Key\": \"{Key}\",<br /> \"Value\": \"{Value}\"<br /> }<br /> ]<br /> }<br /> ]<br /> <br />Adding ExtraData:<br /><br /> PATCH /v2/products/extra-data/bulk<br /> [<br /> {<br /> \"MerchantProductNo\": \"{merchantProductNo}\",<br /> \"Operations\": [<br /> {<br /> \"Op\": \"add\",<br /> \"Key\": \"{Key}\",<br /> \"Value\": \"{Value}\"<br /> }<br /> ]<br /> },<br /> {<br /> \"MerchantProductNo\": \"{merchantProductNo}\",<br /> \"Operations\": [<br /> {<br /> \"Op\": \"add\",<br /> \"Key\": \"{Key}\",<br /> \"Value\": \"{Value}\"<br /> }<br /> ]<br /> }<br /> ]<br /> <br />Updating ExtraData:<br /><br /> PATCH /v2/products/extra-data/bulk<br /> [<br /> {<br /> \"MerchantProductNo\": \"{merchantProductNo}\",<br /> \"Operations\": [<br /> {<br /> \"Op\": \"replace\",<br /> \"Key\": \"{Key}\",<br /> \"Value\": \"{Value}\"<br /> }<br /> ]<br /> },<br /> {<br /> \"MerchantProductNo\": \"{merchantProductNo}\",<br /> \"Operations\": [<br /> {<br /> \"Op\": \"replace\",<br /> \"Key\": \"{Key}\",<br /> \"Value\": \"{Value}\"<br /> }<br /> ]<br /> }<br /> ]<br /> <br />Removing ExtraData with key:<br /><br /> PATCH /v2/products/extra-data/bulk<br /> [<br /> {<br /> \"MerchantProductNo\": \"{merchantProductNo}\",<br /> \"Operations\": [<br /> {<br /> \"Op\": \"remove\",<br /> \"Key\": \"{Key}\"<br /> }<br /> ]<br /> },<br /> {<br /> \"MerchantProductNo\": \"{merchantProductNo}\",<br /> \"Operations\": [<br /> {<br /> \"Op\": \"remove\",<br /> \"Key\": \"{Key}\"<br /> }<br /> ]<br /> }<br /> ]
+Adds, updates, or deletes the custom attributes (a.k.a. extra data keys) for multiple products.<br />You can update single or multiple attributes for one or multiple products. The format of this endpoint is [JSON Patch](http://jsonpatch.com/).<br /><br />**NB:** the **Merchant product number** must be unique.<br /><br />Sample request:<br /><pre><br />PATCH /v2/products/extra-data/bulk<br />[<br /> {<br /> \"MerchantProductNo\": \"{merchantProductNo}\",<br /> \"Operations\": [<br /> {<br /> \"Op\": \"add\",<br /> \"Key\": \"{Key}\",<br /> \"Value\": \"{Value}\"<br /> }<br /> ]<br /> },<br /> {<br /> \"MerchantProductNo\": \"{merchantProductNo}\",<br /> \"Operations\": [<br /> {<br /> \"Op\": \"replace\",<br /> \"Key\": \"{Key}\",<br /> \"Value\": \"{Value}\"<br /> },<br /> {<br /> \"Op\": \"add\",<br /> \"Key\": \"{Key}\",<br /> \"Value\": \"{Value}\"<br /> }<br /> ]<br /> },<br /> {<br /> \"MerchantProductNo\": \"{merchantProductNo}\",<br /> \"Operations\": [<br /> {<br /> \"Op\": \"remove\",<br /> \"Key\": \"{Key}\",<br /> \"Value\": \"{Value}\"<br /> }<br /> ]<br /> }<br /> ]<br /></pre>
 
 ### Example
 
@@ -204,12 +204,12 @@ try {
 ## `productCreate()`
 
 ```php
-productCreate($merchantProductRequest, $ignoreStock): \FriendsOfCE\Merchant\ApiClient\Model\SingleOfProductCreationResult
+productCreate($merchantProductRequest, $ignoreStock, $ignorePrice): \FriendsOfCE\Merchant\ApiClient\Model\SingleOfProductCreationResult
 ```
 
-Upsert Products.
+Updates or creates products
 
-Upsert (update or create) products. The parent serves as the 'base' product of the children.<br />For example, the children could be different sizes or colors of the parent product.<br />For channels where every size and color are different products this does not make any difference<br />(the children will just be sent separately, while ignoring the parent).<br />But there are channels where the parent and the children need to be sent together, for example<br />when there is one product with a list of sizes. In this case all the product information is retrieved<br />from the parent product while the size list is generated from the children.<br /> <br />Note that the parent itself is a 'blueprint' of the child products and we do our best to make sure it<br />does not end up on the marketplaces itself. Only the children can be purchased.<br /> <br />It's not possible to nest parent and children more than one level (A parent can have many children,<br />but any child cannot itself also have children).<br /> <br />For creating a new product the supplied MerchantProductNo should be unique and not exist on any product.<br />For updating the product, product with supplied MerchantProductNo should exist.<br /> <br />When \"ignoreStock\" query string parameter is set to \"true\", stock will not be updated
+Updates or creates products. The endpoint is purge and replace.<br />If you do not include an attribute, it is overwritten with null.<br />Extra data arrays are not effected by purge and replace, and remain unchanged.<br />To exclude stock from the update, set the **Ignore stock** attribute to **true**.<br />To exclude price from the update, set the **Ignore price** attribute to **true**.<br /><br />**NB:** the **Merchant product number** must be unique.
 
 ### Example
 
@@ -232,9 +232,10 @@ $apiInstance = new FriendsOfCE\Merchant\ApiClient\Api\ProductApi(
 );
 $merchantProductRequest = array(new \FriendsOfCE\Merchant\ApiClient\Model\MerchantProductRequest()); // \FriendsOfCE\Merchant\ApiClient\Model\MerchantProductRequest[]
 $ignoreStock = false; // bool
+$ignorePrice = false; // bool
 
 try {
-    $result = $apiInstance->productCreate($merchantProductRequest, $ignoreStock);
+    $result = $apiInstance->productCreate($merchantProductRequest, $ignoreStock, $ignorePrice);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProductApi->productCreate: ', $e->getMessage(), PHP_EOL;
@@ -247,6 +248,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **merchantProductRequest** | [**\FriendsOfCE\Merchant\ApiClient\Model\MerchantProductRequest[]**](../Model/MerchantProductRequest.md)|  | |
 | **ignoreStock** | **bool**|  | [optional] [default to false] |
+| **ignorePrice** | **bool**|  | [optional] [default to false] |
 
 ### Return type
 
@@ -271,9 +273,9 @@ try {
 productDelete($merchantProductNo): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
 ```
 
-Delete Product.
+Deletes a product
 
-Delete a product based on the merchant reference.<br />Note that we do not really delete a product, as the product<br />might still be referenced by orders etc. Therefore, the references<br />used for this product cannot be reused. We do however deactivate the product<br />which means that it will not be sent to channels.
+Deletes a product based on the **Merchant product number**.<br /> <br />**NB:** ChannelEngine deactivates but does not delete the product entirely, as it might be still referenced in orders.<br />Therefore, the references used for this product cannot be reused.
 
 ### Example
 
@@ -333,9 +335,9 @@ try {
 productGetByFilter($search, $eanList, $merchantProductNoList, $page): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantProductResponse
 ```
 
-Get Products.
+Gets products
 
-Retrieve all products.
+Retrieve all products. Apply available filters to narrow down your search.
 
 ### Example
 
@@ -401,9 +403,9 @@ try {
 productGetByMerchantProductNo($merchantProductNo): \FriendsOfCE\Merchant\ApiClient\Model\SingleOfMerchantProductResponse
 ```
 
-Get Product.
+Gets a product
 
-Retrieve a product based on the merchant reference.
+Retrieves a product based on the **Merchant product number**.
 
 ### Example
 
@@ -463,9 +465,9 @@ try {
 productPatch($merchantProductNo, $operation): \FriendsOfCE\Merchant\ApiClient\Model\SingleOfProductCreationResult
 ```
 
-Patch product
+Updates product attributes
 
-Patch products. This endpoint allows you to update single fields on a product using patch operations,<br />without having to supply the other product information.<br /><br />The format of this endpoint is a JsonPatchDocument. Examples of how this format works can be found here:<br />http://jsonpatch.com/<br /> <br />It's not possible to nest parent and children more than one level (A parent can have many children,<br />but any child cannot itself also have children).<br /> <br />The supplied MerchantProductNo needs to be unique.<br /><br /> <br />ExtraData used as translations is ignored and cannot be changed.<br /><br />Sample request:<br /> <br /> PATCH /v2/products/{merchantProductNo}<br /> {<br /> \"value\": \"Value\",<br /> \"path\": \"Name\",<br /> \"op\": \"replace\"<br /> }<br /> <br />Adding ExtraData:<br /><br /> PATCH /v2/products/{merchantProductNo}<br /> {<br /> \"value\": {\"key\": \"Key1\", \"value\": \"value1\"},<br /> \"path\": \"extraData/0\",<br /> \"op\": \"add\"<br /> }<br /> <br />Replacing ExtraData (will replace entire ExtraData collection):<br /><br /> PATCH /v2/products/{merchantProductNo}<br /> {<br /> \"value\": [{\"key\": \"Key1\", \"value\": \"value1\"}],<br /> \"path\": \"extraData\",<br /> \"op\": \"replace\"<br /> }<br /> <br />Removing all ExtraData:<br /><br /> PATCH /v2/products/{merchantProductNo}<br /> {<br /> \"path\": \"extraData\",<br /> \"op\": \"replace\"<br /> }<br /> <br /> Or:<br /> <br /> PATCH /v2/products/{merchantProductNo}<br /> {<br /> \"path\": \"extraData\",<br /> \"op\": \"remove\"<br /> }
+Updates specific attributes of a single product based on the **Merchant product number**. The endpoint uses the [JSON Patch](http://jsonpatch.com/).<br /><br />Sample request:<br /><pre><br /> PATCH /v2/products/{merchantProductNo}<br /> {<br /> \"value\": \"Value\",<br /> \"path\": \"Name\",<br /> \"op\": \"replace\"<br /> }<br /></pre><br />Adding ExtraData:<br /><pre><br /> PATCH /v2/products/{merchantProductNo}<br /> {<br /> \"value\": {\"key\": \"Key1\", \"value\": \"value1\"},<br /> \"path\": \"extraData/0\",<br /> \"op\": \"add\"<br /> }<br /></pre><br />Replacing ExtraData (will replace entire ExtraData collection):<br /><pre><br /> PATCH /v2/products/{merchantProductNo}<br /> {<br /> \"value\": [{\"key\": \"Key1\", \"value\": \"value1\"}],<br /> \"path\": \"extraData\",<br /> \"op\": \"replace\"<br /> }<br /></pre><br />Removing all ExtraData:<br /><pre><br /> PATCH /v2/products/{merchantProductNo}<br /> {<br /> \"path\": \"extraData\",<br /> \"op\": \"replace\"<br /> }<br /></pre><br /> Or:<br /><pre><br /> PATCH /v2/products/{merchantProductNo}<br /> {<br /> \"path\": \"extraData\",<br /> \"op\": \"remove\"<br /> }<br /></pre>
 
 ### Example
 
@@ -527,9 +529,9 @@ try {
 productPatchExtraDataItems($merchantProductExtraDataRequest): \FriendsOfCE\Merchant\ApiClient\Model\SingleOfProductCreationResult
 ```
 
-Add/Update/Delete a product's extra data items
+Adds, updates, or deletes a custom attribute
 
-Add/Update/Delete product extra data items. This endpoint allows you to Add, update or delete extra data on a product using the patch operation,<br />without having to supply the other product information.<br /> <br />ExtraData generated by our translation service are ignored and cannot be updated.<br /><br />Sample request:<br /> <br /> PATCH /v2/products/extra-data<br /> {<br /> \"MerchantProductNo\": \"{merchantProductNo}\",<br /> \"Operations\": [<br /> {<br /> \"Op\": \"add\",<br /> \"Key\": \"{Key}\",<br /> \"Value\": \"{Value}\"<br /> }<br /> ]<br /> }<br /> <br />Adding ExtraData:<br /><br /> PATCH /v2/products/extra-data<br /> {<br /> \"MerchantProductNo\": \"{merchantProductNo}\",<br /> \"Operations\": [<br /> {<br /> \"Op\": \"add\",<br /> \"Key\": \"{Key}\",<br /> \"Value\": \"{Value}\"<br /> }<br /> ]<br /> }<br /> <br />Updating ExtraData:<br /><br /> PATCH /v2/products/extra-data<br /> {<br /> \"MerchantProductNo\": \"{merchantProductNo}\",<br /> \"Operations\": [<br /> {<br /> \"Op\": \"replace\",<br /> \"Key\": \"{Key}\",<br /> \"Value\": \"{Value}\"<br /> }<br /> ]<br /> }<br /> <br />Removing ExtraData with key:<br /><br /> PATCH /v2/products/extra-data<br /> {<br /> \"MerchantProductNo\": \"{merchantProductNo}\",<br /> \"Operations\": [<br /> {<br /> \"Op\": \"remove\",<br /> \"Key\": \"{Key}\",<br /> }<br /> ]<br /> }
+Adds, updates, or deletes the specific custom attribute (a.k.a. extra data key) for a single product.<br />You can update a single attribute for a product. The format of this endpoint is [JSON Patch](http://jsonpatch.com/).<br /><br />**NB:** the **Merchant product number** must be unique.<br /><br />Sample requests:<br /> <br />Adding ExtraData:<br /><pre><br /> PATCH /v2/products/extra-data<br /> {<br /> \"MerchantProductNo\": \"{merchantProductNo}\",<br /> \"Operations\": [<br /> {<br /> \"Op\": \"add\",<br /> \"Key\": \"{Key}\",<br /> \"Value\": \"{Value}\"<br /> }<br /> ]<br /> }<br /> </pre><br />Updating ExtraData:<br /><pre><br /> PATCH /v2/products/extra-data<br /> {<br /> \"MerchantProductNo\": \"{merchantProductNo}\",<br /> \"Operations\": [<br /> {<br /> \"Op\": \"replace\",<br /> \"Key\": \"{Key}\",<br /> \"Value\": \"{Value}\"<br /> }<br /> ]<br /> }<br /></pre><br />Removing ExtraData with key:<br /><pre><br /> PATCH /v2/products/extra-data<br /> {<br /> \"MerchantProductNo\": \"{merchantProductNo}\",<br /> \"Operations\": [<br /> {<br /> \"Op\": \"remove\",<br /> \"Key\": \"{Key}\",<br /> }<br /> ]<br /> }<br /></pre>
 
 ### Example
 

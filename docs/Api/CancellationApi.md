@@ -4,8 +4,8 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**cancellationCreate()**](CancellationApi.md#cancellationCreate) | **POST** /v2/cancellations | Create Cancellation. |
-| [**cancellationGetForMerchant()**](CancellationApi.md#cancellationGetForMerchant) | **GET** /v2/cancellations/merchant | Get Cancellations. |
+| [**cancellationCreate()**](CancellationApi.md#cancellationCreate) | **POST** /v2/cancellations | Creates a cancelation |
+| [**cancellationGetForMerchant()**](CancellationApi.md#cancellationGetForMerchant) | **GET** /v2/cancellations/merchant | Gets cancelations |
 
 
 ## `cancellationCreate()`
@@ -14,9 +14,9 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 cancellationCreate($merchantCancellationRequest): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
 ```
 
-Create Cancellation.
+Creates a cancelation
 
-Mark (part of) an order as cancelled.
+Marks an order as fully or partially canceled based on order line and quantity input.
 
 ### Example
 
@@ -76,9 +76,9 @@ try {
 cancellationGetForMerchant($createdSince, $page): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantCancellationResponse
 ```
 
-Get Cancellations.
+Gets cancelations
 
-Gets cancellations created since the supplied date.
+Gets cancelations based on their creation date.
 
 ### Example
 

@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional]
-**channelSettlementId** | **string** |  | [optional]
-**channelSellerId** | **string** |  | [optional]
+**channelSettlementNo** | **string** |  | [optional]
+**channelSellerNo** | **string** |  | [optional]
 **channelId** | **int** |  | [optional]
 **startDate** | **\DateTime** |  | [optional]
 **endDate** | **\DateTime** |  | [optional]

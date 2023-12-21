@@ -4,7 +4,7 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**productBundleGetByFilter()**](ProductBundleApi.md#productBundleGetByFilter) | **GET** /v2/productbundles | Get product bundles. |
+| [**productBundleGetByFilter()**](ProductBundleApi.md#productBundleGetByFilter) | **GET** /v2/productbundles | Gets product bundles |
 
 
 ## `productBundleGetByFilter()`
@@ -13,9 +13,9 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 productBundleGetByFilter($search, $eanList, $merchantProductNoList, $page): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantProductBundleResponse
 ```
 
-Get product bundles.
+Gets product bundles
 
-You can get the full product information on bundles from the regular /products endpoint.
+Gets the product bundle details.
 
 ### Example
 

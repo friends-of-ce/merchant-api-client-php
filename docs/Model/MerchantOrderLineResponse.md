@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **int** | The unique identifier used by ChannelEngine. | [optional]
+**channelOrderLineNo** | **string** | The order line reference used by the channel. | [optional]
 **status** | [**\FriendsOfCE\Merchant\ApiClient\Model\OrderStatusView**](OrderStatusView.md) |  | [optional]
 **isFulfillmentByMarketplace** | **bool** | Is the order fulfilled by the marketplace (amazon: FBA, bol: LVB, etc.)?. | [optional]
 **gtin** | **string** | Either the GTIN (EAN, ISBN, UPC etc) provided by the channel, or the the GTIN belonging to the MerchantProductNo in ChannelEngine. | [optional]

@@ -4,7 +4,7 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**settlementGetByFilter()**](SettlementApi.md#settlementGetByFilter) | **GET** /v2/settlements | Get settelmets |
+| [**settlementGetByFilter()**](SettlementApi.md#settlementGetByFilter) | **GET** /v2/settlements | Gets settlements |
 
 
 ## `settlementGetByFilter()`
@@ -13,9 +13,9 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 settlementGetByFilter($channelIds, $fromStartDate, $toStartDate, $fromEndDate, $toEndDate, $fromCreateDate, $toCreateDate, $fromUpdateDate, $toUpdateDate, $page): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantReportsResponse
 ```
 
-Get settelmets
+Gets settlements
 
-Gets all settelmets that meet conditions.
+Gets the settlements based on the available filters.
 
 ### Example
 
