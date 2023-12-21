@@ -4,13 +4,13 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**orderAcknowledge()**](OrderApi.md#orderAcknowledge) | **POST** /v2/orders/acknowledge | Acknowledge Order. |
-| [**orderGetByFilter()**](OrderApi.md#orderGetByFilter) | **GET** /v2/orders | Get Orders By Filter. |
-| [**orderGetNew()**](OrderApi.md#orderGetNew) | **GET** /v2/orders/new | Get New Orders. |
-| [**orderInvoice()**](OrderApi.md#orderInvoice) | **GET** /v2/orders/{merchantOrderNo}/invoice | Download Invoice. |
-| [**orderPackingSlip()**](OrderApi.md#orderPackingSlip) | **GET** /v2/orders/{merchantOrderNo}/packingslip | Download Packing Slip. |
-| [**orderUpdate()**](OrderApi.md#orderUpdate) | **PUT** /v2/orders/comment | Update Comment. |
-| [**orderUploadInvoice()**](OrderApi.md#orderUploadInvoice) | **POST** /v2/orders/{merchantOrderNo}/invoice | Upload Invoice. |
+| [**orderAcknowledge()**](OrderApi.md#orderAcknowledge) | **POST** /v2/orders/acknowledge | Acknowledges orders |
+| [**orderGetByFilter()**](OrderApi.md#orderGetByFilter) | **GET** /v2/orders | Gets orders by filter |
+| [**orderGetNew()**](OrderApi.md#orderGetNew) | **GET** /v2/orders/new | Gets new orders |
+| [**orderInvoice()**](OrderApi.md#orderInvoice) | **GET** /v2/orders/{merchantOrderNo}/invoice | Generates an order invoice |
+| [**orderPackingSlip()**](OrderApi.md#orderPackingSlip) | **GET** /v2/orders/{merchantOrderNo}/packingslip | Generates a packing slip |
+| [**orderUpdate()**](OrderApi.md#orderUpdate) | **PUT** /v2/orders/comment | Updates an order comment |
+| [**orderUploadInvoice()**](OrderApi.md#orderUploadInvoice) | **POST** /v2/orders/{merchantOrderNo}/invoice | Uploads an order invoice |
 
 
 ## `orderAcknowledge()`
@@ -19,9 +19,9 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 orderAcknowledge($merchantOrderAcknowledgementRequest): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
 ```
 
-Acknowledge Order.
+Acknowledges orders
 
-Acknowledge an order. By acknowledging the order the merchant can confirm that<br />the order has been imported. When acknowledging an order the merchant has to supply<br />references that uniquely identify the order and the order lines. These references<br />will be used in the other API calls.
+Acknowledges an order to confirm order import.
 
 ### Example
 
@@ -81,9 +81,9 @@ try {
 orderGetByFilter($statuses, $emailAddresses, $merchantOrderNos, $channelOrderNos, $fromDate, $toDate, $fromCreatedAtDate, $toCreatedAtDate, $excludeMarketplaceFulfilledOrdersAndLines, $fulfillmentType, $onlyWithCancellationRequests, $channelIds, $stockLocationIds, $isAcknowledged, $fromUpdatedAtDate, $toUpdatedAtDate, $fromAcknowledgedDate, $toAcknowledgedDate, $page): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantOrderResponse
 ```
 
-Get Orders By Filter.
+Gets orders by filter
 
-Fetch orders based on the provided OrderFilter.
+Gets orders based on the available filters.
 
 ### Example
 
@@ -179,9 +179,9 @@ try {
 orderGetNew($stockLocationId): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantOrderResponse
 ```
 
-Get New Orders.
+Gets new orders
 
-Fetch newly placed orders (order with status NEW).
+Gets orders with the status **New**.
 
 ### Example
 
@@ -241,9 +241,9 @@ try {
 orderInvoice($merchantOrderNo, $useCustomerCulture): \SplFileObject
 ```
 
-Download Invoice.
+Generates an order invoice
 
-Generates the ChannelEngine VAT invoice for this order in PDF.
+Generates the ChannelEngine sales tax invoice for an order in PDF.
 
 ### Example
 
@@ -305,9 +305,9 @@ try {
 orderPackingSlip($merchantOrderNo, $useCustomerCulture): \SplFileObject
 ```
 
-Download Packing Slip.
+Generates a packing slip
 
-Generates the ChannelEngine packing slip for this order in PDF.
+Generates the ChannelEngine packing slip for an order in PDF.
 
 ### Example
 
@@ -369,9 +369,9 @@ try {
 orderUpdate($merchantOrderCommentUpdateRequest): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
 ```
 
-Update Comment.
+Updates an order comment
 
-Update the merchant comment for an order. Either the ChannelEngine order id or the<br />merchant order number can be used for updating a comment.
+Updates the merchant comment for an order based on the ChannelEngine **Order ID** or the **Merchant order number**.
 
 ### Example
 
@@ -431,9 +431,9 @@ try {
 orderUploadInvoice($merchantOrderNo, $invoice, $invoiceNumber): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
 ```
 
-Upload Invoice.
+Uploads an order invoice
 
-Upload merchant invoice for order.
+Uploads the invoice for an order in PDF.
 
 ### Example
 

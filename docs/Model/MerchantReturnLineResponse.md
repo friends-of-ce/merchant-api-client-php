@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **merchantProductNo** | **string** | The unique product reference used by the Merchant (sku). | [optional]
 **orderLine** | [**\FriendsOfCE\Merchant\ApiClient\Model\MerchantOrderLineResponse**](MerchantOrderLineResponse.md) |  | [optional]
 **shipmentStatus** | [**\FriendsOfCE\Merchant\ApiClient\Model\ShipmentLineStatus**](ShipmentLineStatus.md) |  | [optional]
+**stockLocation** | [**\FriendsOfCE\Merchant\ApiClient\Model\MerchantStockLocationResponse**](MerchantStockLocationResponse.md) |  | [optional]
 **quantity** | **int** | Number of items of the product in this return. |
 **extraData** | **array<string,string>** | Extra data on the returnline. Each item must have an unqiue key | [optional]
 

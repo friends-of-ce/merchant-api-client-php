@@ -4,8 +4,8 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**stockLocationCreate()**](StockLocationApi.md#stockLocationCreate) | **POST** /v2/stocklocations |  |
-| [**stockLocationIndex()**](StockLocationApi.md#stockLocationIndex) | **GET** /v2/stocklocations | Get the stock locations (or virtual warehouses). |
+| [**stockLocationCreate()**](StockLocationApi.md#stockLocationCreate) | **POST** /v2/stocklocations | Creates a stock location |
+| [**stockLocationIndex()**](StockLocationApi.md#stockLocationIndex) | **GET** /v2/stocklocations | Gets stock locations |
 
 
 ## `stockLocationCreate()`
@@ -14,7 +14,9 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 stockLocationCreate($merchantStockLocationCreateRequest): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
 ```
 
+Creates a stock location
 
+Creates a stock location on ChannelEngine.
 
 ### Example
 
@@ -74,9 +76,9 @@ try {
 stockLocationIndex(): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantStockLocationWithCountryIsoResponse
 ```
 
-Get the stock locations (or virtual warehouses).
+Gets stock locations
 
-Get the different stock locations (or virtual warehouses) that are in use.<br />This may include stock locations for 'fulfillment by ... (Amazon/bol/CDiscount)' (FBA/LVB/FBC) solutions.<br />You can use the id's to get to stock of products in specific stock location, e.g. the FBA stock for the products.
+Gets the different stock locations in use. <br />**NB:** the response may include stock locations for 'marketplace fulfilment' solutions (e.g.: FBA, LVB, ZFS, etc.).<br />Use the retrieved IDs to get the stock of products in specific stock locations, such as the FBA stock.
 
 ### Example
 

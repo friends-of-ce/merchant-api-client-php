@@ -4,7 +4,7 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**listedProductGetByFilter()**](ListedProductsApi.md#listedProductGetByFilter) | **GET** /v2/channels/{channelId}/products | Get Listed Products |
+| [**listedProductGetByFilter()**](ListedProductsApi.md#listedProductGetByFilter) | **GET** /v2/channels/{channelId}/products | Gets products listed by channel |
 
 
 ## `listedProductGetByFilter()`
@@ -13,9 +13,9 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 listedProductGetByFilter($channelId, $merchantProductNos, $page): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfChannelListedProductResponse
 ```
 
-Get Listed Products
+Gets products listed by channel
 
-Gets the status of products listed for channel (export status) and on a channel (channel status).<br />Includes products that were previously deleted from but are now set to be created again.<br />In response most common identifiers are provided, like Ean, MerchantProductNo (sku)<br />and also ChannelProductNo which is unique product reference used by the Channel.<br />Note: not all channels provide adequate options to retrieve the status on the channel.
+Gets the products listed per channel based on the **Channel ID**.<br /> <br />**NB:** not all marketplaces provide adequate options to retrieve the status of a product as seen on the marketplace.
 
 ### Example
 

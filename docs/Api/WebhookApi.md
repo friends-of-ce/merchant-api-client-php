@@ -4,10 +4,10 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**webhooksCreate()**](WebhookApi.md#webhooksCreate) | **POST** /v2/webhooks | Create Webhook. |
-| [**webhooksDelete()**](WebhookApi.md#webhooksDelete) | **DELETE** /v2/webhooks/{webhookName} | Delete Webhook. |
-| [**webhooksGetAll()**](WebhookApi.md#webhooksGetAll) | **GET** /v2/webhooks | Get Webhooks. |
-| [**webhooksUpdate()**](WebhookApi.md#webhooksUpdate) | **PUT** /v2/webhooks | Update Webhook. |
+| [**webhooksCreate()**](WebhookApi.md#webhooksCreate) | **POST** /v2/webhooks | Creates a webhook |
+| [**webhooksDelete()**](WebhookApi.md#webhooksDelete) | **DELETE** /v2/webhooks/{webhookName} | Deletes a webhook |
+| [**webhooksGetAll()**](WebhookApi.md#webhooksGetAll) | **GET** /v2/webhooks | Gets webhooks |
+| [**webhooksUpdate()**](WebhookApi.md#webhooksUpdate) | **PUT** /v2/webhooks | Updates a webhook |
 
 
 ## `webhooksCreate()`
@@ -16,9 +16,9 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 webhooksCreate($merchantWebhookRequest): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
 ```
 
-Create Webhook.
+Creates a webhook
 
-Create a new webhook in the ChannelEngine.
+Creates a webhook on ChannelEngine.
 
 ### Example
 
@@ -78,9 +78,9 @@ try {
 webhooksDelete($webhookName): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
 ```
 
-Delete Webhook.
+Deletes a webhook
 
-Delete a webhook based on the webhook name.
+Deletes a webhook from ChannelEngine.
 
 ### Example
 
@@ -140,9 +140,9 @@ try {
 webhooksGetAll(): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantWebhookResponse
 ```
 
-Get Webhooks.
+Gets webhooks
 
-Get all webhooks created in the ChannelEngine.
+Gets all webhooks created on ChannelEngine.
 
 ### Example
 
@@ -199,9 +199,9 @@ This endpoint does not need any parameter.
 webhooksUpdate($merchantWebhookRequest): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
 ```
 
-Update Webhook.
+Updates a webhook
 
-Update a webhook in the ChannelEngine.
+Updates a webhook on ChannelEngine.
 
 ### Example
 

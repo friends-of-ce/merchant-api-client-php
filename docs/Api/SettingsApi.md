@@ -4,7 +4,7 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**settingsGet()**](SettingsApi.md#settingsGet) | **GET** /v2/settings | Get settings. |
+| [**settingsGet()**](SettingsApi.md#settingsGet) | **GET** /v2/settings | Gets settings |
 
 
 ## `settingsGet()`
@@ -13,9 +13,9 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 settingsGet(): \FriendsOfCE\Merchant\ApiClient\Model\SingleOfMerchantSettingsResponse
 ```
 
-Get settings.
+Gets settings
 
-Get merchant base info, settings and vat number.
+Gets the tenant details, settings, and tax number.
 
 ### Example
 

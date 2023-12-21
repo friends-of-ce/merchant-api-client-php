@@ -4,7 +4,7 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**notificationIndex()**](NotificationApi.md#notificationIndex) | **GET** /v2/notifications | Get Notifications. |
+| [**notificationIndex()**](NotificationApi.md#notificationIndex) | **GET** /v2/notifications | Gets notifications |
 
 
 ## `notificationIndex()`
@@ -13,9 +13,9 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 notificationIndex($fromDate, $toDate, $types, $merchantOrderNos, $channelOrderNos, $merchantReturnNos, $channelReturnNos, $merchantShipmentNos, $page): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantNotificationResponse
 ```
 
-Get Notifications.
+Gets notifications
 
-Gets all notifications based on filter.
+Gets ChannelEngine notifications based on the available filters.
 
 ### Example
 

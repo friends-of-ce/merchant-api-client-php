@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **globalChannelId** | **int** | The unique ID of the channel across all of ChannelEngine. | [optional]
 **channelOrderSupport** | [**\FriendsOfCE\Merchant\ApiClient\Model\OrderSupport**](OrderSupport.md) |  | [optional]
 **channelOrderNo** | **string** | The order reference used by the channel.  This number is not guaranteed to be unique accross all orders,  because different channels can use the same order number format. | [optional]
+**commercialOrderNo** | **string** | The order reference used by the channel for commercial purposes (e.g. on the invoice). Can be different from the ChannelOrderNo.  For example when the internal unique order reference is a unique id or guid, while the commercial order reference is (usually) a human readable reference that can be reused or used for multiple sellers by the channel. | [optional]
 **merchantOrderNo** | **string** | The unique order reference used by the Merchant | [optional]
 **status** | [**\FriendsOfCE\Merchant\ApiClient\Model\OrderStatusView**](OrderStatusView.md) |  | [optional]
 **isBusinessOrder** | **bool** | Indicating whether the order is a business order. | [optional]
@@ -41,6 +42,7 @@ Name | Type | Description | Notes
 **shippingCostsInclVat** | **float** |  | [optional]
 **phone** | **string** | The customer&#39;s telephone number. | [optional]
 **email** | **string** | The customer&#39;s email. |
+**languageCode** | **string** | The language of the order. Has to be a 2-letter ISO language code. | [optional]
 **companyRegistrationNo** | **string** | Optional. A company&#39;s chamber of commerce number. | [optional]
 **vatNo** | **string** | Optional. A company&#39;s VAT number. | [optional]
 **paymentMethod** | **string** | The payment method used on the order. | [optional]

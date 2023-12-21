@@ -4,7 +4,7 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**competitionPricesGetBuyBoxPrices()**](CompetitionPriceApi.md#competitionPricesGetBuyBoxPrices) | **GET** /v2/competitionprices/buyboxprices | Get the BuyBox winner prices |
+| [**competitionPricesGetBuyBoxPrices()**](CompetitionPriceApi.md#competitionPricesGetBuyBoxPrices) | **GET** /v2/competitionprices/buyboxprices | Gets the price from the buy box winner |
 
 
 ## `competitionPricesGetBuyBoxPrices()`
@@ -13,9 +13,9 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 competitionPricesGetBuyBoxPrices($channelId, $gtinList, $skuList, $page): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantProductWithBuyBoxPrice
 ```
 
-Get the BuyBox winner prices
+Gets the price from the buy box winner
 
-Get the current price of the BuyBox winner per product for a channel.
+Gets the current price of the buy box winner per product for a marketplace.
 
 ### Example
 

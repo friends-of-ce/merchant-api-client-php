@@ -4,9 +4,9 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**reportCreateSettlementsReport()**](ReportApi.md#reportCreateSettlementsReport) | **POST** /v2/reports/settlements | Create settlements report |
-| [**reportGetReport()**](ReportApi.md#reportGetReport) | **GET** /v2/reports/{reportId} | Get report |
-| [**reportGetStatus()**](ReportApi.md#reportGetStatus) | **GET** /v2/reports/{reportId}/status | Check report status |
+| [**reportCreateSettlementsReport()**](ReportApi.md#reportCreateSettlementsReport) | **POST** /v2/reports/settlements | Creates a settlement report |
+| [**reportGetReport()**](ReportApi.md#reportGetReport) | **GET** /v2/reports/{reportId} | Gets a settlement report |
+| [**reportGetStatus()**](ReportApi.md#reportGetStatus) | **GET** /v2/reports/{reportId}/status | Gets the status of a settlement report |
 
 
 ## `reportCreateSettlementsReport()`
@@ -15,9 +15,9 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 reportCreateSettlementsReport($merchantCreateSettlementsReportRequest): \FriendsOfCE\Merchant\ApiClient\Model\MerchantCreateReportResponse
 ```
 
-Create settlements report
+Creates a settlement report
 
-Create report base on settlement ids.<br />There is two types of reports:<br />SUMMARY - transactions grouped by Currency, ChannelSellerId, ChannelName,<br />DETAILED - all transactions.<br />Depends on amount of settlements transactions generating report can take few minutes.
+Creates a settlement report based on the **Settlement ID** provided. There are two types of reports:<br />**SUMMARY** - a high level financial overview.<br />**DETAILED** - a detailed report containing all transactions.<br /> <br />**NB:** depending on the number of transactions within the settlement, it can take a few minutes for the report to be generated.
 
 ### Example
 
@@ -77,9 +77,9 @@ try {
 reportGetReport($reportId): \SplFileObject
 ```
 
-Get report
+Gets a settlement report
 
-Get report using report id.<br />Report is generated as csv file with \";\" as delimiter.<br />If some field has `,` (comma) then use quotes around.
+Gets a settlement report based on the **Report ID** provided. The generated report is a CSV file with a semicolon (;) as a delimiter.<br />If a field has a comma (,) then it is enclosed in quotes (\"\").
 
 ### Example
 
@@ -139,9 +139,9 @@ try {
 reportGetStatus($reportId): \FriendsOfCE\Merchant\ApiClient\Model\MerchantGetReportStatusResponse
 ```
 
-Check report status
+Gets the status of a settlement report
 
-Check report status using report Id.<br />There are four statuses of report:<br />IN_PROGRESS - creating report didn't finish yet,<br />DONE - report is done,<br />FAILED - creating report was failed, it is not available,<br />NOT_FOUND - cannot found such reportId.
+Returns a report status based on the **Report ID** provided. There are four statuses:<br />**IN_PROGRESS** - the report is still being created.<br />**DONE** - the report has been created.<br />**FAILED** - the report creation failed.<br />**NOT_FOUND** - the Report ID was not found.<br /> <br />**NB:** if the status is **DONE**, the response contains a URL with a download path.
 
 ### Example
 
