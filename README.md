@@ -100,6 +100,7 @@ Class | Method | HTTP request | Description
 *ProductApi* | [**productBulkPatchExtraDataItems**](docs/Api/ProductApi.md#productbulkpatchextradataitems) | **PATCH** /v2/products/extra-data/bulk | Adds, updates, or deletes custom attributes
 *ProductApi* | [**productCreate**](docs/Api/ProductApi.md#productcreate) | **POST** /v2/products | Updates or creates products
 *ProductApi* | [**productDelete**](docs/Api/ProductApi.md#productdelete) | **DELETE** /v2/products/{merchantProductNo} | Deletes a product
+*ProductApi* | [**productFreezeProduct**](docs/Api/ProductApi.md#productfreezeproduct) | **POST** /v2/products/freezeproducts | Updates selected products and sets them either to frozen or not-frozen status.
 *ProductApi* | [**productGetByFilter**](docs/Api/ProductApi.md#productgetbyfilter) | **GET** /v2/products | Gets products
 *ProductApi* | [**productGetByMerchantProductNo**](docs/Api/ProductApi.md#productgetbymerchantproductno) | **GET** /v2/products/{merchantProductNo} | Gets a product
 *ProductApi* | [**productPatch**](docs/Api/ProductApi.md#productpatch) | **PATCH** /v2/products/{merchantProductNo} | Updates product attributes
@@ -124,6 +125,7 @@ Class | Method | HTTP request | Description
 *ReturnApi* | [**returnUpdateForMerchant**](docs/Api/ReturnApi.md#returnupdateformerchant) | **PUT** /v2/returns | Marks returns as received
 *SettingsApi* | [**settingsGet**](docs/Api/SettingsApi.md#settingsget) | **GET** /v2/settings | Gets settings
 *SettlementApi* | [**settlementGetByFilter**](docs/Api/SettlementApi.md#settlementgetbyfilter) | **GET** /v2/settlements | Gets settlements
+*SettlementApi* | [**settlementUploadSettlement**](docs/Api/SettlementApi.md#settlementuploadsettlement) | **POST** /v2/settlements/upload | Imports a settlement file.
 *ShipmentApi* | [**shipmentCreate**](docs/Api/ShipmentApi.md#shipmentcreate) | **POST** /v2/shipments | Creates shipments
 *ShipmentApi* | [**shipmentCreateForChannelMethod**](docs/Api/ShipmentApi.md#shipmentcreateforchannelmethod) | **POST** /v2/shipments/channelmethod | Creates a shipment and initiates shipping label generation
 *ShipmentApi* | [**shipmentGetShipmentLabelCarriers**](docs/Api/ShipmentApi.md#shipmentgetshipmentlabelcarriers) | **POST** /v2/carriers/{merchantOrderNo} | Gets carriers providing shipping labels
@@ -159,8 +161,8 @@ Class | Method | HTTP request | Description
 - [CollectionOfMerchantProductBundleResponse](docs/Model/CollectionOfMerchantProductBundleResponse.md)
 - [CollectionOfMerchantProductResponse](docs/Model/CollectionOfMerchantProductResponse.md)
 - [CollectionOfMerchantProductWithBuyBoxPrice](docs/Model/CollectionOfMerchantProductWithBuyBoxPrice.md)
-- [CollectionOfMerchantReportsResponse](docs/Model/CollectionOfMerchantReportsResponse.md)
 - [CollectionOfMerchantReturnResponse](docs/Model/CollectionOfMerchantReturnResponse.md)
+- [CollectionOfMerchantSettlementReportsResponse](docs/Model/CollectionOfMerchantSettlementReportsResponse.md)
 - [CollectionOfMerchantShipmentLabelCarrierResponse](docs/Model/CollectionOfMerchantShipmentLabelCarrierResponse.md)
 - [CollectionOfMerchantShipmentResponse](docs/Model/CollectionOfMerchantShipmentResponse.md)
 - [CollectionOfMerchantSingleOrderReturnResponse](docs/Model/CollectionOfMerchantSingleOrderReturnResponse.md)
@@ -169,6 +171,8 @@ Class | Method | HTTP request | Description
 - [Condition](docs/Model/Condition.md)
 - [CreatorFilter](docs/Model/CreatorFilter.md)
 - [ExtraDataType](docs/Model/ExtraDataType.md)
+- [FreezeProductRequest](docs/Model/FreezeProductRequest.md)
+- [FreezingActionRequest](docs/Model/FreezingActionRequest.md)
 - [FulfillmentType](docs/Model/FulfillmentType.md)
 - [Gender](docs/Model/Gender.md)
 - [ListedProductChannelStatus](docs/Model/ListedProductChannelStatus.md)
@@ -204,7 +208,6 @@ Class | Method | HTTP request | Description
 - [MerchantProductRequest](docs/Model/MerchantProductRequest.md)
 - [MerchantProductResponse](docs/Model/MerchantProductResponse.md)
 - [MerchantProductWithBuyBoxPrice](docs/Model/MerchantProductWithBuyBoxPrice.md)
-- [MerchantReportsResponse](docs/Model/MerchantReportsResponse.md)
 - [MerchantReturnAcknowledgeRequest](docs/Model/MerchantReturnAcknowledgeRequest.md)
 - [MerchantReturnLineRequest](docs/Model/MerchantReturnLineRequest.md)
 - [MerchantReturnLineResponse](docs/Model/MerchantReturnLineResponse.md)
@@ -213,6 +216,7 @@ Class | Method | HTTP request | Description
 - [MerchantReturnResponse](docs/Model/MerchantReturnResponse.md)
 - [MerchantReturnUpdateRequest](docs/Model/MerchantReturnUpdateRequest.md)
 - [MerchantSettingsResponse](docs/Model/MerchantSettingsResponse.md)
+- [MerchantSettlementReportsResponse](docs/Model/MerchantSettlementReportsResponse.md)
 - [MerchantShipmentLabelCarrierRequest](docs/Model/MerchantShipmentLabelCarrierRequest.md)
 - [MerchantShipmentLabelCarrierResponse](docs/Model/MerchantShipmentLabelCarrierResponse.md)
 - [MerchantShipmentLineRequest](docs/Model/MerchantShipmentLineRequest.md)
@@ -253,6 +257,7 @@ Class | Method | HTTP request | Description
 - [ShipmentFulfillmentType](docs/Model/ShipmentFulfillmentType.md)
 - [ShipmentLineStatus](docs/Model/ShipmentLineStatus.md)
 - [ShipmentSettingsResponse](docs/Model/ShipmentSettingsResponse.md)
+- [SingleOfApiResponse](docs/Model/SingleOfApiResponse.md)
 - [SingleOfDictionaryOfStringAndListOfString](docs/Model/SingleOfDictionaryOfStringAndListOfString.md)
 - [SingleOfMerchantProductResponse](docs/Model/SingleOfMerchantProductResponse.md)
 - [SingleOfMerchantSettingsResponse](docs/Model/SingleOfMerchantSettingsResponse.md)
@@ -291,5 +296,5 @@ vendor/bin/phpunit
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
 - API version: `2.13.0`
-    - Package version: `2.13.0.1`
+    - Package version: `2.13.0.2`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

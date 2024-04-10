@@ -9,6 +9,7 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 | [**productBulkPatchExtraDataItems()**](ProductApi.md#productBulkPatchExtraDataItems) | **PATCH** /v2/products/extra-data/bulk | Adds, updates, or deletes custom attributes |
 | [**productCreate()**](ProductApi.md#productCreate) | **POST** /v2/products | Updates or creates products |
 | [**productDelete()**](ProductApi.md#productDelete) | **DELETE** /v2/products/{merchantProductNo} | Deletes a product |
+| [**productFreezeProduct()**](ProductApi.md#productFreezeProduct) | **POST** /v2/products/freezeproducts | Updates selected products and sets them either to frozen or not-frozen status. |
 | [**productGetByFilter()**](ProductApi.md#productGetByFilter) | **GET** /v2/products | Gets products |
 | [**productGetByMerchantProductNo()**](ProductApi.md#productGetByMerchantProductNo) | **GET** /v2/products/{merchantProductNo} | Gets a product |
 | [**productPatch()**](ProductApi.md#productPatch) | **PATCH** /v2/products/{merchantProductNo} | Updates product attributes |
@@ -323,6 +324,68 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `productFreezeProduct()`
+
+```php
+productFreezeProduct($freezeProductRequest): \FriendsOfCE\Merchant\ApiClient\Model\SingleOfApiResponse
+```
+
+Updates selected products and sets them either to frozen or not-frozen status.
+
+Changes state of products by updating it with FREEZE or UNFREEZE state.<br />All fields are required.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: apiKey
+$config = FriendsOfCE\Merchant\ApiClient\Configuration::getDefaultConfiguration()->setApiKey('apikey', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FriendsOfCE\Merchant\ApiClient\Configuration::getDefaultConfiguration()->setApiKeyPrefix('apikey', 'Bearer');
+
+
+$apiInstance = new FriendsOfCE\Merchant\ApiClient\Api\ProductApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$freezeProductRequest = array(new \FriendsOfCE\Merchant\ApiClient\Model\FreezeProductRequest()); // \FriendsOfCE\Merchant\ApiClient\Model\FreezeProductRequest[]
+
+try {
+    $result = $apiInstance->productFreezeProduct($freezeProductRequest);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProductApi->productFreezeProduct: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **freezeProductRequest** | [**\FriendsOfCE\Merchant\ApiClient\Model\FreezeProductRequest[]**](../Model/FreezeProductRequest.md)|  | [optional] |
+
+### Return type
+
+[**\FriendsOfCE\Merchant\ApiClient\Model\SingleOfApiResponse**](../Model/SingleOfApiResponse.md)
+
+### Authorization
+
+[apiKey](../../README.md#apiKey)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json-patch+json`, `application/json`, `application/*+json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

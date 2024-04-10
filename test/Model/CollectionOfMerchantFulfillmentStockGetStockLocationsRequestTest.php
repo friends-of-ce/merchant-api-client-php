@@ -161,6 +161,15 @@ class CollectionOfMerchantFulfillmentStockGetStockLocationsRequestTest extends T
     }
 
     /**
+     * Test attribute "exceptionType"
+     */
+    public function testPropertyExceptionType()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "validationErrors"
      */
     public function testPropertyValidationErrors()
