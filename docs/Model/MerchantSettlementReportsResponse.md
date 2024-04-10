@@ -1,12 +1,11 @@
-# # MerchantReportsResponse
+# # MerchantSettlementReportsResponse
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [optional]
+**settlementId** | **int** |  | [optional]
 **channelSettlementNo** | **string** |  | [optional]
-**channelSellerNo** | **string** |  | [optional]
 **channelId** | **int** |  | [optional]
 **startDate** | **\DateTime** |  | [optional]
 **endDate** | **\DateTime** |  | [optional]

@@ -88,6 +88,7 @@ class MerchantProductRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'extraImageUrl7' => 'string',
         'extraImageUrl8' => 'string',
         'extraImageUrl9' => 'string',
+        'isFrozen' => 'bool',
         'categoryTrail' => 'string'
     ];
 
@@ -130,6 +131,7 @@ class MerchantProductRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'extraImageUrl7' => null,
         'extraImageUrl8' => null,
         'extraImageUrl9' => null,
+        'isFrozen' => null,
         'categoryTrail' => null
     ];
 
@@ -170,6 +172,7 @@ class MerchantProductRequest implements ModelInterface, ArrayAccess, \JsonSerial
 		'extraImageUrl7' => true,
 		'extraImageUrl8' => true,
 		'extraImageUrl9' => true,
+		'isFrozen' => false,
 		'categoryTrail' => true
     ];
 
@@ -290,6 +293,7 @@ class MerchantProductRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'extraImageUrl7' => 'ExtraImageUrl7',
         'extraImageUrl8' => 'ExtraImageUrl8',
         'extraImageUrl9' => 'ExtraImageUrl9',
+        'isFrozen' => 'IsFrozen',
         'categoryTrail' => 'CategoryTrail'
     ];
 
@@ -330,6 +334,7 @@ class MerchantProductRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'extraImageUrl7' => 'setExtraImageUrl7',
         'extraImageUrl8' => 'setExtraImageUrl8',
         'extraImageUrl9' => 'setExtraImageUrl9',
+        'isFrozen' => 'setIsFrozen',
         'categoryTrail' => 'setCategoryTrail'
     ];
 
@@ -370,6 +375,7 @@ class MerchantProductRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'extraImageUrl7' => 'getExtraImageUrl7',
         'extraImageUrl8' => 'getExtraImageUrl8',
         'extraImageUrl9' => 'getExtraImageUrl9',
+        'isFrozen' => 'getIsFrozen',
         'categoryTrail' => 'getCategoryTrail'
     ];
 
@@ -461,6 +467,7 @@ class MerchantProductRequest implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('extraImageUrl7', $data ?? [], null);
         $this->setIfExists('extraImageUrl8', $data ?? [], null);
         $this->setIfExists('extraImageUrl9', $data ?? [], null);
+        $this->setIfExists('isFrozen', $data ?? [], null);
         $this->setIfExists('categoryTrail', $data ?? [], null);
     }
 
@@ -1884,6 +1891,33 @@ class MerchantProductRequest implements ModelInterface, ArrayAccess, \JsonSerial
         }
 
         $this->container['extraImageUrl9'] = $extraImageUrl9;
+
+        return $this;
+    }
+
+    /**
+     * Gets isFrozen
+     *
+     * @return bool|null
+     */
+    public function getIsFrozen()
+    {
+        return $this->container['isFrozen'];
+    }
+
+    /**
+     * Sets isFrozen
+     *
+     * @param bool|null $isFrozen Specifies whether Product is disabled on all channels.
+     *
+     * @return self
+     */
+    public function setIsFrozen($isFrozen)
+    {
+        if (is_null($isFrozen)) {
+            throw new \InvalidArgumentException('non-nullable isFrozen cannot be null');
+        }
+        $this->container['isFrozen'] = $isFrozen;
 
         return $this;
     }

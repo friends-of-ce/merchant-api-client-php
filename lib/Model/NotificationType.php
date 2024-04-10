@@ -170,6 +170,14 @@ class NotificationType
 
     public const CHANNEL_PURCHASE_ORDER_SHIPMENT_EXPORT_FAILED = 'CHANNEL_PURCHASE_ORDER_SHIPMENT_EXPORT_FAILED';
 
+    public const CHANNEL_KPI_TARGET_MISSED = 'CHANNEL_KPI_TARGET_MISSED';
+
+    public const LATE_UNSHIPPED_ORDERS = 'LATE_UNSHIPPED_ORDERS';
+
+    public const FEED_ENABLED = 'FEED_ENABLED';
+
+    public const FEED_DISABLED = 'FEED_DISABLED';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -240,7 +248,11 @@ class NotificationType
             self::CHANNEL_RETURN_REQUIRED_ATTENTION,
             self::CHANNEL_PURCHASE_ORDER_NEW,
             self::CHANNEL_PURCHASE_ORDER_CHANGED,
-            self::CHANNEL_PURCHASE_ORDER_SHIPMENT_EXPORT_FAILED
+            self::CHANNEL_PURCHASE_ORDER_SHIPMENT_EXPORT_FAILED,
+            self::CHANNEL_KPI_TARGET_MISSED,
+            self::LATE_UNSHIPPED_ORDERS,
+            self::FEED_ENABLED,
+            self::FEED_DISABLED
         ];
     }
 }

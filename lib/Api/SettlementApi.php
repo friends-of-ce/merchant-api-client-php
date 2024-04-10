@@ -74,6 +74,9 @@ class SettlementApi
         'settlementGetByFilter' => [
             'application/json',
         ],
+        'settlementUploadSettlement' => [
+            'multipart/form-data',
+        ],
     ];
 
 /**
@@ -127,6 +130,9 @@ class SettlementApi
      *
      * Gets settlements
      *
+     * @param  bool $unExportedOnly Filter on settlements that have not been exported before. (optional)
+     * @param  int[] $settlementIds Filter on settlement IDs. (optional)
+     * @param  string[] $channelSettlementNos Filter on channel settlement nos. (optional)
      * @param  int[] $channelIds Filter on channel id list. (optional)
      * @param  \DateTime $fromStartDate Filter on the start date of the settlement in ChannelEngine, until this date. This date is exclusive. (optional)
      * @param  \DateTime $toStartDate Filter on the start date of the settlement in ChannelEngine, until this date. This date is exclusive. (optional)
@@ -141,11 +147,11 @@ class SettlementApi
      *
      * @throws \FriendsOfCE\Merchant\ApiClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantReportsResponse
+     * @return \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantSettlementReportsResponse|\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
      */
-    public function settlementGetByFilter($channelIds = null, $fromStartDate = null, $toStartDate = null, $fromEndDate = null, $toEndDate = null, $fromCreateDate = null, $toCreateDate = null, $fromUpdateDate = null, $toUpdateDate = null, $page = null, string $contentType = self::contentTypes['settlementGetByFilter'][0])
+    public function settlementGetByFilter($unExportedOnly = null, $settlementIds = null, $channelSettlementNos = null, $channelIds = null, $fromStartDate = null, $toStartDate = null, $fromEndDate = null, $toEndDate = null, $fromCreateDate = null, $toCreateDate = null, $fromUpdateDate = null, $toUpdateDate = null, $page = null, string $contentType = self::contentTypes['settlementGetByFilter'][0])
     {
-        list($response) = $this->settlementGetByFilterWithHttpInfo($channelIds, $fromStartDate, $toStartDate, $fromEndDate, $toEndDate, $fromCreateDate, $toCreateDate, $fromUpdateDate, $toUpdateDate, $page, $contentType);
+        list($response) = $this->settlementGetByFilterWithHttpInfo($unExportedOnly, $settlementIds, $channelSettlementNos, $channelIds, $fromStartDate, $toStartDate, $fromEndDate, $toEndDate, $fromCreateDate, $toCreateDate, $fromUpdateDate, $toUpdateDate, $page, $contentType);
         return $response;
     }
 
@@ -154,6 +160,9 @@ class SettlementApi
      *
      * Gets settlements
      *
+     * @param  bool $unExportedOnly Filter on settlements that have not been exported before. (optional)
+     * @param  int[] $settlementIds Filter on settlement IDs. (optional)
+     * @param  string[] $channelSettlementNos Filter on channel settlement nos. (optional)
      * @param  int[] $channelIds Filter on channel id list. (optional)
      * @param  \DateTime $fromStartDate Filter on the start date of the settlement in ChannelEngine, until this date. This date is exclusive. (optional)
      * @param  \DateTime $toStartDate Filter on the start date of the settlement in ChannelEngine, until this date. This date is exclusive. (optional)
@@ -168,11 +177,11 @@ class SettlementApi
      *
      * @throws \FriendsOfCE\Merchant\ApiClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantReportsResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantSettlementReportsResponse|\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function settlementGetByFilterWithHttpInfo($channelIds = null, $fromStartDate = null, $toStartDate = null, $fromEndDate = null, $toEndDate = null, $fromCreateDate = null, $toCreateDate = null, $fromUpdateDate = null, $toUpdateDate = null, $page = null, string $contentType = self::contentTypes['settlementGetByFilter'][0])
+    public function settlementGetByFilterWithHttpInfo($unExportedOnly = null, $settlementIds = null, $channelSettlementNos = null, $channelIds = null, $fromStartDate = null, $toStartDate = null, $fromEndDate = null, $toEndDate = null, $fromCreateDate = null, $toCreateDate = null, $fromUpdateDate = null, $toUpdateDate = null, $page = null, string $contentType = self::contentTypes['settlementGetByFilter'][0])
     {
-        $request = $this->settlementGetByFilterRequest($channelIds, $fromStartDate, $toStartDate, $fromEndDate, $toEndDate, $fromCreateDate, $toCreateDate, $fromUpdateDate, $toUpdateDate, $page, $contentType);
+        $request = $this->settlementGetByFilterRequest($unExportedOnly, $settlementIds, $channelSettlementNos, $channelIds, $fromStartDate, $toStartDate, $fromEndDate, $toEndDate, $fromCreateDate, $toCreateDate, $fromUpdateDate, $toUpdateDate, $page, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -211,11 +220,11 @@ class SettlementApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantReportsResponse' === '\SplFileObject') {
+                    if ('\FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantSettlementReportsResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantReportsResponse' !== 'string') {
+                        if ('\FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantSettlementReportsResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -233,13 +242,40 @@ class SettlementApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantReportsResponse', []),
+                        ObjectSerializer::deserialize($content, '\FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantSettlementReportsResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                 );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantReportsResponse';
+            $returnType = '\FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantSettlementReportsResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -272,7 +308,15 @@ class SettlementApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantReportsResponse',
+                        '\FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantSettlementReportsResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -287,6 +331,9 @@ class SettlementApi
      *
      * Gets settlements
      *
+     * @param  bool $unExportedOnly Filter on settlements that have not been exported before. (optional)
+     * @param  int[] $settlementIds Filter on settlement IDs. (optional)
+     * @param  string[] $channelSettlementNos Filter on channel settlement nos. (optional)
      * @param  int[] $channelIds Filter on channel id list. (optional)
      * @param  \DateTime $fromStartDate Filter on the start date of the settlement in ChannelEngine, until this date. This date is exclusive. (optional)
      * @param  \DateTime $toStartDate Filter on the start date of the settlement in ChannelEngine, until this date. This date is exclusive. (optional)
@@ -302,9 +349,9 @@ class SettlementApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function settlementGetByFilterAsync($channelIds = null, $fromStartDate = null, $toStartDate = null, $fromEndDate = null, $toEndDate = null, $fromCreateDate = null, $toCreateDate = null, $fromUpdateDate = null, $toUpdateDate = null, $page = null, string $contentType = self::contentTypes['settlementGetByFilter'][0])
+    public function settlementGetByFilterAsync($unExportedOnly = null, $settlementIds = null, $channelSettlementNos = null, $channelIds = null, $fromStartDate = null, $toStartDate = null, $fromEndDate = null, $toEndDate = null, $fromCreateDate = null, $toCreateDate = null, $fromUpdateDate = null, $toUpdateDate = null, $page = null, string $contentType = self::contentTypes['settlementGetByFilter'][0])
     {
-        return $this->settlementGetByFilterAsyncWithHttpInfo($channelIds, $fromStartDate, $toStartDate, $fromEndDate, $toEndDate, $fromCreateDate, $toCreateDate, $fromUpdateDate, $toUpdateDate, $page, $contentType)
+        return $this->settlementGetByFilterAsyncWithHttpInfo($unExportedOnly, $settlementIds, $channelSettlementNos, $channelIds, $fromStartDate, $toStartDate, $fromEndDate, $toEndDate, $fromCreateDate, $toCreateDate, $fromUpdateDate, $toUpdateDate, $page, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -317,6 +364,9 @@ class SettlementApi
      *
      * Gets settlements
      *
+     * @param  bool $unExportedOnly Filter on settlements that have not been exported before. (optional)
+     * @param  int[] $settlementIds Filter on settlement IDs. (optional)
+     * @param  string[] $channelSettlementNos Filter on channel settlement nos. (optional)
      * @param  int[] $channelIds Filter on channel id list. (optional)
      * @param  \DateTime $fromStartDate Filter on the start date of the settlement in ChannelEngine, until this date. This date is exclusive. (optional)
      * @param  \DateTime $toStartDate Filter on the start date of the settlement in ChannelEngine, until this date. This date is exclusive. (optional)
@@ -332,10 +382,10 @@ class SettlementApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function settlementGetByFilterAsyncWithHttpInfo($channelIds = null, $fromStartDate = null, $toStartDate = null, $fromEndDate = null, $toEndDate = null, $fromCreateDate = null, $toCreateDate = null, $fromUpdateDate = null, $toUpdateDate = null, $page = null, string $contentType = self::contentTypes['settlementGetByFilter'][0])
+    public function settlementGetByFilterAsyncWithHttpInfo($unExportedOnly = null, $settlementIds = null, $channelSettlementNos = null, $channelIds = null, $fromStartDate = null, $toStartDate = null, $fromEndDate = null, $toEndDate = null, $fromCreateDate = null, $toCreateDate = null, $fromUpdateDate = null, $toUpdateDate = null, $page = null, string $contentType = self::contentTypes['settlementGetByFilter'][0])
     {
-        $returnType = '\FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantReportsResponse';
-        $request = $this->settlementGetByFilterRequest($channelIds, $fromStartDate, $toStartDate, $fromEndDate, $toEndDate, $fromCreateDate, $toCreateDate, $fromUpdateDate, $toUpdateDate, $page, $contentType);
+        $returnType = '\FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantSettlementReportsResponse';
+        $request = $this->settlementGetByFilterRequest($unExportedOnly, $settlementIds, $channelSettlementNos, $channelIds, $fromStartDate, $toStartDate, $fromEndDate, $toEndDate, $fromCreateDate, $toCreateDate, $fromUpdateDate, $toUpdateDate, $page, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -376,6 +426,9 @@ class SettlementApi
     /**
      * Create request for operation 'settlementGetByFilter'
      *
+     * @param  bool $unExportedOnly Filter on settlements that have not been exported before. (optional)
+     * @param  int[] $settlementIds Filter on settlement IDs. (optional)
+     * @param  string[] $channelSettlementNos Filter on channel settlement nos. (optional)
      * @param  int[] $channelIds Filter on channel id list. (optional)
      * @param  \DateTime $fromStartDate Filter on the start date of the settlement in ChannelEngine, until this date. This date is exclusive. (optional)
      * @param  \DateTime $toStartDate Filter on the start date of the settlement in ChannelEngine, until this date. This date is exclusive. (optional)
@@ -391,8 +444,11 @@ class SettlementApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function settlementGetByFilterRequest($channelIds = null, $fromStartDate = null, $toStartDate = null, $fromEndDate = null, $toEndDate = null, $fromCreateDate = null, $toCreateDate = null, $fromUpdateDate = null, $toUpdateDate = null, $page = null, string $contentType = self::contentTypes['settlementGetByFilter'][0])
+    public function settlementGetByFilterRequest($unExportedOnly = null, $settlementIds = null, $channelSettlementNos = null, $channelIds = null, $fromStartDate = null, $toStartDate = null, $fromEndDate = null, $toEndDate = null, $fromCreateDate = null, $toCreateDate = null, $fromUpdateDate = null, $toUpdateDate = null, $page = null, string $contentType = self::contentTypes['settlementGetByFilter'][0])
     {
+
+
+
 
 
 
@@ -412,6 +468,33 @@ class SettlementApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $unExportedOnly,
+            'unExportedOnly', // param base name
+            'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $settlementIds,
+            'settlementIds', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $channelSettlementNos,
+            'channelSettlementNos', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $channelIds,
@@ -558,6 +641,407 @@ class SettlementApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation settlementUploadSettlement
+     *
+     * Imports a settlement file.
+     *
+     * @param  \SplFileObject $settlement Settlement file up to 1 MB with additional data.  Format should be the one that the channel expects. (required)
+     * @param  int $channelId The channel ID for which the settlement is for. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['settlementUploadSettlement'] to see the possible values for this operation
+     *
+     * @throws \FriendsOfCE\Merchant\ApiClient\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse|\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse|\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
+     */
+    public function settlementUploadSettlement($settlement, $channelId = null, string $contentType = self::contentTypes['settlementUploadSettlement'][0])
+    {
+        list($response) = $this->settlementUploadSettlementWithHttpInfo($settlement, $channelId, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation settlementUploadSettlementWithHttpInfo
+     *
+     * Imports a settlement file.
+     *
+     * @param  \SplFileObject $settlement Settlement file up to 1 MB with additional data.  Format should be the one that the channel expects. (required)
+     * @param  int $channelId The channel ID for which the settlement is for. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['settlementUploadSettlement'] to see the possible values for this operation
+     *
+     * @throws \FriendsOfCE\Merchant\ApiClient\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse|\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse|\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function settlementUploadSettlementWithHttpInfo($settlement, $channelId = null, string $contentType = self::contentTypes['settlementUploadSettlement'][0])
+    {
+        $request = $this->settlementUploadSettlementRequest($settlement, $channelId, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 201:
+                    if ('\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                 );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                 );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                 );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation settlementUploadSettlementAsync
+     *
+     * Imports a settlement file.
+     *
+     * @param  \SplFileObject $settlement Settlement file up to 1 MB with additional data.  Format should be the one that the channel expects. (required)
+     * @param  int $channelId The channel ID for which the settlement is for. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['settlementUploadSettlement'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function settlementUploadSettlementAsync($settlement, $channelId = null, string $contentType = self::contentTypes['settlementUploadSettlement'][0])
+    {
+        return $this->settlementUploadSettlementAsyncWithHttpInfo($settlement, $channelId, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation settlementUploadSettlementAsyncWithHttpInfo
+     *
+     * Imports a settlement file.
+     *
+     * @param  \SplFileObject $settlement Settlement file up to 1 MB with additional data.  Format should be the one that the channel expects. (required)
+     * @param  int $channelId The channel ID for which the settlement is for. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['settlementUploadSettlement'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function settlementUploadSettlementAsyncWithHttpInfo($settlement, $channelId = null, string $contentType = self::contentTypes['settlementUploadSettlement'][0])
+    {
+        $returnType = '\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse';
+        $request = $this->settlementUploadSettlementRequest($settlement, $channelId, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'settlementUploadSettlement'
+     *
+     * @param  \SplFileObject $settlement Settlement file up to 1 MB with additional data.  Format should be the one that the channel expects. (required)
+     * @param  int $channelId The channel ID for which the settlement is for. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['settlementUploadSettlement'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function settlementUploadSettlementRequest($settlement, $channelId = null, string $contentType = self::contentTypes['settlementUploadSettlement'][0])
+    {
+
+        // verify the required parameter 'settlement' is set
+        if ($settlement === null || (is_array($settlement) && count($settlement) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $settlement when calling settlementUploadSettlement'
+            );
+        }
+
+
+
+        $resourcePath = '/v2/settlements/upload';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $channelId,
+            'channelId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+        // form params
+        if ($settlement !== null) {
+            $multipart = true;
+            $formParams['settlement'] = [];
+            $paramFiles = is_array($settlement) ? $settlement : [$settlement];
+            foreach ($paramFiles as $paramFile) {
+                $formParams['settlement'][] = \GuzzleHttp\Psr7\Utils::tryFopen(
+                    ObjectSerializer::toFormValue($paramFile),
+                    'rb'
+                );
+            }
+        }
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('apikey');
+        if ($apiKey !== null) {
+            $queryParams['apikey'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

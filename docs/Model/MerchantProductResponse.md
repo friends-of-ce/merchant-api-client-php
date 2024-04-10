@@ -36,6 +36,7 @@ Name | Type | Description | Notes
 **extraImageUrl7** | **string** | Url to an additional image of product (7). | [optional]
 **extraImageUrl8** | **string** | Url to an additional image of product (8). | [optional]
 **extraImageUrl9** | **string** | Url to an additional image of product (9). | [optional]
+**isFrozen** | **bool** | Specifies whether Product is disabled on all channels. | [optional]
 **categoryTrail** | **string** | The category to which this product belongs.  Please supply this field in the following format:  &#39;maincategory &gt; category &gt; subcategory&#39;  For example:  &#39;vehicles &gt; bikes &gt; mountainbike&#39;. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

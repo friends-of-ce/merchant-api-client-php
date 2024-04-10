@@ -63,6 +63,7 @@ class SingleOfStockUpdateResponse implements ModelInterface, ArrayAccess, \JsonS
         'logId' => 'string',
         'success' => 'bool',
         'message' => 'string',
+        'exceptionType' => 'string',
         'validationErrors' => 'array<string,string[]>'
     ];
 
@@ -80,6 +81,7 @@ class SingleOfStockUpdateResponse implements ModelInterface, ArrayAccess, \JsonS
         'logId' => null,
         'success' => null,
         'message' => null,
+        'exceptionType' => null,
         'validationErrors' => null
     ];
 
@@ -95,6 +97,7 @@ class SingleOfStockUpdateResponse implements ModelInterface, ArrayAccess, \JsonS
 		'logId' => true,
 		'success' => false,
 		'message' => true,
+		'exceptionType' => true,
 		'validationErrors' => true
     ];
 
@@ -190,6 +193,7 @@ class SingleOfStockUpdateResponse implements ModelInterface, ArrayAccess, \JsonS
         'logId' => 'LogId',
         'success' => 'Success',
         'message' => 'Message',
+        'exceptionType' => 'ExceptionType',
         'validationErrors' => 'ValidationErrors'
     ];
 
@@ -205,6 +209,7 @@ class SingleOfStockUpdateResponse implements ModelInterface, ArrayAccess, \JsonS
         'logId' => 'setLogId',
         'success' => 'setSuccess',
         'message' => 'setMessage',
+        'exceptionType' => 'setExceptionType',
         'validationErrors' => 'setValidationErrors'
     ];
 
@@ -220,6 +225,7 @@ class SingleOfStockUpdateResponse implements ModelInterface, ArrayAccess, \JsonS
         'logId' => 'getLogId',
         'success' => 'getSuccess',
         'message' => 'getMessage',
+        'exceptionType' => 'getExceptionType',
         'validationErrors' => 'getValidationErrors'
     ];
 
@@ -286,6 +292,7 @@ class SingleOfStockUpdateResponse implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('logId', $data ?? [], null);
         $this->setIfExists('success', $data ?? [], null);
         $this->setIfExists('message', $data ?? [], null);
+        $this->setIfExists('exceptionType', $data ?? [], null);
         $this->setIfExists('validationErrors', $data ?? [], null);
     }
 
@@ -510,6 +517,40 @@ class SingleOfStockUpdateResponse implements ModelInterface, ArrayAccess, \JsonS
             }
         }
         $this->container['message'] = $message;
+
+        return $this;
+    }
+
+    /**
+     * Gets exceptionType
+     *
+     * @return string|null
+     */
+    public function getExceptionType()
+    {
+        return $this->container['exceptionType'];
+    }
+
+    /**
+     * Sets exceptionType
+     *
+     * @param string|null $exceptionType exceptionType
+     *
+     * @return self
+     */
+    public function setExceptionType($exceptionType)
+    {
+        if (is_null($exceptionType)) {
+            array_push($this->openAPINullablesSetToNull, 'exceptionType');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('exceptionType', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['exceptionType'] = $exceptionType;
 
         return $this;
     }

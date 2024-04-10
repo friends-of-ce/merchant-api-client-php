@@ -1,6 +1,6 @@
 <?php
 /**
- * MerchantReportsResponse
+ * SingleOfApiResponse
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \FriendsOfCE\Merchant\ApiClient\ObjectSerializer;
 
 /**
- * MerchantReportsResponse Class Doc Comment
+ * SingleOfApiResponse Class Doc Comment
  *
  * @category Class
  * @package  FriendsOfCE\Merchant\ApiClient
@@ -40,7 +40,7 @@ use \FriendsOfCE\Merchant\ApiClient\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class MerchantReportsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class SingleOfApiResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class MerchantReportsResponse implements ModelInterface, ArrayAccess, \JsonSeria
       *
       * @var string
       */
-    protected static $openAPIModelName = 'MerchantReportsResponse';
+    protected static $openAPIModelName = 'SingleOfApiResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,15 +57,14 @@ class MerchantReportsResponse implements ModelInterface, ArrayAccess, \JsonSeria
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'int',
-        'channelSettlementNo' => 'string',
-        'channelSellerNo' => 'string',
-        'channelId' => 'int',
-        'startDate' => '\DateTime',
-        'endDate' => '\DateTime',
-        'createdAt' => '\DateTime',
-        'updatedAt' => '\DateTime',
-        'transactionsCount' => 'int'
+        'content' => '\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse',
+        'statusCode' => 'int',
+        'requestId' => 'string',
+        'logId' => 'string',
+        'success' => 'bool',
+        'message' => 'string',
+        'exceptionType' => 'string',
+        'validationErrors' => 'array<string,string[]>'
     ];
 
     /**
@@ -76,15 +75,14 @@ class MerchantReportsResponse implements ModelInterface, ArrayAccess, \JsonSeria
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => 'int32',
-        'channelSettlementNo' => null,
-        'channelSellerNo' => null,
-        'channelId' => 'int32',
-        'startDate' => 'date-time',
-        'endDate' => 'date-time',
-        'createdAt' => 'date-time',
-        'updatedAt' => 'date-time',
-        'transactionsCount' => 'int32'
+        'content' => null,
+        'statusCode' => 'int32',
+        'requestId' => null,
+        'logId' => null,
+        'success' => null,
+        'message' => null,
+        'exceptionType' => null,
+        'validationErrors' => null
     ];
 
     /**
@@ -93,15 +91,14 @@ class MerchantReportsResponse implements ModelInterface, ArrayAccess, \JsonSeria
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'id' => false,
-		'channelSettlementNo' => true,
-		'channelSellerNo' => true,
-		'channelId' => true,
-		'startDate' => false,
-		'endDate' => false,
-		'createdAt' => false,
-		'updatedAt' => false,
-		'transactionsCount' => false
+        'content' => false,
+		'statusCode' => false,
+		'requestId' => true,
+		'logId' => true,
+		'success' => false,
+		'message' => true,
+		'exceptionType' => true,
+		'validationErrors' => true
     ];
 
     /**
@@ -190,15 +187,14 @@ class MerchantReportsResponse implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'Id',
-        'channelSettlementNo' => 'ChannelSettlementNo',
-        'channelSellerNo' => 'ChannelSellerNo',
-        'channelId' => 'ChannelId',
-        'startDate' => 'StartDate',
-        'endDate' => 'EndDate',
-        'createdAt' => 'CreatedAt',
-        'updatedAt' => 'UpdatedAt',
-        'transactionsCount' => 'TransactionsCount'
+        'content' => 'Content',
+        'statusCode' => 'StatusCode',
+        'requestId' => 'RequestId',
+        'logId' => 'LogId',
+        'success' => 'Success',
+        'message' => 'Message',
+        'exceptionType' => 'ExceptionType',
+        'validationErrors' => 'ValidationErrors'
     ];
 
     /**
@@ -207,15 +203,14 @@ class MerchantReportsResponse implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'channelSettlementNo' => 'setChannelSettlementNo',
-        'channelSellerNo' => 'setChannelSellerNo',
-        'channelId' => 'setChannelId',
-        'startDate' => 'setStartDate',
-        'endDate' => 'setEndDate',
-        'createdAt' => 'setCreatedAt',
-        'updatedAt' => 'setUpdatedAt',
-        'transactionsCount' => 'setTransactionsCount'
+        'content' => 'setContent',
+        'statusCode' => 'setStatusCode',
+        'requestId' => 'setRequestId',
+        'logId' => 'setLogId',
+        'success' => 'setSuccess',
+        'message' => 'setMessage',
+        'exceptionType' => 'setExceptionType',
+        'validationErrors' => 'setValidationErrors'
     ];
 
     /**
@@ -224,15 +219,14 @@ class MerchantReportsResponse implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'channelSettlementNo' => 'getChannelSettlementNo',
-        'channelSellerNo' => 'getChannelSellerNo',
-        'channelId' => 'getChannelId',
-        'startDate' => 'getStartDate',
-        'endDate' => 'getEndDate',
-        'createdAt' => 'getCreatedAt',
-        'updatedAt' => 'getUpdatedAt',
-        'transactionsCount' => 'getTransactionsCount'
+        'content' => 'getContent',
+        'statusCode' => 'getStatusCode',
+        'requestId' => 'getRequestId',
+        'logId' => 'getLogId',
+        'success' => 'getSuccess',
+        'message' => 'getMessage',
+        'exceptionType' => 'getExceptionType',
+        'validationErrors' => 'getValidationErrors'
     ];
 
     /**
@@ -292,15 +286,14 @@ class MerchantReportsResponse implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('channelSettlementNo', $data ?? [], null);
-        $this->setIfExists('channelSellerNo', $data ?? [], null);
-        $this->setIfExists('channelId', $data ?? [], null);
-        $this->setIfExists('startDate', $data ?? [], null);
-        $this->setIfExists('endDate', $data ?? [], null);
-        $this->setIfExists('createdAt', $data ?? [], null);
-        $this->setIfExists('updatedAt', $data ?? [], null);
-        $this->setIfExists('transactionsCount', $data ?? [], null);
+        $this->setIfExists('content', $data ?? [], null);
+        $this->setIfExists('statusCode', $data ?? [], null);
+        $this->setIfExists('requestId', $data ?? [], null);
+        $this->setIfExists('logId', $data ?? [], null);
+        $this->setIfExists('success', $data ?? [], null);
+        $this->setIfExists('message', $data ?? [], null);
+        $this->setIfExists('exceptionType', $data ?? [], null);
+        $this->setIfExists('validationErrors', $data ?? [], null);
     }
 
     /**
@@ -346,265 +339,252 @@ class MerchantReportsResponse implements ModelInterface, ArrayAccess, \JsonSeria
 
 
     /**
-     * Gets id
+     * Gets content
      *
-     * @return int|null
+     * @return \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse|null
      */
-    public function getId()
+    public function getContent()
     {
-        return $this->container['id'];
+        return $this->container['content'];
     }
 
     /**
-     * Sets id
+     * Sets content
      *
-     * @param int|null $id id
+     * @param \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse|null $content content
      *
      * @return self
      */
-    public function setId($id)
+    public function setContent($content)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        if (is_null($content)) {
+            throw new \InvalidArgumentException('non-nullable content cannot be null');
         }
-        $this->container['id'] = $id;
+        $this->container['content'] = $content;
 
         return $this;
     }
 
     /**
-     * Gets channelSettlementNo
+     * Gets statusCode
+     *
+     * @return int|null
+     */
+    public function getStatusCode()
+    {
+        return $this->container['statusCode'];
+    }
+
+    /**
+     * Sets statusCode
+     *
+     * @param int|null $statusCode statusCode
+     *
+     * @return self
+     */
+    public function setStatusCode($statusCode)
+    {
+        if (is_null($statusCode)) {
+            throw new \InvalidArgumentException('non-nullable statusCode cannot be null');
+        }
+        $this->container['statusCode'] = $statusCode;
+
+        return $this;
+    }
+
+    /**
+     * Gets requestId
      *
      * @return string|null
      */
-    public function getChannelSettlementNo()
+    public function getRequestId()
     {
-        return $this->container['channelSettlementNo'];
+        return $this->container['requestId'];
     }
 
     /**
-     * Sets channelSettlementNo
+     * Sets requestId
      *
-     * @param string|null $channelSettlementNo channelSettlementNo
+     * @param string|null $requestId requestId
      *
      * @return self
      */
-    public function setChannelSettlementNo($channelSettlementNo)
+    public function setRequestId($requestId)
     {
-        if (is_null($channelSettlementNo)) {
-            array_push($this->openAPINullablesSetToNull, 'channelSettlementNo');
+        if (is_null($requestId)) {
+            array_push($this->openAPINullablesSetToNull, 'requestId');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('channelSettlementNo', $nullablesSetToNull);
+            $index = array_search('requestId', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['channelSettlementNo'] = $channelSettlementNo;
+        $this->container['requestId'] = $requestId;
 
         return $this;
     }
 
     /**
-     * Gets channelSellerNo
+     * Gets logId
      *
      * @return string|null
      */
-    public function getChannelSellerNo()
+    public function getLogId()
     {
-        return $this->container['channelSellerNo'];
+        return $this->container['logId'];
     }
 
     /**
-     * Sets channelSellerNo
+     * Sets logId
      *
-     * @param string|null $channelSellerNo channelSellerNo
+     * @param string|null $logId logId
      *
      * @return self
      */
-    public function setChannelSellerNo($channelSellerNo)
+    public function setLogId($logId)
     {
-        if (is_null($channelSellerNo)) {
-            array_push($this->openAPINullablesSetToNull, 'channelSellerNo');
+        if (is_null($logId)) {
+            array_push($this->openAPINullablesSetToNull, 'logId');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('channelSellerNo', $nullablesSetToNull);
+            $index = array_search('logId', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['channelSellerNo'] = $channelSellerNo;
+        $this->container['logId'] = $logId;
 
         return $this;
     }
 
     /**
-     * Gets channelId
+     * Gets success
      *
-     * @return int|null
+     * @return bool|null
      */
-    public function getChannelId()
+    public function getSuccess()
     {
-        return $this->container['channelId'];
+        return $this->container['success'];
     }
 
     /**
-     * Sets channelId
+     * Sets success
      *
-     * @param int|null $channelId channelId
+     * @param bool|null $success success
      *
      * @return self
      */
-    public function setChannelId($channelId)
+    public function setSuccess($success)
     {
-        if (is_null($channelId)) {
-            array_push($this->openAPINullablesSetToNull, 'channelId');
+        if (is_null($success)) {
+            throw new \InvalidArgumentException('non-nullable success cannot be null');
+        }
+        $this->container['success'] = $success;
+
+        return $this;
+    }
+
+    /**
+     * Gets message
+     *
+     * @return string|null
+     */
+    public function getMessage()
+    {
+        return $this->container['message'];
+    }
+
+    /**
+     * Sets message
+     *
+     * @param string|null $message message
+     *
+     * @return self
+     */
+    public function setMessage($message)
+    {
+        if (is_null($message)) {
+            array_push($this->openAPINullablesSetToNull, 'message');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('channelId', $nullablesSetToNull);
+            $index = array_search('message', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['channelId'] = $channelId;
+        $this->container['message'] = $message;
 
         return $this;
     }
 
     /**
-     * Gets startDate
+     * Gets exceptionType
      *
-     * @return \DateTime|null
+     * @return string|null
      */
-    public function getStartDate()
+    public function getExceptionType()
     {
-        return $this->container['startDate'];
+        return $this->container['exceptionType'];
     }
 
     /**
-     * Sets startDate
+     * Sets exceptionType
      *
-     * @param \DateTime|null $startDate startDate
+     * @param string|null $exceptionType exceptionType
      *
      * @return self
      */
-    public function setStartDate($startDate)
+    public function setExceptionType($exceptionType)
     {
-        if (is_null($startDate)) {
-            throw new \InvalidArgumentException('non-nullable startDate cannot be null');
+        if (is_null($exceptionType)) {
+            array_push($this->openAPINullablesSetToNull, 'exceptionType');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('exceptionType', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-        $this->container['startDate'] = $startDate;
+        $this->container['exceptionType'] = $exceptionType;
 
         return $this;
     }
 
     /**
-     * Gets endDate
+     * Gets validationErrors
      *
-     * @return \DateTime|null
+     * @return array<string,string[]>|null
      */
-    public function getEndDate()
+    public function getValidationErrors()
     {
-        return $this->container['endDate'];
+        return $this->container['validationErrors'];
     }
 
     /**
-     * Sets endDate
+     * Sets validationErrors
      *
-     * @param \DateTime|null $endDate endDate
+     * @param array<string,string[]>|null $validationErrors validationErrors
      *
      * @return self
      */
-    public function setEndDate($endDate)
+    public function setValidationErrors($validationErrors)
     {
-        if (is_null($endDate)) {
-            throw new \InvalidArgumentException('non-nullable endDate cannot be null');
+        if (is_null($validationErrors)) {
+            array_push($this->openAPINullablesSetToNull, 'validationErrors');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('validationErrors', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-        $this->container['endDate'] = $endDate;
-
-        return $this;
-    }
-
-    /**
-     * Gets createdAt
-     *
-     * @return \DateTime|null
-     */
-    public function getCreatedAt()
-    {
-        return $this->container['createdAt'];
-    }
-
-    /**
-     * Sets createdAt
-     *
-     * @param \DateTime|null $createdAt createdAt
-     *
-     * @return self
-     */
-    public function setCreatedAt($createdAt)
-    {
-        if (is_null($createdAt)) {
-            throw new \InvalidArgumentException('non-nullable createdAt cannot be null');
-        }
-        $this->container['createdAt'] = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Gets updatedAt
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt()
-    {
-        return $this->container['updatedAt'];
-    }
-
-    /**
-     * Sets updatedAt
-     *
-     * @param \DateTime|null $updatedAt updatedAt
-     *
-     * @return self
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        if (is_null($updatedAt)) {
-            throw new \InvalidArgumentException('non-nullable updatedAt cannot be null');
-        }
-        $this->container['updatedAt'] = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Gets transactionsCount
-     *
-     * @return int|null
-     */
-    public function getTransactionsCount()
-    {
-        return $this->container['transactionsCount'];
-    }
-
-    /**
-     * Sets transactionsCount
-     *
-     * @param int|null $transactionsCount transactionsCount
-     *
-     * @return self
-     */
-    public function setTransactionsCount($transactionsCount)
-    {
-        if (is_null($transactionsCount)) {
-            throw new \InvalidArgumentException('non-nullable transactionsCount cannot be null');
-        }
-        $this->container['transactionsCount'] = $transactionsCount;
+        $this->container['validationErrors'] = $validationErrors;
 
         return $this;
     }
