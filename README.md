@@ -95,12 +95,13 @@ Class | Method | HTTP request | Description
 *OrderApi* | [**orderPackingSlip**](docs/Api/OrderApi.md#orderpackingslip) | **GET** /v2/orders/{merchantOrderNo}/packingslip | Generates a packing slip
 *OrderApi* | [**orderUpdate**](docs/Api/OrderApi.md#orderupdate) | **PUT** /v2/orders/comment | Updates an order comment
 *OrderApi* | [**orderUploadInvoice**](docs/Api/OrderApi.md#orderuploadinvoice) | **POST** /v2/orders/{merchantOrderNo}/invoice | Uploads an order invoice
+*OrderApi* | [**orderUploadInvoiceAsString**](docs/Api/OrderApi.md#orderuploadinvoiceasstring) | **POST** /v2/orders/{merchantOrderNo}/invoice-base64 | Uploads an order invoice PDF from Base64 string.
 *ProductApi* | [**productBulkDelete**](docs/Api/ProductApi.md#productbulkdelete) | **POST** /v2/products/bulkdelete | Deletes products
 *ProductApi* | [**productBulkPatch**](docs/Api/ProductApi.md#productbulkpatch) | **PATCH** /v2/products | Updates products attributes
 *ProductApi* | [**productBulkPatchExtraDataItems**](docs/Api/ProductApi.md#productbulkpatchextradataitems) | **PATCH** /v2/products/extra-data/bulk | Adds, updates, or deletes custom attributes
 *ProductApi* | [**productCreate**](docs/Api/ProductApi.md#productcreate) | **POST** /v2/products | Updates or creates products
 *ProductApi* | [**productDelete**](docs/Api/ProductApi.md#productdelete) | **DELETE** /v2/products/{merchantProductNo} | Deletes a product
-*ProductApi* | [**productFreezeProduct**](docs/Api/ProductApi.md#productfreezeproduct) | **POST** /v2/products/freezeproducts | Updates selected products and sets them either to frozen or not-frozen status.
+*ProductApi* | [**productFreeze**](docs/Api/ProductApi.md#productfreeze) | **POST** /v2/products/freeze | Updates selected products and sets them either to frozen or not-frozen status.
 *ProductApi* | [**productGetByFilter**](docs/Api/ProductApi.md#productgetbyfilter) | **GET** /v2/products | Gets products
 *ProductApi* | [**productGetByMerchantProductNo**](docs/Api/ProductApi.md#productgetbymerchantproductno) | **GET** /v2/products/{merchantProductNo} | Gets a product
 *ProductApi* | [**productPatch**](docs/Api/ProductApi.md#productpatch) | **PATCH** /v2/products/{merchantProductNo} | Updates product attributes
@@ -113,6 +114,10 @@ Class | Method | HTTP request | Description
 *ProductAttributeGroupApi* | [**productAttributeGroupRemoveProductExtraData**](docs/Api/ProductAttributeGroupApi.md#productattributegroupremoveproductextradata) | **PUT** /v2/product-attribute-group/{groupName}/remove | Deletes custom attributes from a group
 *ProductAttributeGroupApi* | [**productAttributeGroupRenameProductAttributeGroup**](docs/Api/ProductAttributeGroupApi.md#productattributegrouprenameproductattributegroup) | **POST** /v2/product-attribute-group/rename | Renames custom attribute groups
 *ProductBundleApi* | [**productBundleGetByFilter**](docs/Api/ProductBundleApi.md#productbundlegetbyfilter) | **GET** /v2/productbundles | Gets product bundles
+*PurchaseOrdersManagementApi* | [**purchaseOrdersManagementAcknowledge**](docs/Api/PurchaseOrdersManagementApi.md#purchaseordersmanagementacknowledge) | **POST** /v2/purchase-orders/lines/acknowledge | Acknowledges lines of a purchase order
+*PurchaseOrdersManagementApi* | [**purchaseOrdersManagementCreateInvoice**](docs/Api/PurchaseOrdersManagementApi.md#purchaseordersmanagementcreateinvoice) | **POST** /v2/purchase-orders/invoice | Creates a purchase order invoice
+*PurchaseOrdersManagementApi* | [**purchaseOrdersManagementCreateInvoices**](docs/Api/PurchaseOrdersManagementApi.md#purchaseordersmanagementcreateinvoices) | **POST** /v2/purchase-orders/invoice/bulk | Creates a purchase order invoices in a bulk
+*PurchaseOrdersManagementApi* | [**purchaseOrdersManagementGetByFilter**](docs/Api/PurchaseOrdersManagementApi.md#purchaseordersmanagementgetbyfilter) | **GET** /v2/purchase-orders | Gets purchase orders by filter
 *ReportApi* | [**reportCreateSettlementsReport**](docs/Api/ReportApi.md#reportcreatesettlementsreport) | **POST** /v2/reports/settlements | Creates a settlement report
 *ReportApi* | [**reportGetReport**](docs/Api/ReportApi.md#reportgetreport) | **GET** /v2/reports/{reportId} | Gets a settlement report
 *ReportApi* | [**reportGetStatus**](docs/Api/ReportApi.md#reportgetstatus) | **GET** /v2/reports/{reportId}/status | Gets the status of a settlement report
@@ -144,6 +149,7 @@ Class | Method | HTTP request | Description
 - [AddProductExtraDataRequests](docs/Model/AddProductExtraDataRequests.md)
 - [AdvanceSettingsResponse](docs/Model/AdvanceSettingsResponse.md)
 - [ApiResponse](docs/Model/ApiResponse.md)
+- [BulkMerchantCreatePurchaseOrderInvoicesRequest](docs/Model/BulkMerchantCreatePurchaseOrderInvoicesRequest.md)
 - [ChannelCarrierCollectionMethodApi](docs/Model/ChannelCarrierCollectionMethodApi.md)
 - [ChannelCarrierRecommendationApi](docs/Model/ChannelCarrierRecommendationApi.md)
 - [ChannelChannelResponse](docs/Model/ChannelChannelResponse.md)
@@ -151,6 +157,7 @@ Class | Method | HTTP request | Description
 - [ChannelListedProductResponse](docs/Model/ChannelListedProductResponse.md)
 - [CollectionOfChannelGlobalChannelResponse](docs/Model/CollectionOfChannelGlobalChannelResponse.md)
 - [CollectionOfChannelListedProductResponse](docs/Model/CollectionOfChannelListedProductResponse.md)
+- [CollectionOfIPurchaseOrderByFilter](docs/Model/CollectionOfIPurchaseOrderByFilter.md)
 - [CollectionOfMerchantCancellationResponse](docs/Model/CollectionOfMerchantCancellationResponse.md)
 - [CollectionOfMerchantFulfillmentStockGetStockLocationsRequest](docs/Model/CollectionOfMerchantFulfillmentStockGetStockLocationsRequest.md)
 - [CollectionOfMerchantNotificationResponse](docs/Model/CollectionOfMerchantNotificationResponse.md)
@@ -175,9 +182,15 @@ Class | Method | HTTP request | Description
 - [FreezingActionRequest](docs/Model/FreezingActionRequest.md)
 - [FulfillmentType](docs/Model/FulfillmentType.md)
 - [Gender](docs/Model/Gender.md)
+- [IImportInformation](docs/Model/IImportInformation.md)
+- [IPurchaseOrderByFilter](docs/Model/IPurchaseOrderByFilter.md)
+- [IPurchaseOrderLineByFilter](docs/Model/IPurchaseOrderLineByFilter.md)
+- [IVendorParty](docs/Model/IVendorParty.md)
 - [ListedProductChannelStatus](docs/Model/ListedProductChannelStatus.md)
 - [ListedProductExportStatus](docs/Model/ListedProductExportStatus.md)
 - [MancoReason](docs/Model/MancoReason.md)
+- [MerchantAcknowledgePurchaseOrder](docs/Model/MerchantAcknowledgePurchaseOrder.md)
+- [MerchantAcknowledgePurchaseOrderLine](docs/Model/MerchantAcknowledgePurchaseOrderLine.md)
 - [MerchantAddressResponse](docs/Model/MerchantAddressResponse.md)
 - [MerchantCancellationLineRequest](docs/Model/MerchantCancellationLineRequest.md)
 - [MerchantCancellationLineResponse](docs/Model/MerchantCancellationLineResponse.md)
@@ -188,6 +201,7 @@ Class | Method | HTTP request | Description
 - [MerchantCreateSettlementsReportRequest](docs/Model/MerchantCreateSettlementsReportRequest.md)
 - [MerchantFulfillmentStockGetStockLocationsRequest](docs/Model/MerchantFulfillmentStockGetStockLocationsRequest.md)
 - [MerchantGetReportStatusResponse](docs/Model/MerchantGetReportStatusResponse.md)
+- [MerchantInvoiceUploadRequest](docs/Model/MerchantInvoiceUploadRequest.md)
 - [MerchantNotificationResponse](docs/Model/MerchantNotificationResponse.md)
 - [MerchantOfferGetStockResponse](docs/Model/MerchantOfferGetStockResponse.md)
 - [MerchantOfferStockUpdateRequest](docs/Model/MerchantOfferStockUpdateRequest.md)
@@ -208,6 +222,8 @@ Class | Method | HTTP request | Description
 - [MerchantProductRequest](docs/Model/MerchantProductRequest.md)
 - [MerchantProductResponse](docs/Model/MerchantProductResponse.md)
 - [MerchantProductWithBuyBoxPrice](docs/Model/MerchantProductWithBuyBoxPrice.md)
+- [MerchantPurchaseOrderInvoice](docs/Model/MerchantPurchaseOrderInvoice.md)
+- [MerchantPurchaseOrderInvoiceLine](docs/Model/MerchantPurchaseOrderInvoiceLine.md)
 - [MerchantReturnAcknowledgeRequest](docs/Model/MerchantReturnAcknowledgeRequest.md)
 - [MerchantReturnLineRequest](docs/Model/MerchantReturnLineRequest.md)
 - [MerchantReturnLineResponse](docs/Model/MerchantReturnLineResponse.md)
@@ -234,8 +250,17 @@ Class | Method | HTTP request | Description
 - [MerchantStockLocationUpdateRequest](docs/Model/MerchantStockLocationUpdateRequest.md)
 - [MerchantStockLocationWithCountryIsoResponse](docs/Model/MerchantStockLocationWithCountryIsoResponse.md)
 - [MerchantStockPriceUpdateRequest](docs/Model/MerchantStockPriceUpdateRequest.md)
+- [MerchantVendorParty](docs/Model/MerchantVendorParty.md)
 - [MerchantWebhookRequest](docs/Model/MerchantWebhookRequest.md)
 - [MerchantWebhookResponse](docs/Model/MerchantWebhookResponse.md)
+- [ModulesAdditionalDetailsType](docs/Model/ModulesAdditionalDetailsType.md)
+- [ModulesAllowanceDetailsType](docs/Model/ModulesAllowanceDetailsType.md)
+- [ModulesChargeDetailsType](docs/Model/ModulesChargeDetailsType.md)
+- [ModulesPurchaseOrderInvoiceType](docs/Model/ModulesPurchaseOrderInvoiceType.md)
+- [ModulesPurchaseOrderStatus](docs/Model/ModulesPurchaseOrderStatus.md)
+- [ModulesPurchaseOrderType](docs/Model/ModulesPurchaseOrderType.md)
+- [ModulesTaxRegistrationType](docs/Model/ModulesTaxRegistrationType.md)
+- [ModulesTaxType](docs/Model/ModulesTaxType.md)
 - [NotificationType](docs/Model/NotificationType.md)
 - [Operation](docs/Model/Operation.md)
 - [OrderStatusView](docs/Model/OrderStatusView.md)
@@ -247,6 +272,15 @@ Class | Method | HTTP request | Description
 - [ProductCreationResult](docs/Model/ProductCreationResult.md)
 - [ProductExtraDataRequest](docs/Model/ProductExtraDataRequest.md)
 - [ProductMessage](docs/Model/ProductMessage.md)
+- [PurchaseOrderAcknowledgementCode](docs/Model/PurchaseOrderAcknowledgementCode.md)
+- [PurchaseOrderIdentifierType](docs/Model/PurchaseOrderIdentifierType.md)
+- [PurchaseOrderInvoiceAdditionalDetails](docs/Model/PurchaseOrderInvoiceAdditionalDetails.md)
+- [PurchaseOrderInvoiceAllowanceDetails](docs/Model/PurchaseOrderInvoiceAllowanceDetails.md)
+- [PurchaseOrderInvoiceChargeDetails](docs/Model/PurchaseOrderInvoiceChargeDetails.md)
+- [PurchaseOrderInvoiceTaxDetails](docs/Model/PurchaseOrderInvoiceTaxDetails.md)
+- [PurchaseOrderLineIdentifierType](docs/Model/PurchaseOrderLineIdentifierType.md)
+- [PurchaseOrderLineUnitOfMeasure](docs/Model/PurchaseOrderLineUnitOfMeasure.md)
+- [PurchaseOrderRejectionReason](docs/Model/PurchaseOrderRejectionReason.md)
 - [RemoveProductExtraDataRequests](docs/Model/RemoveProductExtraDataRequests.md)
 - [RenameProductAttributeGroupRequests](docs/Model/RenameProductAttributeGroupRequests.md)
 - [ReportStatus](docs/Model/ReportStatus.md)
@@ -257,6 +291,8 @@ Class | Method | HTTP request | Description
 - [ShipmentFulfillmentType](docs/Model/ShipmentFulfillmentType.md)
 - [ShipmentLineStatus](docs/Model/ShipmentLineStatus.md)
 - [ShipmentSettingsResponse](docs/Model/ShipmentSettingsResponse.md)
+- [SingleMerchantAcknowledgePurchaseOrderLinesRequest](docs/Model/SingleMerchantAcknowledgePurchaseOrderLinesRequest.md)
+- [SingleMerchantCreatePurchaseOrderInvoiceRequest](docs/Model/SingleMerchantCreatePurchaseOrderInvoiceRequest.md)
 - [SingleOfApiResponse](docs/Model/SingleOfApiResponse.md)
 - [SingleOfDictionaryOfStringAndListOfString](docs/Model/SingleOfDictionaryOfStringAndListOfString.md)
 - [SingleOfMerchantProductResponse](docs/Model/SingleOfMerchantProductResponse.md)
@@ -295,6 +331,6 @@ vendor/bin/phpunit
 
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `2.13.0`
-    - Package version: `2.13.0.2`
+- API version: `2.14.0`
+    - Package version: `2.14.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

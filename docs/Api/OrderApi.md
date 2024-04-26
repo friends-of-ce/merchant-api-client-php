@@ -11,6 +11,7 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 | [**orderPackingSlip()**](OrderApi.md#orderPackingSlip) | **GET** /v2/orders/{merchantOrderNo}/packingslip | Generates a packing slip |
 | [**orderUpdate()**](OrderApi.md#orderUpdate) | **PUT** /v2/orders/comment | Updates an order comment |
 | [**orderUploadInvoice()**](OrderApi.md#orderUploadInvoice) | **POST** /v2/orders/{merchantOrderNo}/invoice | Uploads an order invoice |
+| [**orderUploadInvoiceAsString()**](OrderApi.md#orderUploadInvoiceAsString) | **POST** /v2/orders/{merchantOrderNo}/invoice-base64 | Uploads an order invoice PDF from Base64 string. |
 
 
 ## `orderAcknowledge()`
@@ -485,6 +486,70 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `multipart/form-data`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `orderUploadInvoiceAsString()`
+
+```php
+orderUploadInvoiceAsString($merchantOrderNo, $merchantInvoiceUploadRequest): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
+```
+
+Uploads an order invoice PDF from Base64 string.
+
+Uploads an order invoice PDF from Base64 string.<br />Invoice size must be less than 1 mb.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: apiKey
+$config = FriendsOfCE\Merchant\ApiClient\Configuration::getDefaultConfiguration()->setApiKey('apikey', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FriendsOfCE\Merchant\ApiClient\Configuration::getDefaultConfiguration()->setApiKeyPrefix('apikey', 'Bearer');
+
+
+$apiInstance = new FriendsOfCE\Merchant\ApiClient\Api\OrderApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$merchantOrderNo = 'merchantOrderNo_example'; // string
+$merchantInvoiceUploadRequest = new \FriendsOfCE\Merchant\ApiClient\Model\MerchantInvoiceUploadRequest(); // \FriendsOfCE\Merchant\ApiClient\Model\MerchantInvoiceUploadRequest
+
+try {
+    $result = $apiInstance->orderUploadInvoiceAsString($merchantOrderNo, $merchantInvoiceUploadRequest);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling OrderApi->orderUploadInvoiceAsString: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **merchantOrderNo** | **string**|  | |
+| **merchantInvoiceUploadRequest** | [**\FriendsOfCE\Merchant\ApiClient\Model\MerchantInvoiceUploadRequest**](../Model/MerchantInvoiceUploadRequest.md)|  | [optional] |
+
+### Return type
+
+[**\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse**](../Model/ApiResponse.md)
+
+### Authorization
+
+[apiKey](../../README.md#apiKey)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json-patch+json`, `application/json`, `application/*+json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
