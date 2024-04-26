@@ -9,7 +9,7 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 | [**productBulkPatchExtraDataItems()**](ProductApi.md#productBulkPatchExtraDataItems) | **PATCH** /v2/products/extra-data/bulk | Adds, updates, or deletes custom attributes |
 | [**productCreate()**](ProductApi.md#productCreate) | **POST** /v2/products | Updates or creates products |
 | [**productDelete()**](ProductApi.md#productDelete) | **DELETE** /v2/products/{merchantProductNo} | Deletes a product |
-| [**productFreezeProduct()**](ProductApi.md#productFreezeProduct) | **POST** /v2/products/freezeproducts | Updates selected products and sets them either to frozen or not-frozen status. |
+| [**productFreeze()**](ProductApi.md#productFreeze) | **POST** /v2/products/freeze | Updates selected products and sets them either to frozen or not-frozen status. |
 | [**productGetByFilter()**](ProductApi.md#productGetByFilter) | **GET** /v2/products | Gets products |
 | [**productGetByMerchantProductNo()**](ProductApi.md#productGetByMerchantProductNo) | **GET** /v2/products/{merchantProductNo} | Gets a product |
 | [**productPatch()**](ProductApi.md#productPatch) | **PATCH** /v2/products/{merchantProductNo} | Updates product attributes |
@@ -330,10 +330,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `productFreezeProduct()`
+## `productFreeze()`
 
 ```php
-productFreezeProduct($freezeProductRequest): \FriendsOfCE\Merchant\ApiClient\Model\SingleOfApiResponse
+productFreeze($freezeProductRequest): \FriendsOfCE\Merchant\ApiClient\Model\SingleOfApiResponse
 ```
 
 Updates selected products and sets them either to frozen or not-frozen status.
@@ -362,10 +362,10 @@ $apiInstance = new FriendsOfCE\Merchant\ApiClient\Api\ProductApi(
 $freezeProductRequest = array(new \FriendsOfCE\Merchant\ApiClient\Model\FreezeProductRequest()); // \FriendsOfCE\Merchant\ApiClient\Model\FreezeProductRequest[]
 
 try {
-    $result = $apiInstance->productFreezeProduct($freezeProductRequest);
+    $result = $apiInstance->productFreeze($freezeProductRequest);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling ProductApi->productFreezeProduct: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling ProductApi->productFreeze: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
