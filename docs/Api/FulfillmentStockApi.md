@@ -10,7 +10,7 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 ## `fulfillmentStockGetFulfillementStockWithStockLocations()`
 
 ```php
-fulfillmentStockGetFulfillementStockWithStockLocations($merchantProductNos, $pageIndex, $pageSize): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantFulfillmentStockGetStockLocationsRequest
+fulfillmentStockGetFulfillementStockWithStockLocations($merchantProductNos, $pageIndex, $pageSize): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantFulfillmentStockStockLocationsResponse
 ```
 
 Gets product stock across all warehouses with stock locations
@@ -58,7 +58,7 @@ try {
 
 ### Return type
 
-[**\FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantFulfillmentStockGetStockLocationsRequest**](../Model/CollectionOfMerchantFulfillmentStockGetStockLocationsRequest.md)
+[**\FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantFulfillmentStockStockLocationsResponse**](../Model/CollectionOfMerchantFulfillmentStockStockLocationsResponse.md)
 
 ### Authorization
 

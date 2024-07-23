@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **content** | [**\FriendsOfCE\Merchant\ApiClient\Model\ChannelListedProductResponse[]**](ChannelListedProductResponse.md) |  | [optional]
-**count** | **int** |  | [optional]
-**totalCount** | **int** |  | [optional]
-**itemsPerPage** | **int** |  | [optional]
+**count** | **int** | The number of items in the current response. | [optional]
+**totalCount** | **int** | The total number of items. | [optional]
+**itemsPerPage** | **int** | The number of items per page. | [optional]
 **statusCode** | **int** |  | [optional]
 **requestId** | **string** |  | [optional]
 **logId** | **string** |  | [optional]

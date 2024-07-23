@@ -55,7 +55,7 @@ $config = FriendsOfCE\Merchant\ApiClient\Configuration::getDefaultConfiguration(
 // $config = FriendsOfCE\Merchant\ApiClient\Configuration::getDefaultConfiguration()->setApiKeyPrefix('apikey', 'Bearer');
 
 
-$apiInstance = new FriendsOfCE\Merchant\ApiClient\Api\CancellationApi(
+$apiInstance = new FriendsOfCE\Merchant\ApiClient\Api\CancellationsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -67,7 +67,7 @@ try {
     $result = $apiInstance->cancellationCreate($merchantCancellationRequest);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling CancellationApi->cancellationCreate: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling CancellationsApi->cancellationCreate: ', $e->getMessage(), PHP_EOL;
 }
 
 ```
@@ -78,71 +78,83 @@ All URIs are relative to *https://demo.channelengine.net/api*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*CancellationApi* | [**cancellationCreate**](docs/Api/CancellationApi.md#cancellationcreate) | **POST** /v2/cancellations | Creates a cancelation
-*CancellationApi* | [**cancellationGetForMerchant**](docs/Api/CancellationApi.md#cancellationgetformerchant) | **GET** /v2/cancellations/merchant | Gets cancelations
+*CancellationsApi* | [**cancellationCreate**](docs/Api/CancellationsApi.md#cancellationcreate) | **POST** /v2/cancellations | Creates a cancelation
+*CancellationsApi* | [**cancellationGetForMerchant**](docs/Api/CancellationsApi.md#cancellationgetformerchant) | **GET** /v2/cancellations/merchant | Gets cancelations
 *ChannelsApi* | [**channelPluginsGet**](docs/Api/ChannelsApi.md#channelpluginsget) | **GET** /v2/channels | Gets channels
-*CompetitionPriceApi* | [**competitionPricesGetBuyBoxPrices**](docs/Api/CompetitionPriceApi.md#competitionpricesgetbuyboxprices) | **GET** /v2/competitionprices/buyboxprices | Gets the price from the buy box winner
+*CompetitionPricesApi* | [**competitionPricesGetBuyBoxPrices**](docs/Api/CompetitionPricesApi.md#competitionpricesgetbuyboxprices) | **GET** /v2/competitionprices/buyboxprices | Gets the price from the buy box winner
 *FulfillmentStockApi* | [**fulfillmentStockGetFulfillementStockWithStockLocations**](docs/Api/FulfillmentStockApi.md#fulfillmentstockgetfulfillementstockwithstocklocations) | **GET** /v2/fulfillmentstock | Gets product stock across all warehouses with stock locations
 *ListedProductsApi* | [**listedProductGetByFilter**](docs/Api/ListedProductsApi.md#listedproductgetbyfilter) | **GET** /v2/channels/{channelId}/products | Gets products listed by channel
-*NotificationApi* | [**notificationIndex**](docs/Api/NotificationApi.md#notificationindex) | **GET** /v2/notifications | Gets notifications
-*OfferApi* | [**offerGetStock**](docs/Api/OfferApi.md#offergetstock) | **GET** /v2/offer/stock | Gets product stock across all warehouses
-*OfferApi* | [**offerStockPriceUpdate**](docs/Api/OfferApi.md#offerstockpriceupdate) | **PUT** /v2/offer | Updates stock and price
-*OfferApi* | [**offerStockUpdate**](docs/Api/OfferApi.md#offerstockupdate) | **PUT** /v2/offer/stock | Updates stock
-*OrderApi* | [**orderAcknowledge**](docs/Api/OrderApi.md#orderacknowledge) | **POST** /v2/orders/acknowledge | Acknowledges orders
-*OrderApi* | [**orderGetByFilter**](docs/Api/OrderApi.md#ordergetbyfilter) | **GET** /v2/orders | Gets orders by filter
-*OrderApi* | [**orderGetNew**](docs/Api/OrderApi.md#ordergetnew) | **GET** /v2/orders/new | Gets new orders
-*OrderApi* | [**orderInvoice**](docs/Api/OrderApi.md#orderinvoice) | **GET** /v2/orders/{merchantOrderNo}/invoice | Generates an order invoice
-*OrderApi* | [**orderPackingSlip**](docs/Api/OrderApi.md#orderpackingslip) | **GET** /v2/orders/{merchantOrderNo}/packingslip | Generates a packing slip
-*OrderApi* | [**orderUpdate**](docs/Api/OrderApi.md#orderupdate) | **PUT** /v2/orders/comment | Updates an order comment
-*OrderApi* | [**orderUploadInvoice**](docs/Api/OrderApi.md#orderuploadinvoice) | **POST** /v2/orders/{merchantOrderNo}/invoice | Uploads an order invoice
-*OrderApi* | [**orderUploadInvoiceAsString**](docs/Api/OrderApi.md#orderuploadinvoiceasstring) | **POST** /v2/orders/{merchantOrderNo}/invoice-base64 | Uploads an order invoice PDF from Base64 string.
-*ProductApi* | [**productBulkDelete**](docs/Api/ProductApi.md#productbulkdelete) | **POST** /v2/products/bulkdelete | Deletes products
-*ProductApi* | [**productBulkPatch**](docs/Api/ProductApi.md#productbulkpatch) | **PATCH** /v2/products | Updates products attributes
-*ProductApi* | [**productBulkPatchExtraDataItems**](docs/Api/ProductApi.md#productbulkpatchextradataitems) | **PATCH** /v2/products/extra-data/bulk | Adds, updates, or deletes custom attributes
-*ProductApi* | [**productCreate**](docs/Api/ProductApi.md#productcreate) | **POST** /v2/products | Updates or creates products
-*ProductApi* | [**productDelete**](docs/Api/ProductApi.md#productdelete) | **DELETE** /v2/products/{merchantProductNo} | Deletes a product
-*ProductApi* | [**productFreeze**](docs/Api/ProductApi.md#productfreeze) | **POST** /v2/products/freeze | Updates selected products and sets them either to frozen or not-frozen status.
-*ProductApi* | [**productGetByFilter**](docs/Api/ProductApi.md#productgetbyfilter) | **GET** /v2/products | Gets products
-*ProductApi* | [**productGetByMerchantProductNo**](docs/Api/ProductApi.md#productgetbymerchantproductno) | **GET** /v2/products/{merchantProductNo} | Gets a product
-*ProductApi* | [**productPatch**](docs/Api/ProductApi.md#productpatch) | **PATCH** /v2/products/{merchantProductNo} | Updates product attributes
-*ProductApi* | [**productPatchExtraDataItems**](docs/Api/ProductApi.md#productpatchextradataitems) | **PATCH** /v2/products/extra-data | Adds, updates, or deletes a custom attribute
-*ProductAttributeGroupApi* | [**productAttributeGroupAddProductExtraData**](docs/Api/ProductAttributeGroupApi.md#productattributegroupaddproductextradata) | **PUT** /v2/product-attribute-group/{groupName}/add | Adds custom attributes to a group
-*ProductAttributeGroupApi* | [**productAttributeGroupCreate**](docs/Api/ProductAttributeGroupApi.md#productattributegroupcreate) | **POST** /v2/product-attribute-group | Creates a custom attribute group
-*ProductAttributeGroupApi* | [**productAttributeGroupDelete**](docs/Api/ProductAttributeGroupApi.md#productattributegroupdelete) | **DELETE** /v2/product-attribute-group/{groupName} | Deletes a custom attribute group
-*ProductAttributeGroupApi* | [**productAttributeGroupGetByFilter**](docs/Api/ProductAttributeGroupApi.md#productattributegroupgetbyfilter) | **GET** /v2/product-attribute-group | Gets custom attribute groups
-*ProductAttributeGroupApi* | [**productAttributeGroupGetWithChannelsByFilter**](docs/Api/ProductAttributeGroupApi.md#productattributegroupgetwithchannelsbyfilter) | **GET** /v2/product-attribute-group/linked-channels | Gets custom attribute groups and linked marketplaces
-*ProductAttributeGroupApi* | [**productAttributeGroupRemoveProductExtraData**](docs/Api/ProductAttributeGroupApi.md#productattributegroupremoveproductextradata) | **PUT** /v2/product-attribute-group/{groupName}/remove | Deletes custom attributes from a group
-*ProductAttributeGroupApi* | [**productAttributeGroupRenameProductAttributeGroup**](docs/Api/ProductAttributeGroupApi.md#productattributegrouprenameproductattributegroup) | **POST** /v2/product-attribute-group/rename | Renames custom attribute groups
-*ProductBundleApi* | [**productBundleGetByFilter**](docs/Api/ProductBundleApi.md#productbundlegetbyfilter) | **GET** /v2/productbundles | Gets product bundles
-*PurchaseOrdersManagementApi* | [**purchaseOrdersManagementAcknowledge**](docs/Api/PurchaseOrdersManagementApi.md#purchaseordersmanagementacknowledge) | **POST** /v2/purchase-orders/lines/acknowledge | Acknowledges lines of a purchase order
-*PurchaseOrdersManagementApi* | [**purchaseOrdersManagementCreateInvoice**](docs/Api/PurchaseOrdersManagementApi.md#purchaseordersmanagementcreateinvoice) | **POST** /v2/purchase-orders/invoice | Creates a purchase order invoice
-*PurchaseOrdersManagementApi* | [**purchaseOrdersManagementCreateInvoices**](docs/Api/PurchaseOrdersManagementApi.md#purchaseordersmanagementcreateinvoices) | **POST** /v2/purchase-orders/invoice/bulk | Creates a purchase order invoices in a bulk
-*PurchaseOrdersManagementApi* | [**purchaseOrdersManagementGetByFilter**](docs/Api/PurchaseOrdersManagementApi.md#purchaseordersmanagementgetbyfilter) | **GET** /v2/purchase-orders | Gets purchase orders by filter
-*ReportApi* | [**reportCreateSettlementsReport**](docs/Api/ReportApi.md#reportcreatesettlementsreport) | **POST** /v2/reports/settlements | Creates a settlement report
-*ReportApi* | [**reportGetReport**](docs/Api/ReportApi.md#reportgetreport) | **GET** /v2/reports/{reportId} | Gets a settlement report
-*ReportApi* | [**reportGetStatus**](docs/Api/ReportApi.md#reportgetstatus) | **GET** /v2/reports/{reportId}/status | Gets the status of a settlement report
-*ReturnApi* | [**returnAcknowledge**](docs/Api/ReturnApi.md#returnacknowledge) | **POST** /v2/returns/merchant/acknowledge | Acknowledges a return
-*ReturnApi* | [**returnDeclareForMerchant**](docs/Api/ReturnApi.md#returndeclareformerchant) | **POST** /v2/returns/merchant | Creates merchant return
-*ReturnApi* | [**returnGetByMerchantOrderNo**](docs/Api/ReturnApi.md#returngetbymerchantorderno) | **GET** /v2/returns/merchant/{merchantOrderNo} | Gets a return
-*ReturnApi* | [**returnGetDeclaredByChannel**](docs/Api/ReturnApi.md#returngetdeclaredbychannel) | **GET** /v2/returns/merchant | Gets marketplace returns
-*ReturnApi* | [**returnGetReturns**](docs/Api/ReturnApi.md#returngetreturns) | **GET** /v2/returns | Gets returns by filter
-*ReturnApi* | [**returnGetUnhandled**](docs/Api/ReturnApi.md#returngetunhandled) | **GET** /v2/returns/merchant/new | Gets unhandled returns
-*ReturnApi* | [**returnUpdateForMerchant**](docs/Api/ReturnApi.md#returnupdateformerchant) | **PUT** /v2/returns | Marks returns as received
+*NotificationsApi* | [**notificationIndex**](docs/Api/NotificationsApi.md#notificationindex) | **GET** /v2/notifications | Gets notifications
+*OffersApi* | [**offerGetStock**](docs/Api/OffersApi.md#offergetstock) | **GET** /v2/offer/stock | Gets product stock across all warehouses
+*OffersApi* | [**offerStockPriceUpdate**](docs/Api/OffersApi.md#offerstockpriceupdate) | **PUT** /v2/offer | Updates stock and price
+*OffersApi* | [**offerStockUpdate**](docs/Api/OffersApi.md#offerstockupdate) | **PUT** /v2/offer/stock | Updates stock
+*OrdersApi* | [**orderAcknowledge**](docs/Api/OrdersApi.md#orderacknowledge) | **POST** /v2/orders/acknowledge | Acknowledges orders
+*OrdersApi* | [**orderGetByFilter**](docs/Api/OrdersApi.md#ordergetbyfilter) | **GET** /v2/orders | Gets orders by filter
+*OrdersApi* | [**orderGetNew**](docs/Api/OrdersApi.md#ordergetnew) | **GET** /v2/orders/new | Gets new orders
+*OrdersApi* | [**orderInvoice**](docs/Api/OrdersApi.md#orderinvoice) | **GET** /v2/orders/{merchantOrderNo}/invoice | Generates an order invoice
+*OrdersApi* | [**orderPackingSlip**](docs/Api/OrdersApi.md#orderpackingslip) | **GET** /v2/orders/{merchantOrderNo}/packingslip | Generates a packing slip
+*OrdersApi* | [**orderUpdate**](docs/Api/OrdersApi.md#orderupdate) | **PUT** /v2/orders/comment | Updates an order comment
+*OrdersApi* | [**orderUploadInvoice**](docs/Api/OrdersApi.md#orderuploadinvoice) | **POST** /v2/orders/{merchantOrderNo}/invoice | Uploads an order invoice
+*OrdersApi* | [**orderUploadInvoiceAsString**](docs/Api/OrdersApi.md#orderuploadinvoiceasstring) | **POST** /v2/orders/{merchantOrderNo}/invoice-base64 | Uploads an order invoice PDF from Base64 string.
+*ProductAttributesApi* | [**productAttributeGroupAddProductExtraData**](docs/Api/ProductAttributesApi.md#productattributegroupaddproductextradata) | **PUT** /v2/product-attribute-group/{groupName}/add | Adds custom attributes to a group
+*ProductAttributesApi* | [**productAttributeGroupCreate**](docs/Api/ProductAttributesApi.md#productattributegroupcreate) | **POST** /v2/product-attribute-group | Creates a custom attribute group
+*ProductAttributesApi* | [**productAttributeGroupDelete**](docs/Api/ProductAttributesApi.md#productattributegroupdelete) | **DELETE** /v2/product-attribute-group/{groupName} | Deletes a custom attribute group
+*ProductAttributesApi* | [**productAttributeGroupGetByFilter**](docs/Api/ProductAttributesApi.md#productattributegroupgetbyfilter) | **GET** /v2/product-attribute-group | Gets custom attribute groups
+*ProductAttributesApi* | [**productAttributeGroupGetWithChannelsByFilter**](docs/Api/ProductAttributesApi.md#productattributegroupgetwithchannelsbyfilter) | **GET** /v2/product-attribute-group/linked-channels | Gets custom attribute groups and linked marketplaces
+*ProductAttributesApi* | [**productAttributeGroupRemoveProductExtraData**](docs/Api/ProductAttributesApi.md#productattributegroupremoveproductextradata) | **PUT** /v2/product-attribute-group/{groupName}/remove | Deletes custom attributes from a group
+*ProductAttributesApi* | [**productAttributeGroupRenameProductAttributeGroup**](docs/Api/ProductAttributesApi.md#productattributegrouprenameproductattributegroup) | **POST** /v2/product-attribute-group/rename | Renames custom attribute groups
+*ProductBundlesApi* | [**productBundleGetByFilter**](docs/Api/ProductBundlesApi.md#productbundlegetbyfilter) | **GET** /v2/productbundles | Gets product bundles
+*ProductsApi* | [**productBulkDelete**](docs/Api/ProductsApi.md#productbulkdelete) | **POST** /v2/products/bulkdelete | Deletes products
+*ProductsApi* | [**productBulkPatch**](docs/Api/ProductsApi.md#productbulkpatch) | **PATCH** /v2/products | Updates products attributes
+*ProductsApi* | [**productBulkPatchExtraDataItems**](docs/Api/ProductsApi.md#productbulkpatchextradataitems) | **PATCH** /v2/products/extra-data/bulk | Adds, updates, or deletes custom attributes
+*ProductsApi* | [**productCreate**](docs/Api/ProductsApi.md#productcreate) | **POST** /v2/products | Updates or creates products
+*ProductsApi* | [**productDelete**](docs/Api/ProductsApi.md#productdelete) | **DELETE** /v2/products/{merchantProductNo} | Deletes a product
+*ProductsApi* | [**productFreeze**](docs/Api/ProductsApi.md#productfreeze) | **POST** /v2/products/freeze | Updates selected products and sets them either to frozen or not-frozen status.
+*ProductsApi* | [**productGetByFilter**](docs/Api/ProductsApi.md#productgetbyfilter) | **GET** /v2/products | Gets products
+*ProductsApi* | [**productGetByMerchantProductNo**](docs/Api/ProductsApi.md#productgetbymerchantproductno) | **GET** /v2/products/{merchantProductNo} | Gets a product
+*ProductsApi* | [**productPatch**](docs/Api/ProductsApi.md#productpatch) | **PATCH** /v2/products/{merchantProductNo} | Updates product attributes
+*ProductsApi* | [**productPatchExtraDataItems**](docs/Api/ProductsApi.md#productpatchextradataitems) | **PATCH** /v2/products/extra-data | Adds, updates, or deletes a custom attribute
+*PurchaseOrdersApi* | [**acknowledge**](docs/Api/PurchaseOrdersApi.md#acknowledge) | **POST** /v2/purchase-orders/lines/acknowledge | Acknowledges lines of a purchase order
+*PurchaseOrdersApi* | [**create**](docs/Api/PurchaseOrdersApi.md#create) | **POST** /v2/purchase-orders/shipments | Create a purchase order shipment.
+*PurchaseOrdersApi* | [**getByFilter**](docs/Api/PurchaseOrdersApi.md#getbyfilter) | **GET** /v2/purchase-orders/shipments/merchant | Gets purchase order shipments by filter
+*PurchaseOrdersApi* | [**getByFilter_0**](docs/Api/PurchaseOrdersApi.md#getbyfilter_0) | **GET** /v2/purchase-orders | Gets purchase orders by filter
+*PurchaseOrdersApi* | [**purchaseOrdersCreateInvoice**](docs/Api/PurchaseOrdersApi.md#purchaseorderscreateinvoice) | **POST** /v2/purchase-orders/invoice | Creates a purchase order invoice
+*PurchaseOrdersApi* | [**purchaseOrdersCreateInvoices**](docs/Api/PurchaseOrdersApi.md#purchaseorderscreateinvoices) | **POST** /v2/purchase-orders/invoice/bulk | Creates a purchase order invoices in a bulk
+*PurchaseOrdersApi* | [**update**](docs/Api/PurchaseOrdersApi.md#update) | **PUT** /v2/purchase-orders/shipments | Update a purchase order shipment.
+*RefundsApi* | [**refundAcknowledge**](docs/Api/RefundsApi.md#refundacknowledge) | **POST** /v2.1/refunds/merchant/acknowledge | [CLOSED BETA] Acknowledge a refund
+*RefundsApi* | [**refundCreate**](docs/Api/RefundsApi.md#refundcreate) | **POST** /v2.1/refunds/merchant | [CLOSED BETA] Create a refund
+*RefundsApi* | [**refundGet**](docs/Api/RefundsApi.md#refundget) | **GET** /v2.1/refunds/merchant/{identifier} | [CLOSED BETA] Get refund by identifier
+*RefundsApi* | [**refundGetByFilter**](docs/Api/RefundsApi.md#refundgetbyfilter) | **GET** /v2.1/refunds/merchant | [CLOSED BETA] Get refunds by filter
+*ReportsApi* | [**reportCreateSettlementsReport**](docs/Api/ReportsApi.md#reportcreatesettlementsreport) | **POST** /v2/reports/settlements | Creates a settlement report
+*ReportsApi* | [**reportGetReport**](docs/Api/ReportsApi.md#reportgetreport) | **GET** /v2/reports/{reportId} | Gets a settlement report
+*ReportsApi* | [**reportGetStatus**](docs/Api/ReportsApi.md#reportgetstatus) | **GET** /v2/reports/{reportId}/status | Gets the status of a settlement report
+*ReturnsApi* | [**returnAcknowledge**](docs/Api/ReturnsApi.md#returnacknowledge) | **POST** /v2.1/returns/merchant/acknowledge | [CLOSED BETA] Acknowledge a return
+*ReturnsApi* | [**returnAcknowledge_0**](docs/Api/ReturnsApi.md#returnacknowledge_0) | **POST** /v2/returns/merchant/acknowledge | Acknowledges a return
+*ReturnsApi* | [**returnCreate**](docs/Api/ReturnsApi.md#returncreate) | **POST** /v2.1/returns/merchant | [CLOSED BETA] Create a return
+*ReturnsApi* | [**returnDeclareForMerchant**](docs/Api/ReturnsApi.md#returndeclareformerchant) | **POST** /v2/returns/merchant | Creates merchant return
+*ReturnsApi* | [**returnGet**](docs/Api/ReturnsApi.md#returnget) | **GET** /v2.1/returns/merchant/{identifier} | [CLOSED BETA] Get return by identifier
+*ReturnsApi* | [**returnGetByFilter**](docs/Api/ReturnsApi.md#returngetbyfilter) | **GET** /v2.1/returns/merchant | [CLOSED BETA] Get returns by filter
+*ReturnsApi* | [**returnGetByMerchantOrderNo**](docs/Api/ReturnsApi.md#returngetbymerchantorderno) | **GET** /v2/returns/merchant/{merchantOrderNo} | Gets a return
+*ReturnsApi* | [**returnGetDeclaredByChannel**](docs/Api/ReturnsApi.md#returngetdeclaredbychannel) | **GET** /v2/returns/merchant | Gets marketplace returns
+*ReturnsApi* | [**returnGetReturns**](docs/Api/ReturnsApi.md#returngetreturns) | **GET** /v2/returns | Gets returns by filter
+*ReturnsApi* | [**returnGetUnhandled**](docs/Api/ReturnsApi.md#returngetunhandled) | **GET** /v2/returns/merchant/new | Gets unhandled returns
+*ReturnsApi* | [**returnHandle**](docs/Api/ReturnsApi.md#returnhandle) | **POST** /v2.1/returns/merchant/handle | [CLOSED BETA] Handle a return
+*ReturnsApi* | [**returnUpdateForMerchant**](docs/Api/ReturnsApi.md#returnupdateformerchant) | **PUT** /v2/returns | Marks returns as received
 *SettingsApi* | [**settingsGet**](docs/Api/SettingsApi.md#settingsget) | **GET** /v2/settings | Gets settings
-*SettlementApi* | [**settlementGetByFilter**](docs/Api/SettlementApi.md#settlementgetbyfilter) | **GET** /v2/settlements | Gets settlements
-*SettlementApi* | [**settlementUploadSettlement**](docs/Api/SettlementApi.md#settlementuploadsettlement) | **POST** /v2/settlements/upload | Imports a settlement file.
-*ShipmentApi* | [**shipmentCreate**](docs/Api/ShipmentApi.md#shipmentcreate) | **POST** /v2/shipments | Creates shipments
-*ShipmentApi* | [**shipmentCreateForChannelMethod**](docs/Api/ShipmentApi.md#shipmentcreateforchannelmethod) | **POST** /v2/shipments/channelmethod | Creates a shipment and initiates shipping label generation
-*ShipmentApi* | [**shipmentGetShipmentLabelCarriers**](docs/Api/ShipmentApi.md#shipmentgetshipmentlabelcarriers) | **POST** /v2/carriers/{merchantOrderNo} | Gets carriers providing shipping labels
-*ShipmentApi* | [**shipmentIndex**](docs/Api/ShipmentApi.md#shipmentindex) | **GET** /v2/shipments/merchant | Gets shipments by filter
-*ShipmentApi* | [**shipmentShippingLabel**](docs/Api/ShipmentApi.md#shipmentshippinglabel) | **GET** /v2/orders/{merchantShipmentNo}/shippinglabel | Gets a shipping label
-*ShipmentApi* | [**shipmentUpdate**](docs/Api/ShipmentApi.md#shipmentupdate) | **PUT** /v2/shipments/{merchantShipmentNo} | Updates a shipment
-*StockLocationApi* | [**stockLocationCreate**](docs/Api/StockLocationApi.md#stocklocationcreate) | **POST** /v2/stocklocations | Creates a stock location
-*StockLocationApi* | [**stockLocationIndex**](docs/Api/StockLocationApi.md#stocklocationindex) | **GET** /v2/stocklocations | Gets stock locations
-*WebhookApi* | [**webhooksCreate**](docs/Api/WebhookApi.md#webhookscreate) | **POST** /v2/webhooks | Creates a webhook
-*WebhookApi* | [**webhooksDelete**](docs/Api/WebhookApi.md#webhooksdelete) | **DELETE** /v2/webhooks/{webhookName} | Deletes a webhook
-*WebhookApi* | [**webhooksGetAll**](docs/Api/WebhookApi.md#webhooksgetall) | **GET** /v2/webhooks | Gets webhooks
-*WebhookApi* | [**webhooksUpdate**](docs/Api/WebhookApi.md#webhooksupdate) | **PUT** /v2/webhooks | Updates a webhook
+*SettlementsApi* | [**settlementGetByFilter**](docs/Api/SettlementsApi.md#settlementgetbyfilter) | **GET** /v2/settlements | Gets settlements
+*SettlementsApi* | [**settlementUploadSettlement**](docs/Api/SettlementsApi.md#settlementuploadsettlement) | **POST** /v2/settlements/upload | Imports a settlement file.
+*ShipmentsApi* | [**shipmentCreate**](docs/Api/ShipmentsApi.md#shipmentcreate) | **POST** /v2/shipments | Creates shipments
+*ShipmentsApi* | [**shipmentCreateForChannelMethod**](docs/Api/ShipmentsApi.md#shipmentcreateforchannelmethod) | **POST** /v2/shipments/channelmethod | Creates a shipment and initiates shipping label generation
+*ShipmentsApi* | [**shipmentGetShipmentLabelCarriers**](docs/Api/ShipmentsApi.md#shipmentgetshipmentlabelcarriers) | **POST** /v2/carriers/{merchantOrderNo} | Gets carriers providing shipping labels
+*ShipmentsApi* | [**shipmentIndex**](docs/Api/ShipmentsApi.md#shipmentindex) | **GET** /v2/shipments/merchant | Gets shipments by filter
+*ShipmentsApi* | [**shipmentShippingLabel**](docs/Api/ShipmentsApi.md#shipmentshippinglabel) | **GET** /v2/orders/{merchantShipmentNo}/shippinglabel | Gets a shipping label
+*ShipmentsApi* | [**shipmentUpdate**](docs/Api/ShipmentsApi.md#shipmentupdate) | **PUT** /v2/shipments/{merchantShipmentNo} | Updates a shipment
+*StockLocationsApi* | [**stockLocationCreate**](docs/Api/StockLocationsApi.md#stocklocationcreate) | **POST** /v2/stocklocations | Creates a stock location
+*StockLocationsApi* | [**stockLocationIndex**](docs/Api/StockLocationsApi.md#stocklocationindex) | **GET** /v2/stocklocations | Gets stock locations
+*WebhooksApi* | [**webhooksCreate**](docs/Api/WebhooksApi.md#webhookscreate) | **POST** /v2/webhooks | Creates a webhook
+*WebhooksApi* | [**webhooksDelete**](docs/Api/WebhooksApi.md#webhooksdelete) | **DELETE** /v2/webhooks/{webhookName} | Deletes a webhook
+*WebhooksApi* | [**webhooksGetAll**](docs/Api/WebhooksApi.md#webhooksgetall) | **GET** /v2/webhooks | Gets webhooks
+*WebhooksApi* | [**webhooksUpdate**](docs/Api/WebhooksApi.md#webhooksupdate) | **PUT** /v2/webhooks | Updates a webhook
 
 ## Models
 
@@ -150,16 +162,19 @@ Class | Method | HTTP request | Description
 - [AdvanceSettingsResponse](docs/Model/AdvanceSettingsResponse.md)
 - [ApiResponse](docs/Model/ApiResponse.md)
 - [BulkMerchantCreatePurchaseOrderInvoicesRequest](docs/Model/BulkMerchantCreatePurchaseOrderInvoicesRequest.md)
+- [ChangePurchaseOrderShipmentLine](docs/Model/ChangePurchaseOrderShipmentLine.md)
 - [ChannelCarrierCollectionMethodApi](docs/Model/ChannelCarrierCollectionMethodApi.md)
 - [ChannelCarrierRecommendationApi](docs/Model/ChannelCarrierRecommendationApi.md)
 - [ChannelChannelResponse](docs/Model/ChannelChannelResponse.md)
+- [ChannelExportStatus](docs/Model/ChannelExportStatus.md)
 - [ChannelGlobalChannelResponse](docs/Model/ChannelGlobalChannelResponse.md)
 - [ChannelListedProductResponse](docs/Model/ChannelListedProductResponse.md)
 - [CollectionOfChannelGlobalChannelResponse](docs/Model/CollectionOfChannelGlobalChannelResponse.md)
 - [CollectionOfChannelListedProductResponse](docs/Model/CollectionOfChannelListedProductResponse.md)
 - [CollectionOfIPurchaseOrderByFilter](docs/Model/CollectionOfIPurchaseOrderByFilter.md)
+- [CollectionOfIPurchaseOrderShipmentByFilter](docs/Model/CollectionOfIPurchaseOrderShipmentByFilter.md)
 - [CollectionOfMerchantCancellationResponse](docs/Model/CollectionOfMerchantCancellationResponse.md)
-- [CollectionOfMerchantFulfillmentStockGetStockLocationsRequest](docs/Model/CollectionOfMerchantFulfillmentStockGetStockLocationsRequest.md)
+- [CollectionOfMerchantFulfillmentStockStockLocationsResponse](docs/Model/CollectionOfMerchantFulfillmentStockStockLocationsResponse.md)
 - [CollectionOfMerchantNotificationResponse](docs/Model/CollectionOfMerchantNotificationResponse.md)
 - [CollectionOfMerchantOfferGetStockResponse](docs/Model/CollectionOfMerchantOfferGetStockResponse.md)
 - [CollectionOfMerchantOrderResponse](docs/Model/CollectionOfMerchantOrderResponse.md)
@@ -176,7 +191,10 @@ Class | Method | HTTP request | Description
 - [CollectionOfMerchantStockLocationWithCountryIsoResponse](docs/Model/CollectionOfMerchantStockLocationWithCountryIsoResponse.md)
 - [CollectionOfMerchantWebhookResponse](docs/Model/CollectionOfMerchantWebhookResponse.md)
 - [Condition](docs/Model/Condition.md)
+- [CreatePurchaseOrderShipment](docs/Model/CreatePurchaseOrderShipment.md)
+- [CreatedByType](docs/Model/CreatedByType.md)
 - [CreatorFilter](docs/Model/CreatorFilter.md)
+- [CreatorType](docs/Model/CreatorType.md)
 - [ExtraDataType](docs/Model/ExtraDataType.md)
 - [FreezeProductRequest](docs/Model/FreezeProductRequest.md)
 - [FreezingActionRequest](docs/Model/FreezingActionRequest.md)
@@ -185,22 +203,38 @@ Class | Method | HTTP request | Description
 - [IImportInformation](docs/Model/IImportInformation.md)
 - [IPurchaseOrderByFilter](docs/Model/IPurchaseOrderByFilter.md)
 - [IPurchaseOrderLineByFilter](docs/Model/IPurchaseOrderLineByFilter.md)
+- [IPurchaseOrderShipmentByFilter](docs/Model/IPurchaseOrderShipmentByFilter.md)
+- [IPurchaseOrderShipmentLineByFilter](docs/Model/IPurchaseOrderShipmentLineByFilter.md)
+- [IRefund](docs/Model/IRefund.md)
+- [IRefundCurrency](docs/Model/IRefundCurrency.md)
+- [IRefundLine](docs/Model/IRefundLine.md)
+- [IReturn](docs/Model/IReturn.md)
+- [IReturnLine](docs/Model/IReturnLine.md)
+- [IReturnLineHandlingResult](docs/Model/IReturnLineHandlingResult.md)
 - [IVendorParty](docs/Model/IVendorParty.md)
 - [ListedProductChannelStatus](docs/Model/ListedProductChannelStatus.md)
 - [ListedProductExportStatus](docs/Model/ListedProductExportStatus.md)
 - [MancoReason](docs/Model/MancoReason.md)
 - [MerchantAcknowledgePurchaseOrder](docs/Model/MerchantAcknowledgePurchaseOrder.md)
 - [MerchantAcknowledgePurchaseOrderLine](docs/Model/MerchantAcknowledgePurchaseOrderLine.md)
+- [MerchantAcknowledgeRefund](docs/Model/MerchantAcknowledgeRefund.md)
+- [MerchantAcknowledgeReturn](docs/Model/MerchantAcknowledgeReturn.md)
 - [MerchantAddressResponse](docs/Model/MerchantAddressResponse.md)
 - [MerchantCancellationLineRequest](docs/Model/MerchantCancellationLineRequest.md)
 - [MerchantCancellationLineResponse](docs/Model/MerchantCancellationLineResponse.md)
 - [MerchantCancellationRequest](docs/Model/MerchantCancellationRequest.md)
 - [MerchantCancellationResponse](docs/Model/MerchantCancellationResponse.md)
 - [MerchantChannelLabelShipmentRequest](docs/Model/MerchantChannelLabelShipmentRequest.md)
+- [MerchantCreateRefund](docs/Model/MerchantCreateRefund.md)
+- [MerchantCreateRefundLine](docs/Model/MerchantCreateRefundLine.md)
 - [MerchantCreateReportResponse](docs/Model/MerchantCreateReportResponse.md)
+- [MerchantCreateReturn](docs/Model/MerchantCreateReturn.md)
+- [MerchantCreateReturnLine](docs/Model/MerchantCreateReturnLine.md)
 - [MerchantCreateSettlementsReportRequest](docs/Model/MerchantCreateSettlementsReportRequest.md)
-- [MerchantFulfillmentStockGetStockLocationsRequest](docs/Model/MerchantFulfillmentStockGetStockLocationsRequest.md)
+- [MerchantFulfillmentStockLocationItemResponse](docs/Model/MerchantFulfillmentStockLocationItemResponse.md)
+- [MerchantFulfillmentStockStockLocationsResponse](docs/Model/MerchantFulfillmentStockStockLocationsResponse.md)
 - [MerchantGetReportStatusResponse](docs/Model/MerchantGetReportStatusResponse.md)
+- [MerchantHandleReturn](docs/Model/MerchantHandleReturn.md)
 - [MerchantInvoiceUploadRequest](docs/Model/MerchantInvoiceUploadRequest.md)
 - [MerchantNotificationResponse](docs/Model/MerchantNotificationResponse.md)
 - [MerchantOfferGetStockResponse](docs/Model/MerchantOfferGetStockResponse.md)
@@ -253,6 +287,9 @@ Class | Method | HTTP request | Description
 - [MerchantVendorParty](docs/Model/MerchantVendorParty.md)
 - [MerchantWebhookRequest](docs/Model/MerchantWebhookRequest.md)
 - [MerchantWebhookResponse](docs/Model/MerchantWebhookResponse.md)
+- [ModuleFulfillmentType](docs/Model/ModuleFulfillmentType.md)
+- [ModuleReturnReason](docs/Model/ModuleReturnReason.md)
+- [ModuleReturnStatus](docs/Model/ModuleReturnStatus.md)
 - [ModulesAdditionalDetailsType](docs/Model/ModulesAdditionalDetailsType.md)
 - [ModulesAllowanceDetailsType](docs/Model/ModulesAllowanceDetailsType.md)
 - [ModulesChargeDetailsType](docs/Model/ModulesChargeDetailsType.md)
@@ -263,6 +300,8 @@ Class | Method | HTTP request | Description
 - [ModulesTaxType](docs/Model/ModulesTaxType.md)
 - [NotificationType](docs/Model/NotificationType.md)
 - [Operation](docs/Model/Operation.md)
+- [OrderIdentifier](docs/Model/OrderIdentifier.md)
+- [OrderLineIdentifier](docs/Model/OrderLineIdentifier.md)
 - [OrderStatusView](docs/Model/OrderStatusView.md)
 - [OrderSupport](docs/Model/OrderSupport.md)
 - [PackageDimensionsUnit](docs/Model/PackageDimensionsUnit.md)
@@ -281,28 +320,48 @@ Class | Method | HTTP request | Description
 - [PurchaseOrderLineIdentifierType](docs/Model/PurchaseOrderLineIdentifierType.md)
 - [PurchaseOrderLineUnitOfMeasure](docs/Model/PurchaseOrderLineUnitOfMeasure.md)
 - [PurchaseOrderRejectionReason](docs/Model/PurchaseOrderRejectionReason.md)
+- [PurchaseOrderRelatedItemExportStatus](docs/Model/PurchaseOrderRelatedItemExportStatus.md)
+- [PurchaseOrderShipmentIdentifierTypeValue](docs/Model/PurchaseOrderShipmentIdentifierTypeValue.md)
+- [RefundByFilterIdentifier](docs/Model/RefundByFilterIdentifier.md)
+- [RefundIdentifier](docs/Model/RefundIdentifier.md)
+- [RefundReason](docs/Model/RefundReason.md)
 - [RemoveProductExtraDataRequests](docs/Model/RemoveProductExtraDataRequests.md)
 - [RenameProductAttributeGroupRequests](docs/Model/RenameProductAttributeGroupRequests.md)
 - [ReportStatus](docs/Model/ReportStatus.md)
 - [ReportType](docs/Model/ReportType.md)
+- [ReturnByFilterIdentifier](docs/Model/ReturnByFilterIdentifier.md)
+- [ReturnHandlingAction](docs/Model/ReturnHandlingAction.md)
+- [ReturnIdentifier](docs/Model/ReturnIdentifier.md)
+- [ReturnLineIdentifier](docs/Model/ReturnLineIdentifier.md)
 - [ReturnReason](docs/Model/ReturnReason.md)
 - [ReturnStatus](docs/Model/ReturnStatus.md)
 - [SettingsResponse](docs/Model/SettingsResponse.md)
 - [ShipmentFulfillmentType](docs/Model/ShipmentFulfillmentType.md)
 - [ShipmentLineStatus](docs/Model/ShipmentLineStatus.md)
 - [ShipmentSettingsResponse](docs/Model/ShipmentSettingsResponse.md)
+- [ShipmentType](docs/Model/ShipmentType.md)
 - [SingleMerchantAcknowledgePurchaseOrderLinesRequest](docs/Model/SingleMerchantAcknowledgePurchaseOrderLinesRequest.md)
+- [SingleMerchantAcknowledgeRefundRequest](docs/Model/SingleMerchantAcknowledgeRefundRequest.md)
+- [SingleMerchantAcknowledgeReturnRequest](docs/Model/SingleMerchantAcknowledgeReturnRequest.md)
 - [SingleMerchantCreatePurchaseOrderInvoiceRequest](docs/Model/SingleMerchantCreatePurchaseOrderInvoiceRequest.md)
+- [SingleMerchantCreatePurchaseOrderShipmentRequest](docs/Model/SingleMerchantCreatePurchaseOrderShipmentRequest.md)
+- [SingleMerchantCreateRefundRequest](docs/Model/SingleMerchantCreateRefundRequest.md)
+- [SingleMerchantCreateReturnRequest](docs/Model/SingleMerchantCreateReturnRequest.md)
+- [SingleMerchantHandleReturnRequest](docs/Model/SingleMerchantHandleReturnRequest.md)
+- [SingleMerchantUpdatePurchaseOrderShipmentRequest](docs/Model/SingleMerchantUpdatePurchaseOrderShipmentRequest.md)
 - [SingleOfApiResponse](docs/Model/SingleOfApiResponse.md)
 - [SingleOfDictionaryOfStringAndListOfString](docs/Model/SingleOfDictionaryOfStringAndListOfString.md)
+- [SingleOfIRefund](docs/Model/SingleOfIRefund.md)
+- [SingleOfIReturn](docs/Model/SingleOfIReturn.md)
 - [SingleOfMerchantProductResponse](docs/Model/SingleOfMerchantProductResponse.md)
 - [SingleOfMerchantSettingsResponse](docs/Model/SingleOfMerchantSettingsResponse.md)
 - [SingleOfProductCreationResult](docs/Model/SingleOfProductCreationResult.md)
-- [SingleOfStockUpdateResponse](docs/Model/SingleOfStockUpdateResponse.md)
-- [StockUpdateResponse](docs/Model/StockUpdateResponse.md)
+- [UpdatePurchaseOrderShipment](docs/Model/UpdatePurchaseOrderShipment.md)
 - [VatRateType](docs/Model/VatRateType.md)
 - [VatSettingsResponse](docs/Model/VatSettingsResponse.md)
+- [VolumeUnitOfMeasure](docs/Model/VolumeUnitOfMeasure.md)
 - [WebhookEventType](docs/Model/WebhookEventType.md)
+- [WeightUnitOfMeasure](docs/Model/WeightUnitOfMeasure.md)
 
 ## Authorization
 
@@ -331,6 +390,7 @@ vendor/bin/phpunit
 
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `2.14.0`
-    - Package version: `2.14.0`
+- API version: `2.15.0`
+    - Package version: `2.15.0`
+    - Generator version: `7.7.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

@@ -36,6 +36,10 @@ Name | Type | Description | Notes
 **feeFixed** | **float** | A fixed fee that is charged by the Channel for this orderline.  This fee rate is based on the currency of the Channel  This field is optional, send 0 if not applicable. | [optional]
 **feeRate** | **float** | A percentage fee that is charged by the Channel for this orderline.  This field is optional, send 0 if not applicable. | [optional]
 **condition** | [**\FriendsOfCE\Merchant\ApiClient\Model\Condition**](Condition.md) |  | [optional]
+**exactDeliveryDate** | **\DateTime** | Exact delivery date from channels, empty if channels not support this value | [optional]
 **expectedDeliveryDate** | **\DateTime** | Expected delivery date from channels, empty if channels not support this value | [optional]
+**latestDeliveryDate** | **\DateTime** | Latest delivery date from channels, empty if channels not support this value | [optional]
+**expectedShipmentDate** | **\DateTime** | Expected shipment date from channels, empty if channels not support this value | [optional]
+**latestShipmentDate** | **\DateTime** | Latest shipment date from channels, empty if channels not support this value | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
