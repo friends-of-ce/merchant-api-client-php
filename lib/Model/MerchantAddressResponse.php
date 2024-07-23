@@ -444,10 +444,6 @@ class MerchantAddressResponse implements ModelInterface, ArrayAccess, \JsonSeria
             $invalidProperties[] = "invalid value for 'countryIso', the character length must be bigger than or equal to 0.";
         }
 
-        if (!is_null($this->container['original']) && (mb_strlen($this->container['original']) > 256)) {
-            $invalidProperties[] = "invalid value for 'original', the character length must be smaller than or equal to 256.";
-        }
-
         if (!is_null($this->container['original']) && (mb_strlen($this->container['original']) < 0)) {
             $invalidProperties[] = "invalid value for 'original', the character length must be bigger than or equal to 0.";
         }
@@ -1030,9 +1026,7 @@ class MerchantAddressResponse implements ModelInterface, ArrayAccess, \JsonSeria
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        if (!is_null($original) && (mb_strlen($original) > 256)) {
-            throw new \InvalidArgumentException('invalid length for $original when calling MerchantAddressResponse., must be smaller than or equal to 256.');
-        }
+
         if (!is_null($original) && (mb_strlen($original) < 0)) {
             throw new \InvalidArgumentException('invalid length for $original when calling MerchantAddressResponse., must be bigger than or equal to 0.');
         }
