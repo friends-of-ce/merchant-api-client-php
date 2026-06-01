@@ -4,16 +4,16 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**fulfillmentStockGetFulfillementStockWithStockLocations()**](FulfillmentStockApi.md#fulfillmentStockGetFulfillementStockWithStockLocations) | **GET** /v2/fulfillmentstock | Gets product stock across all warehouses with stock locations |
+| [**fulfillmentStockGetFulfillmentStockWithStockLocations()**](FulfillmentStockApi.md#fulfillmentStockGetFulfillmentStockWithStockLocations) | **GET** /v2/fulfillmentstock | Gets product stock across all warehouses with stock locations - Channel Fulfillment location |
 
 
-## `fulfillmentStockGetFulfillementStockWithStockLocations()`
+## `fulfillmentStockGetFulfillmentStockWithStockLocations()`
 
 ```php
-fulfillmentStockGetFulfillementStockWithStockLocations($merchantProductNos, $pageIndex, $pageSize): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantFulfillmentStockStockLocationsResponse
+fulfillmentStockGetFulfillmentStockWithStockLocations($merchantProductNos, $pageIndex, $pageSize): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantFulfillmentStockStockLocationsResponse
 ```
 
-Gets product stock across all warehouses with stock locations
+Gets product stock across all warehouses with stock locations - Channel Fulfillment location
 
 Gets the stocks. The warehouses must be set up as stock locations on ChannelEngine.
 
@@ -41,10 +41,10 @@ $pageIndex = 56; // int | A page index to get the items (starts from 0)
 $pageSize = 56; // int | Number of items to return (default 100)
 
 try {
-    $result = $apiInstance->fulfillmentStockGetFulfillementStockWithStockLocations($merchantProductNos, $pageIndex, $pageSize);
+    $result = $apiInstance->fulfillmentStockGetFulfillmentStockWithStockLocations($merchantProductNos, $pageIndex, $pageSize);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling FulfillmentStockApi->fulfillmentStockGetFulfillementStockWithStockLocations: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling FulfillmentStockApi->fulfillmentStockGetFulfillmentStockWithStockLocations: ', $e->getMessage(), PHP_EOL;
 }
 ```
 

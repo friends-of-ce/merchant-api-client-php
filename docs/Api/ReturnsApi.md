@@ -4,18 +4,21 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**returnAcknowledge()**](ReturnsApi.md#returnAcknowledge) | **POST** /v2.1/returns/merchant/acknowledge | [CLOSED BETA] Acknowledge a return |
+| [**returnAcknowledge()**](ReturnsApi.md#returnAcknowledge) | **POST** /v2.1/returns/merchant/acknowledge | [CLOSED BETA - AUTHORIZED USERS ONLY] Acknowledge a return |
 | [**returnAcknowledge_0()**](ReturnsApi.md#returnAcknowledge_0) | **POST** /v2/returns/merchant/acknowledge | Acknowledges a return |
-| [**returnCreate()**](ReturnsApi.md#returnCreate) | **POST** /v2.1/returns/merchant | [CLOSED BETA] Create a return |
+| [**returnBulkHandle()**](ReturnsApi.md#returnBulkHandle) | **POST** /v2.1/returns/merchant/bulk-handle | [CLOSED BETA - AUTHORIZED USERS ONLY] Handles returns in bulk |
+| [**returnCreate()**](ReturnsApi.md#returnCreate) | **POST** /v2.1/returns/merchant | [CLOSED BETA - AUTHORIZED USERS ONLY] Create a return |
 | [**returnDeclareForMerchant()**](ReturnsApi.md#returnDeclareForMerchant) | **POST** /v2/returns/merchant | Creates merchant return |
-| [**returnGet()**](ReturnsApi.md#returnGet) | **GET** /v2.1/returns/merchant/{identifier} | [CLOSED BETA] Get return by identifier |
-| [**returnGetByFilter()**](ReturnsApi.md#returnGetByFilter) | **GET** /v2.1/returns/merchant | [CLOSED BETA] Get returns by filter |
+| [**returnGet()**](ReturnsApi.md#returnGet) | **GET** /v2.1/returns/merchant/{identifier} | [CLOSED BETA - AUTHORIZED USERS ONLY] Get return by identifier |
+| [**returnGetByFilter()**](ReturnsApi.md#returnGetByFilter) | **GET** /v2.1/returns/merchant | [CLOSED BETA - AUTHORIZED USERS ONLY] Get returns by filter |
 | [**returnGetByMerchantOrderNo()**](ReturnsApi.md#returnGetByMerchantOrderNo) | **GET** /v2/returns/merchant/{merchantOrderNo} | Gets a return |
 | [**returnGetDeclaredByChannel()**](ReturnsApi.md#returnGetDeclaredByChannel) | **GET** /v2/returns/merchant | Gets marketplace returns |
 | [**returnGetReturns()**](ReturnsApi.md#returnGetReturns) | **GET** /v2/returns | Gets returns by filter |
 | [**returnGetUnhandled()**](ReturnsApi.md#returnGetUnhandled) | **GET** /v2/returns/merchant/new | Gets unhandled returns |
-| [**returnHandle()**](ReturnsApi.md#returnHandle) | **POST** /v2.1/returns/merchant/handle | [CLOSED BETA] Handle a return |
+| [**returnHandle()**](ReturnsApi.md#returnHandle) | **POST** /v2.1/returns/merchant/handle | [CLOSED BETA - AUTHORIZED USERS ONLY] Handle a return |
+| [**returnMarkExportAsFailed()**](ReturnsApi.md#returnMarkExportAsFailed) | **POST** /v2/returns/mark-export-as-failed |  |
 | [**returnUpdateForMerchant()**](ReturnsApi.md#returnUpdateForMerchant) | **PUT** /v2/returns | Marks returns as received |
+| [**returnUpsertReturnExtraData()**](ReturnsApi.md#returnUpsertReturnExtraData) | **PATCH** /v2.1/returns/merchant/extra-data | [CLOSED BETA - AUTHORIZED USERS ONLY] Upsert extra data for a return |
 
 
 ## `returnAcknowledge()`
@@ -24,9 +27,9 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 returnAcknowledge($singleMerchantAcknowledgeReturnRequest): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
 ```
 
-[CLOSED BETA] Acknowledge a return
+[CLOSED BETA - AUTHORIZED USERS ONLY] Acknowledge a return
 
-Acknowledges a return<br /> <br />Beware, this endpoint is part of a closed beta and is only available for closed beta participants.
+Closed Beta - Authorized Users Only <br />This endpoint is under development and available only to approved beta participants. <br />Accounts without beta access will receive a forbidden response. <br /> <br />Acknowledges a return
 
 ### Example
 
@@ -88,7 +91,7 @@ returnAcknowledge_0($merchantReturnAcknowledgeRequest): \FriendsOfCE\Merchant\Ap
 
 Acknowledges a return
 
-Acknowledges a return based on the **Return ID** provided.<br /><br />**NB:** by acknowledging a return, you signal that it was registered in your system.<br />You can later filter your returns on the **Is acknowledged** parameter.
+Acknowledges a return based on the **Return ID** provided. <br /> <br />**NB:** by acknowledging a return, you signal that it was registered in your system. <br />You can later filter your returns on the **Is acknowledged** parameter.
 
 ### Example
 
@@ -142,15 +145,77 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `returnBulkHandle()`
+
+```php
+returnBulkHandle($bulkMerchantHandleReturnsRequest): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
+```
+
+[CLOSED BETA - AUTHORIZED USERS ONLY] Handles returns in bulk
+
+Closed Beta - Authorized Users Only <br />This endpoint is under development and available only to approved beta participants. <br />Accounts without beta access will receive a forbidden response. <br /> <br />Handles returns in bulk.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: apiKey
+$config = FriendsOfCE\Merchant\ApiClient\Configuration::getDefaultConfiguration()->setApiKey('apikey', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FriendsOfCE\Merchant\ApiClient\Configuration::getDefaultConfiguration()->setApiKeyPrefix('apikey', 'Bearer');
+
+
+$apiInstance = new FriendsOfCE\Merchant\ApiClient\Api\ReturnsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$bulkMerchantHandleReturnsRequest = new \FriendsOfCE\Merchant\ApiClient\Model\BulkMerchantHandleReturnsRequest(); // \FriendsOfCE\Merchant\ApiClient\Model\BulkMerchantHandleReturnsRequest | Returns to handle
+
+try {
+    $result = $apiInstance->returnBulkHandle($bulkMerchantHandleReturnsRequest);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ReturnsApi->returnBulkHandle: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **bulkMerchantHandleReturnsRequest** | [**\FriendsOfCE\Merchant\ApiClient\Model\BulkMerchantHandleReturnsRequest**](../Model/BulkMerchantHandleReturnsRequest.md)| Returns to handle | [optional] |
+
+### Return type
+
+[**\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse**](../Model/ApiResponse.md)
+
+### Authorization
+
+[apiKey](../../README.md#apiKey)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json-patch+json`, `application/json`, `application/*+json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `returnCreate()`
 
 ```php
 returnCreate($singleMerchantCreateReturnRequest): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
 ```
 
-[CLOSED BETA] Create a return
+[CLOSED BETA - AUTHORIZED USERS ONLY] Create a return
 
-Creates a new return<br /> <br />Beware, this endpoint is part of a closed beta and is only available for closed beta participants.
+Closed Beta - Authorized Users Only <br />This endpoint is under development and available only to approved beta participants. <br />Accounts without beta access will receive a forbidden response. <br /> <br />Creates a new return.
 
 ### Example
 
@@ -212,7 +277,7 @@ returnDeclareForMerchant($merchantReturnRequest): \FriendsOfCE\Merchant\ApiClien
 
 Creates merchant return
 
-Marks an order as either fully or partially returned.<br /><br />**NB:** this endpoint is used for merchant returns (i.e.: returns dealt with by the merchant).
+Marks an order as either fully or partially returned. <br /> <br />**NB:** this endpoint is used for merchant returns (i.e.: returns dealt with by the merchant).
 
 ### Example
 
@@ -272,9 +337,9 @@ try {
 returnGet($identifier, $type): \FriendsOfCE\Merchant\ApiClient\Model\SingleOfIReturn
 ```
 
-[CLOSED BETA] Get return by identifier
+[CLOSED BETA - AUTHORIZED USERS ONLY] Get return by identifier
 
-Gets a single return by the given identifier<br /> <br />Beware, this endpoint is part of a closed beta and is only available for closed beta participants.
+Closed Beta - Authorized Users Only <br />This endpoint is under development and available only to approved beta participants. <br />Accounts without beta access will receive a forbidden response. <br /> <br />Gets a single return by the given identifier.
 
 ### Example
 
@@ -296,7 +361,7 @@ $apiInstance = new FriendsOfCE\Merchant\ApiClient\Api\ReturnsApi(
     $config
 );
 $identifier = 'identifier_example'; // string | The identifier to search for
-$type = new \FriendsOfCE\Merchant\ApiClient\Model\ReturnIdentifier(); // ReturnIdentifier | Specify whether to search by ID, Merchant Return No or Channel Return No
+$type = 'RETURN_ID'; // string | Specify whether to search by ID, Merchant Return No or Channel Return No
 
 try {
     $result = $apiInstance->returnGet($identifier, $type);
@@ -311,7 +376,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **identifier** | **string**| The identifier to search for | |
-| **type** | [**ReturnIdentifier**](../Model/.md)| Specify whether to search by ID, Merchant Return No or Channel Return No | [optional] |
+| **type** | **string**| Specify whether to search by ID, Merchant Return No or Channel Return No | [optional] [default to &#39;RETURN_ID&#39;] |
 
 ### Return type
 
@@ -333,12 +398,12 @@ try {
 ## `returnGetByFilter()`
 
 ```php
-returnGetByFilter($identifiersIdentifierType, $identifiersModels, $channelExportStatusStatuses, $channelExportStatusMaxNumberOfExportAttempts, $reasons, $createdDateRangeFromDate, $createdDateRangeToDate, $statuses, $channelIds, $search, $isAcknowledgedByMerchant, $isAcknowledgedByChannel, $fulfillmentType, $creatorType, $externalBatchNos, $pageIndex, $pageSize): \FriendsOfCE\Merchant\ApiClient\Model\SingleOfIReturn
+returnGetByFilter($identifiersIdentifierType, $identifiersModels, $channelExportStatusStatuses, $channelExportStatusMaxNumberOfExportAttempts, $reasons, $createdDateRangeFromDate, $createdDateRangeToDate, $updatedDateRangeFromDate, $updatedDateRangeToDate, $statuses, $channelIds, $search, $isAcknowledgedByMerchant, $isAcknowledgedByChannel, $fulfillmentType, $creatorType, $externalBatchNos, $page): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfIReturn
 ```
 
-[CLOSED BETA] Get returns by filter
+[CLOSED BETA - AUTHORIZED USERS ONLY] Get returns by filter
 
-Gets multiple returns by the given filter<br /> <br />Beware, this endpoint is part of a closed beta and is only available for closed beta participants.
+Closed Beta - Authorized Users Only <br />This endpoint is under development and available only to approved beta participants. <br />Accounts without beta access will receive a forbidden response. <br /> <br />Gets multiple returns by the given filter.
 
 ### Example
 
@@ -359,26 +424,27 @@ $apiInstance = new FriendsOfCE\Merchant\ApiClient\Api\ReturnsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$identifiersIdentifierType = new \FriendsOfCE\Merchant\ApiClient\Model\ReturnByFilterIdentifier(); // ReturnByFilterIdentifier | The type of identifier: which identifier to filter on
+$identifiersIdentifierType = 'identifiersIdentifierType_example'; // string | The type of identifier: which identifier to filter on
 $identifiersModels = array('identifiersModels_example'); // string[] | The value (of the selected type) to filter on
-$channelExportStatusStatuses = array(new \FriendsOfCE\Merchant\ApiClient\Model\\FriendsOfCE\Merchant\ApiClient\Model\ChannelExportStatus()); // \FriendsOfCE\Merchant\ApiClient\Model\ChannelExportStatus[]
+$channelExportStatusStatuses = array('channelExportStatusStatuses_example'); // string[]
 $channelExportStatusMaxNumberOfExportAttempts = 56; // int
-$reasons = array(new \FriendsOfCE\Merchant\ApiClient\Model\\FriendsOfCE\Merchant\ApiClient\Model\ModuleReturnReason()); // \FriendsOfCE\Merchant\ApiClient\Model\ModuleReturnReason[]
+$reasons = array('reasons_example'); // string[]
 $createdDateRangeFromDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
 $createdDateRangeToDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
-$statuses = array(new \FriendsOfCE\Merchant\ApiClient\Model\\FriendsOfCE\Merchant\ApiClient\Model\ModuleReturnStatus()); // \FriendsOfCE\Merchant\ApiClient\Model\ModuleReturnStatus[]
+$updatedDateRangeFromDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
+$updatedDateRangeToDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
+$statuses = array('statuses_example'); // string[]
 $channelIds = array(56); // int[]
 $search = 'search_example'; // string
 $isAcknowledgedByMerchant = True; // bool
 $isAcknowledgedByChannel = True; // bool
-$fulfillmentType = new \FriendsOfCE\Merchant\ApiClient\Model\ModuleFulfillmentType(); // ModuleFulfillmentType
-$creatorType = new \FriendsOfCE\Merchant\ApiClient\Model\CreatorType(); // CreatorType
+$fulfillmentType = 'fulfillmentType_example'; // string
+$creatorType = 'creatorType_example'; // string
 $externalBatchNos = array('externalBatchNos_example'); // string[]
-$pageIndex = 56; // int
-$pageSize = 56; // int
+$page = 56; // int | Page number
 
 try {
-    $result = $apiInstance->returnGetByFilter($identifiersIdentifierType, $identifiersModels, $channelExportStatusStatuses, $channelExportStatusMaxNumberOfExportAttempts, $reasons, $createdDateRangeFromDate, $createdDateRangeToDate, $statuses, $channelIds, $search, $isAcknowledgedByMerchant, $isAcknowledgedByChannel, $fulfillmentType, $creatorType, $externalBatchNos, $pageIndex, $pageSize);
+    $result = $apiInstance->returnGetByFilter($identifiersIdentifierType, $identifiersModels, $channelExportStatusStatuses, $channelExportStatusMaxNumberOfExportAttempts, $reasons, $createdDateRangeFromDate, $createdDateRangeToDate, $updatedDateRangeFromDate, $updatedDateRangeToDate, $statuses, $channelIds, $search, $isAcknowledgedByMerchant, $isAcknowledgedByChannel, $fulfillmentType, $creatorType, $externalBatchNos, $page);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ReturnsApi->returnGetByFilter: ', $e->getMessage(), PHP_EOL;
@@ -389,27 +455,28 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **identifiersIdentifierType** | [**ReturnByFilterIdentifier**](../Model/.md)| The type of identifier: which identifier to filter on | [optional] |
+| **identifiersIdentifierType** | **string**| The type of identifier: which identifier to filter on | [optional] |
 | **identifiersModels** | [**string[]**](../Model/string.md)| The value (of the selected type) to filter on | [optional] |
-| **channelExportStatusStatuses** | [**\FriendsOfCE\Merchant\ApiClient\Model\ChannelExportStatus[]**](../Model/\FriendsOfCE\Merchant\ApiClient\Model\ChannelExportStatus.md)|  | [optional] |
+| **channelExportStatusStatuses** | [**string[]**](../Model/string.md)|  | [optional] |
 | **channelExportStatusMaxNumberOfExportAttempts** | **int**|  | [optional] |
-| **reasons** | [**\FriendsOfCE\Merchant\ApiClient\Model\ModuleReturnReason[]**](../Model/\FriendsOfCE\Merchant\ApiClient\Model\ModuleReturnReason.md)|  | [optional] |
+| **reasons** | [**string[]**](../Model/string.md)|  | [optional] |
 | **createdDateRangeFromDate** | **\DateTime**|  | [optional] |
 | **createdDateRangeToDate** | **\DateTime**|  | [optional] |
-| **statuses** | [**\FriendsOfCE\Merchant\ApiClient\Model\ModuleReturnStatus[]**](../Model/\FriendsOfCE\Merchant\ApiClient\Model\ModuleReturnStatus.md)|  | [optional] |
+| **updatedDateRangeFromDate** | **\DateTime**|  | [optional] |
+| **updatedDateRangeToDate** | **\DateTime**|  | [optional] |
+| **statuses** | [**string[]**](../Model/string.md)|  | [optional] |
 | **channelIds** | [**int[]**](../Model/int.md)|  | [optional] |
 | **search** | **string**|  | [optional] |
 | **isAcknowledgedByMerchant** | **bool**|  | [optional] |
 | **isAcknowledgedByChannel** | **bool**|  | [optional] |
-| **fulfillmentType** | [**ModuleFulfillmentType**](../Model/.md)|  | [optional] |
-| **creatorType** | [**CreatorType**](../Model/.md)|  | [optional] |
+| **fulfillmentType** | **string**|  | [optional] |
+| **creatorType** | **string**|  | [optional] |
 | **externalBatchNos** | [**string[]**](../Model/string.md)|  | [optional] |
-| **pageIndex** | **int**|  | [optional] |
-| **pageSize** | **int**|  | [optional] |
+| **page** | **int**| Page number | [optional] |
 
 ### Return type
 
-[**\FriendsOfCE\Merchant\ApiClient\Model\SingleOfIReturn**](../Model/SingleOfIReturn.md)
+[**\FriendsOfCE\Merchant\ApiClient\Model\CollectionOfIReturn**](../Model/CollectionOfIReturn.md)
 
 ### Authorization
 
@@ -432,7 +499,7 @@ returnGetByMerchantOrderNo($merchantOrderNo): \FriendsOfCE\Merchant\ApiClient\Mo
 
 Gets a return
 
-Gets the returns based on the **Merchant order number** provided.<br /><br />**NB:** this endpoint is meant for merchants. Marketplaces should use the **GET /v2/returns/channel** call instead.
+Gets the returns based on the **Merchant order number** provided. <br /> <br />**NB:** this endpoint is meant for merchants. Marketplaces should use the **GET /v2/returns/channel** call instead.
 
 ### Example
 
@@ -489,12 +556,12 @@ try {
 ## `returnGetDeclaredByChannel()`
 
 ```php
-returnGetDeclaredByChannel($channelIds, $merchantOrderNos, $channelOrderNos, $fulfillmentType, $statuses, $reasons, $fromDate, $toDate, $isAcknowledged, $page): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantReturnResponse
+returnGetDeclaredByChannel($channelIds, $merchantOrderNos, $channelOrderNos, $fulfillmentType, $statuses, $reasons, $fromDate, $toDate, $fromUpdateDate, $toUpdateDate, $isAcknowledged, $page): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantReturnResponse
 ```
 
 Gets marketplace returns
 
-Gets all returns created by the marketplace.<br /><br />**NB:** this endpoint is used for both marketplace and marketplace-fulfilled returns.
+Gets all returns created by the marketplace. <br /> <br />**NB:** this endpoint is used for both marketplace and marketplace-fulfilled returns.
 
 ### Example
 
@@ -518,16 +585,18 @@ $apiInstance = new FriendsOfCE\Merchant\ApiClient\Api\ReturnsApi(
 $channelIds = array(56); // int[] | Filter on Channel IDs
 $merchantOrderNos = array('merchantOrderNos_example'); // string[] | Filter on unique order reference used by the merchant.
 $channelOrderNos = array('channelOrderNos_example'); // string[] | Filter on unique order reference used by the channel.
-$fulfillmentType = new \FriendsOfCE\Merchant\ApiClient\Model\FulfillmentType(); // FulfillmentType | Filter on the fulfillment type of the order.
-$statuses = array(new \FriendsOfCE\Merchant\ApiClient\Model\\FriendsOfCE\Merchant\ApiClient\Model\ReturnStatus()); // \FriendsOfCE\Merchant\ApiClient\Model\ReturnStatus[] | Return status(es) to filter on.
-$reasons = array(new \FriendsOfCE\Merchant\ApiClient\Model\\FriendsOfCE\Merchant\ApiClient\Model\ReturnReason()); // \FriendsOfCE\Merchant\ApiClient\Model\ReturnReason[] | Return reason(s) to filter on.
+$fulfillmentType = 'fulfillmentType_example'; // string | Filter on the fulfillment type of the order.
+$statuses = array('statuses_example'); // string[] | Return status(es) to filter on.
+$reasons = array('reasons_example'); // string[] | Return reason(s) to filter on.
 $fromDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Filter on the creation date, starting from this date. This date is inclusive.
 $toDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Filter on the creation date, until this date. This date is exclusive.
+$fromUpdateDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Filter on the updated date, starting from this date. This date is inclusive.
+$toUpdateDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Filter on the updated date, until this date. This date is exclusive.
 $isAcknowledged = True; // bool | Filters based on acknowledgements
 $page = 56; // int | The page to filter on. Starts at 1.
 
 try {
-    $result = $apiInstance->returnGetDeclaredByChannel($channelIds, $merchantOrderNos, $channelOrderNos, $fulfillmentType, $statuses, $reasons, $fromDate, $toDate, $isAcknowledged, $page);
+    $result = $apiInstance->returnGetDeclaredByChannel($channelIds, $merchantOrderNos, $channelOrderNos, $fulfillmentType, $statuses, $reasons, $fromDate, $toDate, $fromUpdateDate, $toUpdateDate, $isAcknowledged, $page);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ReturnsApi->returnGetDeclaredByChannel: ', $e->getMessage(), PHP_EOL;
@@ -541,11 +610,13 @@ try {
 | **channelIds** | [**int[]**](../Model/int.md)| Filter on Channel IDs | [optional] |
 | **merchantOrderNos** | [**string[]**](../Model/string.md)| Filter on unique order reference used by the merchant. | [optional] |
 | **channelOrderNos** | [**string[]**](../Model/string.md)| Filter on unique order reference used by the channel. | [optional] |
-| **fulfillmentType** | [**FulfillmentType**](../Model/.md)| Filter on the fulfillment type of the order. | [optional] |
-| **statuses** | [**\FriendsOfCE\Merchant\ApiClient\Model\ReturnStatus[]**](../Model/\FriendsOfCE\Merchant\ApiClient\Model\ReturnStatus.md)| Return status(es) to filter on. | [optional] |
-| **reasons** | [**\FriendsOfCE\Merchant\ApiClient\Model\ReturnReason[]**](../Model/\FriendsOfCE\Merchant\ApiClient\Model\ReturnReason.md)| Return reason(s) to filter on. | [optional] |
+| **fulfillmentType** | **string**| Filter on the fulfillment type of the order. | [optional] |
+| **statuses** | [**string[]**](../Model/string.md)| Return status(es) to filter on. | [optional] |
+| **reasons** | [**string[]**](../Model/string.md)| Return reason(s) to filter on. | [optional] |
 | **fromDate** | **\DateTime**| Filter on the creation date, starting from this date. This date is inclusive. | [optional] |
 | **toDate** | **\DateTime**| Filter on the creation date, until this date. This date is exclusive. | [optional] |
+| **fromUpdateDate** | **\DateTime**| Filter on the updated date, starting from this date. This date is inclusive. | [optional] |
+| **toUpdateDate** | **\DateTime**| Filter on the updated date, until this date. This date is exclusive. | [optional] |
 | **isAcknowledged** | **bool**| Filters based on acknowledgements | [optional] |
 | **page** | **int**| The page to filter on. Starts at 1. | [optional] |
 
@@ -569,12 +640,12 @@ try {
 ## `returnGetReturns()`
 
 ```php
-returnGetReturns($creatorType, $channelIds, $merchantOrderNos, $channelOrderNos, $fulfillmentType, $statuses, $reasons, $fromDate, $toDate, $isAcknowledged, $page): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantReturnResponse
+returnGetReturns($creatorType, $channelIds, $merchantOrderNos, $channelOrderNos, $fulfillmentType, $statuses, $reasons, $fromDate, $toDate, $fromUpdateDate, $toUpdateDate, $isAcknowledged, $page): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantReturnResponse
 ```
 
 Gets returns by filter
 
-Gets the returns based on the filter provided.<br /><br />**NB:** this endpoint is used to retrieve all types of returns: merchant, marketplace, mixed, and marketplace-fulfilled.
+Gets the returns based on the filter provided. <br /> <br />**NB:** this endpoint is used to retrieve all types of returns: merchant, marketplace, mixed, and marketplace-fulfilled.
 
 ### Example
 
@@ -595,20 +666,22 @@ $apiInstance = new FriendsOfCE\Merchant\ApiClient\Api\ReturnsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$creatorType = new \FriendsOfCE\Merchant\ApiClient\Model\CreatorFilter(); // CreatorFilter | Filter on the return's creator. Default is MIXED.
+$creatorType = 'creatorType_example'; // string | Filter on the return's creator. Default is MIXED.
 $channelIds = array(56); // int[] | Filter on Channel IDs
 $merchantOrderNos = array('merchantOrderNos_example'); // string[] | Filter on unique order reference used by the merchant.
 $channelOrderNos = array('channelOrderNos_example'); // string[] | Filter on unique order reference used by the channel.
-$fulfillmentType = new \FriendsOfCE\Merchant\ApiClient\Model\FulfillmentType(); // FulfillmentType | Filter on the fulfillment type of the order.
-$statuses = array(new \FriendsOfCE\Merchant\ApiClient\Model\\FriendsOfCE\Merchant\ApiClient\Model\ReturnStatus()); // \FriendsOfCE\Merchant\ApiClient\Model\ReturnStatus[] | Return status(es) to filter on.
-$reasons = array(new \FriendsOfCE\Merchant\ApiClient\Model\\FriendsOfCE\Merchant\ApiClient\Model\ReturnReason()); // \FriendsOfCE\Merchant\ApiClient\Model\ReturnReason[] | Return reason(s) to filter on.
+$fulfillmentType = 'fulfillmentType_example'; // string | Filter on the fulfillment type of the order.
+$statuses = array('statuses_example'); // string[] | Return status(es) to filter on.
+$reasons = array('reasons_example'); // string[] | Return reason(s) to filter on.
 $fromDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Filter on the creation date, starting from this date. This date is inclusive.
 $toDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Filter on the creation date, until this date. This date is exclusive.
+$fromUpdateDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Filter on the updated date, starting from this date. This date is inclusive.
+$toUpdateDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Filter on the updated date, until this date. This date is exclusive.
 $isAcknowledged = True; // bool | Filters based on acknowledgements
 $page = 56; // int | The page to filter on. Starts at 1.
 
 try {
-    $result = $apiInstance->returnGetReturns($creatorType, $channelIds, $merchantOrderNos, $channelOrderNos, $fulfillmentType, $statuses, $reasons, $fromDate, $toDate, $isAcknowledged, $page);
+    $result = $apiInstance->returnGetReturns($creatorType, $channelIds, $merchantOrderNos, $channelOrderNos, $fulfillmentType, $statuses, $reasons, $fromDate, $toDate, $fromUpdateDate, $toUpdateDate, $isAcknowledged, $page);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ReturnsApi->returnGetReturns: ', $e->getMessage(), PHP_EOL;
@@ -619,15 +692,17 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **creatorType** | [**CreatorFilter**](../Model/.md)| Filter on the return&#39;s creator. Default is MIXED. | [optional] |
+| **creatorType** | **string**| Filter on the return&#39;s creator. Default is MIXED. | [optional] |
 | **channelIds** | [**int[]**](../Model/int.md)| Filter on Channel IDs | [optional] |
 | **merchantOrderNos** | [**string[]**](../Model/string.md)| Filter on unique order reference used by the merchant. | [optional] |
 | **channelOrderNos** | [**string[]**](../Model/string.md)| Filter on unique order reference used by the channel. | [optional] |
-| **fulfillmentType** | [**FulfillmentType**](../Model/.md)| Filter on the fulfillment type of the order. | [optional] |
-| **statuses** | [**\FriendsOfCE\Merchant\ApiClient\Model\ReturnStatus[]**](../Model/\FriendsOfCE\Merchant\ApiClient\Model\ReturnStatus.md)| Return status(es) to filter on. | [optional] |
-| **reasons** | [**\FriendsOfCE\Merchant\ApiClient\Model\ReturnReason[]**](../Model/\FriendsOfCE\Merchant\ApiClient\Model\ReturnReason.md)| Return reason(s) to filter on. | [optional] |
+| **fulfillmentType** | **string**| Filter on the fulfillment type of the order. | [optional] |
+| **statuses** | [**string[]**](../Model/string.md)| Return status(es) to filter on. | [optional] |
+| **reasons** | [**string[]**](../Model/string.md)| Return reason(s) to filter on. | [optional] |
 | **fromDate** | **\DateTime**| Filter on the creation date, starting from this date. This date is inclusive. | [optional] |
 | **toDate** | **\DateTime**| Filter on the creation date, until this date. This date is exclusive. | [optional] |
+| **fromUpdateDate** | **\DateTime**| Filter on the updated date, starting from this date. This date is inclusive. | [optional] |
+| **toUpdateDate** | **\DateTime**| Filter on the updated date, until this date. This date is exclusive. | [optional] |
 | **isAcknowledged** | **bool**| Filters based on acknowledgements | [optional] |
 | **page** | **int**| The page to filter on. Starts at 1. | [optional] |
 
@@ -718,9 +793,9 @@ try {
 returnHandle($singleMerchantHandleReturnRequest): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
 ```
 
-[CLOSED BETA] Handle a return
+[CLOSED BETA - AUTHORIZED USERS ONLY] Handle a return
 
-Handles a return<br /> <br />Beware, this endpoint is part of a closed beta and is only available for closed beta participants.
+Closed Beta - Authorized Users Only <br />This endpoint is under development and available only to approved beta participants. <br />Accounts without beta access will receive a forbidden response. <br /> <br />Handles a return.
 
 ### Example
 
@@ -774,6 +849,66 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `returnMarkExportAsFailed()`
+
+```php
+returnMarkExportAsFailed($bulkMerchantMarkExportAsFailedForReturnsRequest): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
+```
+
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: apiKey
+$config = FriendsOfCE\Merchant\ApiClient\Configuration::getDefaultConfiguration()->setApiKey('apikey', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FriendsOfCE\Merchant\ApiClient\Configuration::getDefaultConfiguration()->setApiKeyPrefix('apikey', 'Bearer');
+
+
+$apiInstance = new FriendsOfCE\Merchant\ApiClient\Api\ReturnsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$bulkMerchantMarkExportAsFailedForReturnsRequest = new \FriendsOfCE\Merchant\ApiClient\Model\BulkMerchantMarkExportAsFailedForReturnsRequest(); // \FriendsOfCE\Merchant\ApiClient\Model\BulkMerchantMarkExportAsFailedForReturnsRequest
+
+try {
+    $result = $apiInstance->returnMarkExportAsFailed($bulkMerchantMarkExportAsFailedForReturnsRequest);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ReturnsApi->returnMarkExportAsFailed: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **bulkMerchantMarkExportAsFailedForReturnsRequest** | [**\FriendsOfCE\Merchant\ApiClient\Model\BulkMerchantMarkExportAsFailedForReturnsRequest**](../Model/BulkMerchantMarkExportAsFailedForReturnsRequest.md)|  | [optional] |
+
+### Return type
+
+[**\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse**](../Model/ApiResponse.md)
+
+### Authorization
+
+[apiKey](../../README.md#apiKey)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json-patch+json`, `application/json`, `application/*+json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `returnUpdateForMerchant()`
 
 ```php
@@ -782,7 +917,7 @@ returnUpdateForMerchant($merchantReturnUpdateRequest): \FriendsOfCE\Merchant\Api
 
 Marks returns as received
 
-Marks a return as either fully or partially received.<br /> <br />**NB:** this endpoint is used for marketplace returns, and you can only accept or reject a return once.
+Marks a return as either fully or partially received. <br /> <br />**NB:** this endpoint is used for marketplace returns, and you can only accept or reject a return once.
 
 ### Example
 
@@ -818,6 +953,68 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **merchantReturnUpdateRequest** | [**\FriendsOfCE\Merchant\ApiClient\Model\MerchantReturnUpdateRequest**](../Model/MerchantReturnUpdateRequest.md)|  | [optional] |
+
+### Return type
+
+[**\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse**](../Model/ApiResponse.md)
+
+### Authorization
+
+[apiKey](../../README.md#apiKey)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json-patch+json`, `application/json`, `application/*+json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `returnUpsertReturnExtraData()`
+
+```php
+returnUpsertReturnExtraData($merchantUpsertReturnExtraDataRequest): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
+```
+
+[CLOSED BETA - AUTHORIZED USERS ONLY] Upsert extra data for a return
+
+Closed Beta - Authorized Users Only <br />This endpoint is under development and available only to approved beta participants. <br />Accounts without beta access will receive a forbidden response. <br /> <br />Upserts extra data for a return and its lines.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: apiKey
+$config = FriendsOfCE\Merchant\ApiClient\Configuration::getDefaultConfiguration()->setApiKey('apikey', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FriendsOfCE\Merchant\ApiClient\Configuration::getDefaultConfiguration()->setApiKeyPrefix('apikey', 'Bearer');
+
+
+$apiInstance = new FriendsOfCE\Merchant\ApiClient\Api\ReturnsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$merchantUpsertReturnExtraDataRequest = new \FriendsOfCE\Merchant\ApiClient\Model\MerchantUpsertReturnExtraDataRequest(); // \FriendsOfCE\Merchant\ApiClient\Model\MerchantUpsertReturnExtraDataRequest | The return extra data to upsert.
+
+try {
+    $result = $apiInstance->returnUpsertReturnExtraData($merchantUpsertReturnExtraDataRequest);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ReturnsApi->returnUpsertReturnExtraData: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **merchantUpsertReturnExtraDataRequest** | [**\FriendsOfCE\Merchant\ApiClient\Model\MerchantUpsertReturnExtraDataRequest**](../Model/MerchantUpsertReturnExtraDataRequest.md)| The return extra data to upsert. | [optional] |
 
 ### Return type
 

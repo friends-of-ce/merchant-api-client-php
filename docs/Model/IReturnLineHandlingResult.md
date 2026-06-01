@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **id** | **int** |  | [optional]
 **returnLineId** | **int** |  | [optional]
 **quantity** | **int** |  | [optional]
-**action** | [**\FriendsOfCE\Merchant\ApiClient\Model\ReturnHandlingAction**](ReturnHandlingAction.md) |  | [optional]
+**action** | **string** |  | [optional]
 **createdAt** | **\DateTime** |  | [optional]
 **updatedAt** | **\DateTime** |  | [optional]
 **deletedAt** | **\DateTime** |  | [optional]

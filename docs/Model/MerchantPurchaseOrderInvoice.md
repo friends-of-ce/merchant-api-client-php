@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **invoiceNo** | **string** |  | [optional]
-**invoiceType** | [**\FriendsOfCE\Merchant\ApiClient\Model\ModulesPurchaseOrderInvoiceType**](ModulesPurchaseOrderInvoiceType.md) |  | [optional]
+**invoiceType** | **string** |  | [optional]
 **invoiceTotalAmount** | **float** |  | [optional]
 **invoiceTotalCurrencyCode** | **string** |  | [optional]
 **remitToParty** | [**\FriendsOfCE\Merchant\ApiClient\Model\MerchantVendorParty**](MerchantVendorParty.md) |  | [optional]

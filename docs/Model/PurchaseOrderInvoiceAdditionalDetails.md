@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | [**\FriendsOfCE\Merchant\ApiClient\Model\ModulesAdditionalDetailsType**](ModulesAdditionalDetailsType.md) |  | [optional]
+**type** | **string** |  | [optional]
 **detail** | **string** |  | [optional]
 **languageCode** | **string** |  | [optional]
 

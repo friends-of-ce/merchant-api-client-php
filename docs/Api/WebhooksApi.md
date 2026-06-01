@@ -4,7 +4,7 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**webhooksCreate()**](WebhooksApi.md#webhooksCreate) | **POST** /v2/webhooks | Creates a webhook |
+| [**webhooksCreate()**](WebhooksApi.md#webhooksCreate) | **POST** /v2/webhooks | Creates a webhook or update a deleted webhook and undelete it |
 | [**webhooksDelete()**](WebhooksApi.md#webhooksDelete) | **DELETE** /v2/webhooks/{webhookName} | Deletes a webhook |
 | [**webhooksGetAll()**](WebhooksApi.md#webhooksGetAll) | **GET** /v2/webhooks | Gets webhooks |
 | [**webhooksUpdate()**](WebhooksApi.md#webhooksUpdate) | **PUT** /v2/webhooks | Updates a webhook |
@@ -16,9 +16,9 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 webhooksCreate($merchantWebhookRequest): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
 ```
 
-Creates a webhook
+Creates a webhook or update a deleted webhook and undelete it
 
-Creates a webhook on ChannelEngine.
+Creates a webhook on ChannelEngine. <br />If there is a deleted webhook with the introduced name , update it and undelete it.
 
 ### Example
 

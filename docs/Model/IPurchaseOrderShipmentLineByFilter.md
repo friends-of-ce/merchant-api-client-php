@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **itemSequenceNumber** | **string** | Item sequence number for the item. The first item will be 001, the second 002, and so on.  This number is used as a reference to refer to this item from the carton or pallet level. | [optional]
 **channelProductNo** | **string** | The number the channel uses to identify the product | [optional]
 **merchantProductNo** | **string** | The number the merchant uses to identify the product | [optional]
-**quantityUnitOfMeasure** | [**\FriendsOfCE\Merchant\ApiClient\Model\PurchaseOrderLineUnitOfMeasure**](PurchaseOrderLineUnitOfMeasure.md) |  | [optional]
+**quantityUnitOfMeasure** | **string** | Unit of measure for the quantity | [optional]
 **quantity** | **int** | The quantity | [optional]
 **quantityUnitSize** | **int** | The case size, in the event that we ordered using cases. Otherwise, it is 1. | [optional]
 **expiryDate** | **\DateTime** | The date that determines the limit of consumption or use of a product.  For perishable products. | [optional]

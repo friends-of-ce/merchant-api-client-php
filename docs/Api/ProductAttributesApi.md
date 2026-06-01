@@ -21,7 +21,7 @@ productAttributeGroupAddProductExtraData($groupName, $addProductExtraDataRequest
 
 Adds custom attributes to a group
 
-Adds the provided custom attributes (a.k.a. extra data keys) to the custom attribute group.<br />**NB:** you can only add existing custom attributes to a group.
+Adds the provided custom attributes (a.k.a. extra data keys) to the custom attribute group. <br />**NB:** you can only add existing custom attributes to a group.
 
 ### Example
 
@@ -147,7 +147,7 @@ productAttributeGroupDelete($groupName): \FriendsOfCE\Merchant\ApiClient\Model\A
 
 Deletes a custom attribute group
 
-Deletes the custom attribute group based on the **Group name** provided.<br />**NB:** you can only delete a custom attribute group that does not have any markeplaces (a.k.a. channels) linked to it.
+Deletes the custom attribute group based on the **Group name** provided. <br />**NB:** you can only delete a custom attribute group that does not have any markeplaces (a.k.a. channels) linked to it.
 
 ### Example
 
@@ -337,7 +337,7 @@ productAttributeGroupRemoveProductExtraData($groupName, $removeProductExtraDataR
 
 Deletes custom attributes from a group
 
-Removes the custom attributes (a.k.a. extra data keys) from the custom attribute group.<br />**NB:** you can only remove existing custom attributes from a group.
+Removes the custom attributes (a.k.a. extra data keys) from the custom attribute group. <br />**NB:** you can only remove existing custom attributes from a group.
 
 ### Example
 

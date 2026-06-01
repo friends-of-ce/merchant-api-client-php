@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**taxType** | [**\FriendsOfCE\Merchant\ApiClient\Model\ModulesTaxType**](ModulesTaxType.md) |  | [optional]
+**taxType** | **string** |  | [optional]
 **taxRate** | **float** |  | [optional]
 **taxAmount** | **float** |  | [optional]
 **taxAmountCurrencyCode** | **string** |  | [optional]

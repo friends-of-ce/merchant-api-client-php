@@ -8,6 +8,6 @@ Name | Type | Description | Notes
 **ean** | **string** |  | [optional]
 **name** | **string** |  | [optional]
 **quantity** | **int** |  | [optional]
-**price** | **float** |  | [optional]
+**pricePercentage** | **float** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

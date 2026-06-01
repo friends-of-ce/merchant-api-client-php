@@ -11,10 +11,16 @@ Name | Type | Description | Notes
 **channelReturnLineNo** | **string** |  | [optional]
 **merchantOrderLineNo** | **string** |  | [optional]
 **channelOrderLineNo** | **string** |  | [optional]
+**channelProductNo** | **string** |  | [optional]
 **quantity** | **int** |  | [optional]
 **handlingResults** | [**\FriendsOfCE\Merchant\ApiClient\Model\IReturnLineHandlingResult[]**](IReturnLineHandlingResult.md) |  | [optional]
 **createdAt** | **\DateTime** |  | [optional]
 **updatedAt** | **\DateTime** |  | [optional]
 **deletedAt** | **\DateTime** |  | [optional]
+**extraData** | [**\FriendsOfCE\Merchant\ApiClient\Model\IReturnLineExtraData[]**](IReturnLineExtraData.md) |  | [optional]
+**merchantProductNo** | **string** |  | [optional]
+**productName** | **string** |  | [optional]
+**productId** | **int** |  | [optional]
+**productEan** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

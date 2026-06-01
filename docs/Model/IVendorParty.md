@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **partyId** | **string** |  | [optional]
-**taxRegistrationType** | [**\FriendsOfCE\Merchant\ApiClient\Model\ModulesTaxRegistrationType**](ModulesTaxRegistrationType.md) |  | [optional]
+**taxRegistrationType** | **string** |  | [optional]
 **taxRegistrationNo** | **string** |  | [optional]
 **name** | **string** |  | [optional]
 **addressLine1** | **string** |  | [optional]

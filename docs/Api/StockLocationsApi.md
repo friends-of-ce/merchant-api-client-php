@@ -78,7 +78,7 @@ stockLocationIndex(): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchant
 
 Gets stock locations
 
-Gets the different stock locations in use. <br />**NB:** the response may include stock locations for 'marketplace fulfilment' solutions (e.g.: FBA, LVB, ZFS, etc.).<br />Use the retrieved IDs to get the stock of products in specific stock locations, such as the FBA stock.
+Gets the different stock locations in use. <br />**NB:** the response may include stock locations for 'marketplace fulfilment' solutions (e.g.: FBA, LVB, ZFS, etc.). <br />Use the retrieved IDs to get the stock of products in specific stock locations, such as the FBA stock.
 
 ### Example
 

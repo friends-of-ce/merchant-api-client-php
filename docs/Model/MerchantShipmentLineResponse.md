@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **merchantBundleProductNo** | **string** | The unique bundle product reference used by the Merchant. | [optional]
 **channelProductNo** | **string** | The unique product reference used by the Channel. | [optional]
 **orderLine** | [**\FriendsOfCE\Merchant\ApiClient\Model\MerchantOrderLineResponse**](MerchantOrderLineResponse.md) |  | [optional]
-**shipmentStatus** | [**\FriendsOfCE\Merchant\ApiClient\Model\ShipmentLineStatus**](ShipmentLineStatus.md) |  | [optional]
+**shipmentStatus** | **string** | The status of the product in relation to the shipment. | [optional]
 **extraData** | **array<string,string>** | Extra data on the shipment line. Each item must have an unqiue key | [optional]
 **quantity** | **int** | Number of items of the product in the shipment. |
 

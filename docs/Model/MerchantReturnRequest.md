@@ -6,9 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **merchantOrderNo** | **string** | The unique order reference used by the Merchant (sku). |
 **merchantReturnNo** | **string** | The unique return reference used by the Merchant (sku). |
+**trackTraceNo** | **string** | Tracking number for the return. | [optional]
 **lines** | [**\FriendsOfCE\Merchant\ApiClient\Model\MerchantReturnLineRequest[]**](MerchantReturnLineRequest.md) |  |
 **id** | **int** | The unique return reference used by ChannelEngine. | [optional]
-**reason** | [**\FriendsOfCE\Merchant\ApiClient\Model\ReturnReason**](ReturnReason.md) |  | [optional]
+**reason** | **string** | The reason code of the return. | [optional]
 **customerComment** | **string** | Optional. Comment of customer on the (reason of) the return. | [optional]
 **merchantComment** | **string** | Optional. Comment of merchant on the return. | [optional]
 **refundInclVat** | **float** | Refund amount incl. VAT. | [optional]

@@ -15,5 +15,8 @@ Name | Type | Description | Notes
 **shippedFromCountryCode** | **string** | The code of the country from where the package is being shipped. | [optional]
 **shippedFromStockLocationId** | **int** | The id of the stock location where you ship the package from | [optional]
 **shipmentDate** | **\DateTime** | The date at which the shipment was originally created in the source system (if available). | [optional]
+**returnMethod** | **string** | Return method: the return carrier used for returning the package. E.g. DHL, postNL. | [optional]
+**isMerchantCreator** | **bool** | Indicates whether it was created my merchant or 3rd party. | [optional]
+**airWaybillNo** | **string** | Airway bill number for the shipment. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

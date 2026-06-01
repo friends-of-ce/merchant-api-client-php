@@ -15,7 +15,7 @@ listedProductGetByFilter($channelId, $merchantProductNos, $page): \FriendsOfCE\M
 
 Gets products listed by channel
 
-Gets the products listed per channel based on the **Channel ID**.<br /> <br />**NB:** not all marketplaces provide adequate options to retrieve the status of a product as seen on the marketplace.
+Gets the products listed per channel based on the **Channel ID**. <br /> <br />**NB:** not all marketplaces provide adequate options to retrieve the status of a product as seen on the marketplace.
 
 ### Example
 

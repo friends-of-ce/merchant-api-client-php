@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **merchantProductNo** | **string** | The unique product reference used by the Merchant (sku). |
+**orderLineId** | **int** |  | [optional]
 **extraData** | **array<string,string>** | Extra data on the order. Each item must have an unqiue key | [optional]
 **quantity** | **int** | Number of items of the product in the shipment. |
 
