@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **channelProductNo** | **string** | The unique product reference used by the Channel | [optional]
-**channelStatus** | [**\FriendsOfCE\Merchant\ApiClient\Model\ListedProductChannelStatus**](ListedProductChannelStatus.md) |  | [optional]
+**channelStatus** | **string** | The status of the channel | [optional]
 **ean** | **string** | EAN | [optional]
-**exportStatus** | [**\FriendsOfCE\Merchant\ApiClient\Model\ListedProductExportStatus**](ListedProductExportStatus.md) |  | [optional]
+**exportStatus** | **string** | Export status in ChannelEngine | [optional]
 **merchantProductNo** | **string** | Your product number (SKU) | [optional]
 **lastExportedPrice** | **float** | Your product last exported price | [optional]
 **lastExportedStock** | **int** | Your product last exported stock | [optional]

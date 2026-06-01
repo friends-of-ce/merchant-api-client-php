@@ -21,7 +21,7 @@ acknowledge($singleMerchantAcknowledgePurchaseOrderLinesRequest): \FriendsOfCE\M
 
 Acknowledges lines of a purchase order
 
-Creates line acknowledgements (i.e., accepted, backordered, rejected) for a purchase order.<br />Request will be accepted and data persisted only if all validations passed.<br />Any validation messages and errors will be returned in a HTTP 4xx response.
+Creates line acknowledgements (i.e., accepted, backordered, rejected) for a purchase order. <br />Request will be accepted and data persisted only if all validations passed. <br />Any validation messages and errors will be returned in a HTTP 4xx response.
 
 ### Example
 
@@ -140,7 +140,7 @@ try {
 ## `getByFilter()`
 
 ```php
-getByFilter($channelId, $identifiersIdentifierType, $identifiersModels, $shippedDateRangeFromDate, $shippedDateRangeToDate, $createDateRangeFromDate, $createDateRangeToDate, $updateDateRangeFromDate, $updateDateRangeToDate, $billOfLadingNumber, $carrierName, $pageIndex, $pageSize): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfIPurchaseOrderShipmentByFilter
+getByFilter($channelId, $identifiersIdentifierType, $identifiersModels, $shippedDateRangeFromDate, $shippedDateRangeToDate, $createDateRangeFromDate, $createDateRangeToDate, $updateDateRangeFromDate, $updateDateRangeToDate, $billOfLadingNumber, $carrierName, $pageNumber, $pageSize): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfIPurchaseOrderShipmentByFilter
 ```
 
 Gets purchase order shipments by filter
@@ -167,7 +167,7 @@ $apiInstance = new FriendsOfCE\Merchant\ApiClient\Api\PurchaseOrdersApi(
     $config
 );
 $channelId = 56; // int | The identifier of the channel
-$identifiersIdentifierType = new \FriendsOfCE\Merchant\ApiClient\Model\PurchaseOrderShipmentIdentifierTypeValue(); // PurchaseOrderShipmentIdentifierTypeValue | The type of identifier: which identifier to filter on
+$identifiersIdentifierType = 'identifiersIdentifierType_example'; // string | The type of identifier: which identifier to filter on
 $identifiersModels = array('identifiersModels_example'); // string[] | The value (of the selected type) to filter on
 $shippedDateRangeFromDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
 $shippedDateRangeToDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
@@ -177,11 +177,11 @@ $updateDateRangeFromDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateT
 $updateDateRangeToDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
 $billOfLadingNumber = 'billOfLadingNumber_example'; // string | The Bill of Lading number. Multiple shipments can have the same Bill of Lading number
 $carrierName = 'carrierName_example'; // string | The name of the carrier
-$pageIndex = 56; // int
+$pageNumber = 56; // int
 $pageSize = 56; // int
 
 try {
-    $result = $apiInstance->getByFilter($channelId, $identifiersIdentifierType, $identifiersModels, $shippedDateRangeFromDate, $shippedDateRangeToDate, $createDateRangeFromDate, $createDateRangeToDate, $updateDateRangeFromDate, $updateDateRangeToDate, $billOfLadingNumber, $carrierName, $pageIndex, $pageSize);
+    $result = $apiInstance->getByFilter($channelId, $identifiersIdentifierType, $identifiersModels, $shippedDateRangeFromDate, $shippedDateRangeToDate, $createDateRangeFromDate, $createDateRangeToDate, $updateDateRangeFromDate, $updateDateRangeToDate, $billOfLadingNumber, $carrierName, $pageNumber, $pageSize);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PurchaseOrdersApi->getByFilter: ', $e->getMessage(), PHP_EOL;
@@ -193,7 +193,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **channelId** | **int**| The identifier of the channel | [optional] |
-| **identifiersIdentifierType** | [**PurchaseOrderShipmentIdentifierTypeValue**](../Model/.md)| The type of identifier: which identifier to filter on | [optional] |
+| **identifiersIdentifierType** | **string**| The type of identifier: which identifier to filter on | [optional] |
 | **identifiersModels** | [**string[]**](../Model/string.md)| The value (of the selected type) to filter on | [optional] |
 | **shippedDateRangeFromDate** | **\DateTime**|  | [optional] |
 | **shippedDateRangeToDate** | **\DateTime**|  | [optional] |
@@ -203,7 +203,7 @@ try {
 | **updateDateRangeToDate** | **\DateTime**|  | [optional] |
 | **billOfLadingNumber** | **string**| The Bill of Lading number. Multiple shipments can have the same Bill of Lading number | [optional] |
 | **carrierName** | **string**| The name of the carrier | [optional] |
-| **pageIndex** | **int**|  | [optional] |
+| **pageNumber** | **int**|  | [optional] |
 | **pageSize** | **int**|  | [optional] |
 
 ### Return type
@@ -226,7 +226,7 @@ try {
 ## `getByFilter_0()`
 
 ```php
-getByFilter_0($identifiersIdentifierType, $identifiersModels, $statuses, $orderDateRangeFromDate, $orderDateRangeToDate, $createDateRangeFromDate, $createDateRangeToDate, $updateDateRangeFromDate, $updateDateRangeToDate, $channelIds, $type, $pageIndex, $pageSize): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfIPurchaseOrderByFilter
+getByFilter_0($identifiersIdentifierType, $identifiersModels, $statuses, $orderDateRangeFromDate, $orderDateRangeToDate, $createDateRangeFromDate, $createDateRangeToDate, $updateDateRangeFromDate, $updateDateRangeToDate, $channelIds, $type, $pageNumber, $pageSize): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfIPurchaseOrderByFilter
 ```
 
 Gets purchase orders by filter
@@ -252,9 +252,9 @@ $apiInstance = new FriendsOfCE\Merchant\ApiClient\Api\PurchaseOrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$identifiersIdentifierType = new \FriendsOfCE\Merchant\ApiClient\Model\PurchaseOrderIdentifierType(); // PurchaseOrderIdentifierType | The type of identifier: which identifier to filter on
+$identifiersIdentifierType = 'identifiersIdentifierType_example'; // string | The type of identifier: which identifier to filter on
 $identifiersModels = array('identifiersModels_example'); // string[] | The value (of the selected type) to filter on
-$statuses = array(new \FriendsOfCE\Merchant\ApiClient\Model\\FriendsOfCE\Merchant\ApiClient\Model\ModulesPurchaseOrderStatus()); // \FriendsOfCE\Merchant\ApiClient\Model\ModulesPurchaseOrderStatus[]
+$statuses = array('statuses_example'); // string[]
 $orderDateRangeFromDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
 $orderDateRangeToDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
 $createDateRangeFromDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
@@ -262,12 +262,12 @@ $createDateRangeToDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTim
 $updateDateRangeFromDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
 $updateDateRangeToDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
 $channelIds = array(56); // int[]
-$type = new \FriendsOfCE\Merchant\ApiClient\Model\ModulesPurchaseOrderType(); // ModulesPurchaseOrderType
-$pageIndex = 56; // int
+$type = 'type_example'; // string
+$pageNumber = 56; // int
 $pageSize = 56; // int
 
 try {
-    $result = $apiInstance->getByFilter_0($identifiersIdentifierType, $identifiersModels, $statuses, $orderDateRangeFromDate, $orderDateRangeToDate, $createDateRangeFromDate, $createDateRangeToDate, $updateDateRangeFromDate, $updateDateRangeToDate, $channelIds, $type, $pageIndex, $pageSize);
+    $result = $apiInstance->getByFilter_0($identifiersIdentifierType, $identifiersModels, $statuses, $orderDateRangeFromDate, $orderDateRangeToDate, $createDateRangeFromDate, $createDateRangeToDate, $updateDateRangeFromDate, $updateDateRangeToDate, $channelIds, $type, $pageNumber, $pageSize);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PurchaseOrdersApi->getByFilter_0: ', $e->getMessage(), PHP_EOL;
@@ -278,9 +278,9 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **identifiersIdentifierType** | [**PurchaseOrderIdentifierType**](../Model/.md)| The type of identifier: which identifier to filter on | [optional] |
+| **identifiersIdentifierType** | **string**| The type of identifier: which identifier to filter on | [optional] |
 | **identifiersModels** | [**string[]**](../Model/string.md)| The value (of the selected type) to filter on | [optional] |
-| **statuses** | [**\FriendsOfCE\Merchant\ApiClient\Model\ModulesPurchaseOrderStatus[]**](../Model/\FriendsOfCE\Merchant\ApiClient\Model\ModulesPurchaseOrderStatus.md)|  | [optional] |
+| **statuses** | [**string[]**](../Model/string.md)|  | [optional] |
 | **orderDateRangeFromDate** | **\DateTime**|  | [optional] |
 | **orderDateRangeToDate** | **\DateTime**|  | [optional] |
 | **createDateRangeFromDate** | **\DateTime**|  | [optional] |
@@ -288,8 +288,8 @@ try {
 | **updateDateRangeFromDate** | **\DateTime**|  | [optional] |
 | **updateDateRangeToDate** | **\DateTime**|  | [optional] |
 | **channelIds** | [**int[]**](../Model/int.md)|  | [optional] |
-| **type** | [**ModulesPurchaseOrderType**](../Model/.md)|  | [optional] |
-| **pageIndex** | **int**|  | [optional] |
+| **type** | **string**|  | [optional] |
+| **pageNumber** | **int**|  | [optional] |
 | **pageSize** | **int**|  | [optional] |
 
 ### Return type
@@ -317,7 +317,7 @@ purchaseOrdersCreateInvoice($singleMerchantCreatePurchaseOrderInvoiceRequest): \
 
 Creates a purchase order invoice
 
-Creates invoice for a purchase order.<br />Request will be accepted and data persisted only if all validations passed.<br />Any validation messages and errors will be returned in a HTTP 4xx response.
+Creates invoice for a purchase order. <br />Request will be accepted and data persisted only if all validations passed. <br />Any validation messages and errors will be returned in a HTTP 4xx response.
 
 ### Example
 
@@ -379,7 +379,7 @@ purchaseOrdersCreateInvoices($bulkMerchantCreatePurchaseOrderInvoicesRequest): \
 
 Creates a purchase order invoices in a bulk
 
-Creates invoices for a purchase orders in a bulk.<br />Request will be accepted and data persisted only if all validations passed.<br />Any validation messages and errors will be returned in a HTTP 4xx response.
+Creates invoices for a purchase orders in a bulk. <br />Request will be accepted and data persisted only if all validations passed. <br />Any validation messages and errors will be returned in a HTTP 4xx response.
 
 ### Example
 

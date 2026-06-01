@@ -38,7 +38,7 @@ $apiInstance = new FriendsOfCE\Merchant\ApiClient\Api\NotificationsApi(
 );
 $fromDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Filter on the notification date, starting from this date. This date is inclusive.
 $toDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Filter on the notification date, until this date. This date is exclusive.
-$types = array(new \FriendsOfCE\Merchant\ApiClient\Model\\FriendsOfCE\Merchant\ApiClient\Model\NotificationType()); // \FriendsOfCE\Merchant\ApiClient\Model\NotificationType[] | Notification type(s) to filter on.
+$types = array('types_example'); // string[] | Notification type(s) to filter on.
 $merchantOrderNos = array('merchantOrderNos_example'); // string[] | Filter on unique order reference used by the merchant.
 $channelOrderNos = array('channelOrderNos_example'); // string[] | Filter on unique order reference used by the channel.
 $merchantReturnNos = array('merchantReturnNos_example'); // string[] | Filter on unique return reference used by the merchant.
@@ -60,7 +60,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **fromDate** | **\DateTime**| Filter on the notification date, starting from this date. This date is inclusive. | [optional] |
 | **toDate** | **\DateTime**| Filter on the notification date, until this date. This date is exclusive. | [optional] |
-| **types** | [**\FriendsOfCE\Merchant\ApiClient\Model\NotificationType[]**](../Model/\FriendsOfCE\Merchant\ApiClient\Model\NotificationType.md)| Notification type(s) to filter on. | [optional] |
+| **types** | [**string[]**](../Model/string.md)| Notification type(s) to filter on. | [optional] |
 | **merchantOrderNos** | [**string[]**](../Model/string.md)| Filter on unique order reference used by the merchant. | [optional] |
 | **channelOrderNos** | [**string[]**](../Model/string.md)| Filter on unique order reference used by the channel. | [optional] |
 | **merchantReturnNos** | [**string[]**](../Model/string.md)| Filter on unique return reference used by the merchant. | [optional] |

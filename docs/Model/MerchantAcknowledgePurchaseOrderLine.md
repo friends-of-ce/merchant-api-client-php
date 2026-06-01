@@ -5,9 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **orderLineIdentifier** | **string** |  | [optional]
-**acknowledgementCode** | [**\FriendsOfCE\Merchant\ApiClient\Model\PurchaseOrderAcknowledgementCode**](PurchaseOrderAcknowledgementCode.md) |  | [optional]
+**acknowledgementCode** | **string** |  | [optional]
 **acknowledgedQuantity** | **int** |  | [optional]
-**rejectionReason** | [**\FriendsOfCE\Merchant\ApiClient\Model\PurchaseOrderRejectionReason**](PurchaseOrderRejectionReason.md) |  | [optional]
+**rejectionReason** | **string** |  | [optional]
+**unitOfMeasure** | **string** |  | [optional]
+**unitSize** | **int** |  | [optional]
 **scheduledShipDate** | **\DateTime** |  | [optional]
 **scheduledDeliveryDate** | **\DateTime** |  | [optional]
 

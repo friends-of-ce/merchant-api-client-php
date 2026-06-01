@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **merchantProductNo** | **string** |  | [optional]
 **quantity** | **int** |  | [optional]
 **isBackOrderAllowed** | **bool** |  | [optional]
-**unitOfMeasure** | [**\FriendsOfCE\Merchant\ApiClient\Model\PurchaseOrderLineUnitOfMeasure**](PurchaseOrderLineUnitOfMeasure.md) |  | [optional]
+**unitOfMeasure** | **string** |  | [optional]
 **unitSize** | **int** |  | [optional]
 **netCostAmount** | **float** |  | [optional]
 **netCostCurrency** | **string** |  | [optional]

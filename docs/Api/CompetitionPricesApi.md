@@ -37,8 +37,8 @@ $apiInstance = new FriendsOfCE\Merchant\ApiClient\Api\CompetitionPricesApi(
     $config
 );
 $channelId = 56; // int | The id of the channel
-$gtinList = array('gtinList_example'); // string[] | Search products by submitting a list of GTIN's. (optional)<br />Max. 2000.
-$skuList = array('skuList_example'); // string[] | Search products by submitting a list of Sku's. (optional)<br />Max. 2000. If GtinList is already set, this one is ignored.
+$gtinList = array('gtinList_example'); // string[] | Search products by submitting a list of GTIN's. (optional) <br />Max. 2000.
+$skuList = array('skuList_example'); // string[] | Search products by submitting a list of Sku's. (optional) <br />Max. 2000. If GtinList is already set, this one is ignored.
 $page = 56; // int | The page to filter on. Starts at 1.
 
 try {
@@ -54,8 +54,8 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **channelId** | **int**| The id of the channel | [optional] |
-| **gtinList** | [**string[]**](../Model/string.md)| Search products by submitting a list of GTIN&#39;s. (optional)&lt;br /&gt;Max. 2000. | [optional] |
-| **skuList** | [**string[]**](../Model/string.md)| Search products by submitting a list of Sku&#39;s. (optional)&lt;br /&gt;Max. 2000. If GtinList is already set, this one is ignored. | [optional] |
+| **gtinList** | [**string[]**](../Model/string.md)| Search products by submitting a list of GTIN&#39;s. (optional) &lt;br /&gt;Max. 2000. | [optional] |
+| **skuList** | [**string[]**](../Model/string.md)| Search products by submitting a list of Sku&#39;s. (optional) &lt;br /&gt;Max. 2000. If GtinList is already set, this one is ignored. | [optional] |
 | **page** | **int**| The page to filter on. Starts at 1. | [optional] |
 
 ### Return type

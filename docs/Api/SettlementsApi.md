@@ -5,13 +5,13 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**settlementGetByFilter()**](SettlementsApi.md#settlementGetByFilter) | **GET** /v2/settlements | Gets settlements |
-| [**settlementUploadSettlement()**](SettlementsApi.md#settlementUploadSettlement) | **POST** /v2/settlements/upload | Imports a settlement file. |
+| [**settlementUploadSettlement()**](SettlementsApi.md#settlementUploadSettlement) | **POST** /v2/settlements/upload | Uploads a settlement file to ChannelEngine. |
 
 
 ## `settlementGetByFilter()`
 
 ```php
-settlementGetByFilter($unExportedOnly, $settlementIds, $channelSettlementNos, $channelIds, $fromStartDate, $toStartDate, $fromEndDate, $toEndDate, $fromCreateDate, $toCreateDate, $fromUpdateDate, $toUpdateDate, $page): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantSettlementReportsResponse
+settlementGetByFilter($unExportedOnly, $isExported, $settlementIds, $channelSettlementNos, $channelIds, $fromStartDate, $toStartDate, $fromEndDate, $toEndDate, $fromCreateDate, $toCreateDate, $fromUpdateDate, $toUpdateDate, $page): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantSettlementReportsResponse
 ```
 
 Gets settlements
@@ -37,7 +37,8 @@ $apiInstance = new FriendsOfCE\Merchant\ApiClient\Api\SettlementsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$unExportedOnly = True; // bool | Filter on settlements that have not been exported before.
+$unExportedOnly = True; // bool | Deprecated! Use IsExported instead. <br />Filter on settlements that have not been exported before.
+$isExported = True; // bool | Filter on settlements that have not been exported before.
 $settlementIds = array(56); // int[] | Filter on settlement IDs.
 $channelSettlementNos = array('channelSettlementNos_example'); // string[] | Filter on channel settlement nos.
 $channelIds = array(56); // int[] | Filter on channel id list.
@@ -52,7 +53,7 @@ $toUpdateDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Filte
 $page = 56; // int | The page to filter on. Starts at 1.
 
 try {
-    $result = $apiInstance->settlementGetByFilter($unExportedOnly, $settlementIds, $channelSettlementNos, $channelIds, $fromStartDate, $toStartDate, $fromEndDate, $toEndDate, $fromCreateDate, $toCreateDate, $fromUpdateDate, $toUpdateDate, $page);
+    $result = $apiInstance->settlementGetByFilter($unExportedOnly, $isExported, $settlementIds, $channelSettlementNos, $channelIds, $fromStartDate, $toStartDate, $fromEndDate, $toEndDate, $fromCreateDate, $toCreateDate, $fromUpdateDate, $toUpdateDate, $page);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SettlementsApi->settlementGetByFilter: ', $e->getMessage(), PHP_EOL;
@@ -63,7 +64,8 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **unExportedOnly** | **bool**| Filter on settlements that have not been exported before. | [optional] |
+| **unExportedOnly** | **bool**| Deprecated! Use IsExported instead. &lt;br /&gt;Filter on settlements that have not been exported before. | [optional] |
+| **isExported** | **bool**| Filter on settlements that have not been exported before. | [optional] |
 | **settlementIds** | [**int[]**](../Model/int.md)| Filter on settlement IDs. | [optional] |
 | **channelSettlementNos** | [**string[]**](../Model/string.md)| Filter on channel settlement nos. | [optional] |
 | **channelIds** | [**int[]**](../Model/int.md)| Filter on channel id list. | [optional] |
@@ -100,9 +102,9 @@ try {
 settlementUploadSettlement($settlement, $channelId): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
 ```
 
-Imports a settlement file.
+Uploads a settlement file to ChannelEngine.
 
-Imports a settlement file.
+Uploads a settlement file to ChannelEngine.
 
 ### Example
 
@@ -123,8 +125,8 @@ $apiInstance = new FriendsOfCE\Merchant\ApiClient\Api\SettlementsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$settlement = "/path/to/file.txt"; // \SplFileObject | Settlement file up to 1 MB with additional data.  Format should be the one that the channel expects.
-$channelId = 56; // int | The channel ID for which the settlement is for.
+$settlement = "/path/to/file.txt"; // \SplFileObject | The settlement file must not exceed 1MB in size.  Use the file format originally provided by the marketplace (usually CSV).
+$channelId = 56; // int | The channel ID of the channel which the settlement is for.
 
 try {
     $result = $apiInstance->settlementUploadSettlement($settlement, $channelId);
@@ -138,8 +140,8 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **settlement** | **\SplFileObject****\SplFileObject**| Settlement file up to 1 MB with additional data.  Format should be the one that the channel expects. | |
-| **channelId** | **int**| The channel ID for which the settlement is for. | [optional] |
+| **settlement** | **\SplFileObject****\SplFileObject**| The settlement file must not exceed 1MB in size.  Use the file format originally provided by the marketplace (usually CSV). | |
+| **channelId** | **int**| The channel ID of the channel which the settlement is for. | [optional] |
 
 ### Return type
 

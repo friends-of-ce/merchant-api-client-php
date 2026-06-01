@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **lines** | [**\FriendsOfCE\Merchant\ApiClient\Model\MerchantCancellationLineResponse[]**](MerchantCancellationLineResponse.md) |  |
 **createdAt** | **\DateTime** | The date at which the cancellation was created in ChannelEngine. | [optional]
 **reason** | **string** | Reason for cancellation (text). | [optional]
-**reasonCode** | [**\FriendsOfCE\Merchant\ApiClient\Model\MancoReason**](MancoReason.md) |  | [optional]
+**reasonCode** | **string** | Reason code for cancellation. | [optional]
+**isMerchantCreator** | **bool** | Indicates whether it was created my merchant or 3rd party. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **acceptedQuantity** | **int** | The accepted quantity of returned products in this orderline. | [optional]
 **rejectedQuantity** | **int** | The rejected quantity of returned products in this orderline. | [optional]
 **orderLine** | [**\FriendsOfCE\Merchant\ApiClient\Model\MerchantOrderLineResponse**](MerchantOrderLineResponse.md) |  | [optional]
-**shipmentStatus** | [**\FriendsOfCE\Merchant\ApiClient\Model\ShipmentLineStatus**](ShipmentLineStatus.md) |  | [optional]
+**shipmentStatus** | **string** | The status of the product in relation to the shipment. | [optional]
 **quantity** | **int** | Number of items of the product in this return. |
 **extraData** | **array<string,string>** | Extra data on the returnline. Each item must have an unqiue key | [optional]
 

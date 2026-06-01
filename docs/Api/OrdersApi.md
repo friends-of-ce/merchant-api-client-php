@@ -8,6 +8,7 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 | [**orderGetByFilter()**](OrdersApi.md#orderGetByFilter) | **GET** /v2/orders | Gets orders by filter |
 | [**orderGetNew()**](OrdersApi.md#orderGetNew) | **GET** /v2/orders/new | Gets new orders |
 | [**orderInvoice()**](OrdersApi.md#orderInvoice) | **GET** /v2/orders/{merchantOrderNo}/invoice | Generates an order invoice |
+| [**orderMarkExportAsFailed()**](OrdersApi.md#orderMarkExportAsFailed) | **POST** /v2/orders/mark-export-as-failed |  |
 | [**orderPackingSlip()**](OrdersApi.md#orderPackingSlip) | **GET** /v2/orders/{merchantOrderNo}/packingslip | Generates a packing slip |
 | [**orderUpdate()**](OrdersApi.md#orderUpdate) | **PUT** /v2/orders/comment | Updates an order comment |
 | [**orderUploadInvoice()**](OrdersApi.md#orderUploadInvoice) | **POST** /v2/orders/{merchantOrderNo}/invoice | Uploads an order invoice |
@@ -105,18 +106,18 @@ $apiInstance = new FriendsOfCE\Merchant\ApiClient\Api\OrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$statuses = array(new \FriendsOfCE\Merchant\ApiClient\Model\\FriendsOfCE\Merchant\ApiClient\Model\OrderStatusView()); // \FriendsOfCE\Merchant\ApiClient\Model\OrderStatusView[] | Order status(es) to filter on. AWAITING_PAYMENT orders will be excluded if it is not included in this Statuses filter.
+$statuses = array('statuses_example'); // string[] | Order status(es) to filter on. AWAITING_PAYMENT orders will be excluded if it is not included in this Statuses filter.
 $emailAddresses = array('emailAddresses_example'); // string[] | Client emailaddresses to filter on.
 $merchantOrderNos = array('merchantOrderNos_example'); // string[] | Filter on unique order reference used by the merchant.
 $channelOrderNos = array('channelOrderNos_example'); // string[] | Filter on unique order reference used by the channel.
 $commercialOrderNos = array('commercialOrderNos_example'); // string[] | Filter on commercial order numbers.
-$fromDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Filter on the order date, starting from this date. This date is inclusive.<br />The order date is based on the data we got from a channel.
-$toDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Filter on the order date, until this date. This date is exclusive.<br />The order date is based on the data we got from a channel.
-$fromCreatedAtDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Filter on the created at date in ChannelEngine, starting from this date. This date is inclusive.<br />The created date is set on the date and time when the order is created.
-$toCreatedAtDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Filter on the created at date in ChannelEngine, until this date. This date is exclusive.<br />The created date is set on the date and time when the order is created.
+$fromDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Filter on the order date, starting from this date. This date is inclusive. <br />The order date is based on the data we got from a channel.
+$toDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Filter on the order date, until this date. This date is exclusive. <br />The order date is based on the data we got from a channel.
+$fromCreatedAtDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Filter on the created at date in ChannelEngine, starting from this date. This date is inclusive. <br />The created date is set on the date and time when the order is created.
+$toCreatedAtDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Filter on the created at date in ChannelEngine, until this date. This date is exclusive. <br />The created date is set on the date and time when the order is created.
 $excludeMarketplaceFulfilledOrdersAndLines = True; // bool | Exclude order (lines) fulfilled by the marketplace (amazon:FBA, bol:LVB, etc.)
-$fulfillmentType = new \FriendsOfCE\Merchant\ApiClient\Model\FulfillmentType(); // FulfillmentType | Filter orders on fulfillment type. This will include all orders lines, even if they are partially fulfilled by the marketplace.<br />To exclude orders and lines that are fulfilled by the marketplace from the response, set ExcludeMarketplaceFulfilledOrdersAndLines to true.
-$onlyWithCancellationRequests = True; // bool | Filter on orders containing cancellation requests.<br />Some channels allow a customer to cancel an order until it has been shipped.<br />When an order has already been acknowledged in ChannelEngine, it can only be cancelled by creating a cancellation.
+$fulfillmentType = 'fulfillmentType_example'; // string | Filter orders on fulfillment type. This will include all orders lines, even if they are partially fulfilled by the marketplace. <br />To exclude orders and lines that are fulfilled by the marketplace from the response, set ExcludeMarketplaceFulfilledOrdersAndLines to true.
+$onlyWithCancellationRequests = True; // bool | Filter on orders containing cancellation requests. <br />Some channels allow a customer to cancel an order until it has been shipped. <br />When an order has already been acknowledged in ChannelEngine, it can only be cancelled by creating a cancellation.
 $channelIds = array(56); // int[] | Filter orders on channel(s).
 $stockLocationIds = array(56); // int[] | Filter on stock locations
 $isAcknowledged = True; // bool | Filter on acknowledged value
@@ -140,18 +141,18 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **statuses** | [**\FriendsOfCE\Merchant\ApiClient\Model\OrderStatusView[]**](../Model/\FriendsOfCE\Merchant\ApiClient\Model\OrderStatusView.md)| Order status(es) to filter on. AWAITING_PAYMENT orders will be excluded if it is not included in this Statuses filter. | [optional] |
+| **statuses** | [**string[]**](../Model/string.md)| Order status(es) to filter on. AWAITING_PAYMENT orders will be excluded if it is not included in this Statuses filter. | [optional] |
 | **emailAddresses** | [**string[]**](../Model/string.md)| Client emailaddresses to filter on. | [optional] |
 | **merchantOrderNos** | [**string[]**](../Model/string.md)| Filter on unique order reference used by the merchant. | [optional] |
 | **channelOrderNos** | [**string[]**](../Model/string.md)| Filter on unique order reference used by the channel. | [optional] |
 | **commercialOrderNos** | [**string[]**](../Model/string.md)| Filter on commercial order numbers. | [optional] |
-| **fromDate** | **\DateTime**| Filter on the order date, starting from this date. This date is inclusive.&lt;br /&gt;The order date is based on the data we got from a channel. | [optional] |
-| **toDate** | **\DateTime**| Filter on the order date, until this date. This date is exclusive.&lt;br /&gt;The order date is based on the data we got from a channel. | [optional] |
-| **fromCreatedAtDate** | **\DateTime**| Filter on the created at date in ChannelEngine, starting from this date. This date is inclusive.&lt;br /&gt;The created date is set on the date and time when the order is created. | [optional] |
-| **toCreatedAtDate** | **\DateTime**| Filter on the created at date in ChannelEngine, until this date. This date is exclusive.&lt;br /&gt;The created date is set on the date and time when the order is created. | [optional] |
+| **fromDate** | **\DateTime**| Filter on the order date, starting from this date. This date is inclusive. &lt;br /&gt;The order date is based on the data we got from a channel. | [optional] |
+| **toDate** | **\DateTime**| Filter on the order date, until this date. This date is exclusive. &lt;br /&gt;The order date is based on the data we got from a channel. | [optional] |
+| **fromCreatedAtDate** | **\DateTime**| Filter on the created at date in ChannelEngine, starting from this date. This date is inclusive. &lt;br /&gt;The created date is set on the date and time when the order is created. | [optional] |
+| **toCreatedAtDate** | **\DateTime**| Filter on the created at date in ChannelEngine, until this date. This date is exclusive. &lt;br /&gt;The created date is set on the date and time when the order is created. | [optional] |
 | **excludeMarketplaceFulfilledOrdersAndLines** | **bool**| Exclude order (lines) fulfilled by the marketplace (amazon:FBA, bol:LVB, etc.) | [optional] |
-| **fulfillmentType** | [**FulfillmentType**](../Model/.md)| Filter orders on fulfillment type. This will include all orders lines, even if they are partially fulfilled by the marketplace.&lt;br /&gt;To exclude orders and lines that are fulfilled by the marketplace from the response, set ExcludeMarketplaceFulfilledOrdersAndLines to true. | [optional] |
-| **onlyWithCancellationRequests** | **bool**| Filter on orders containing cancellation requests.&lt;br /&gt;Some channels allow a customer to cancel an order until it has been shipped.&lt;br /&gt;When an order has already been acknowledged in ChannelEngine, it can only be cancelled by creating a cancellation. | [optional] |
+| **fulfillmentType** | **string**| Filter orders on fulfillment type. This will include all orders lines, even if they are partially fulfilled by the marketplace. &lt;br /&gt;To exclude orders and lines that are fulfilled by the marketplace from the response, set ExcludeMarketplaceFulfilledOrdersAndLines to true. | [optional] |
+| **onlyWithCancellationRequests** | **bool**| Filter on orders containing cancellation requests. &lt;br /&gt;Some channels allow a customer to cancel an order until it has been shipped. &lt;br /&gt;When an order has already been acknowledged in ChannelEngine, it can only be cancelled by creating a cancellation. | [optional] |
 | **channelIds** | [**int[]**](../Model/int.md)| Filter orders on channel(s). | [optional] |
 | **stockLocationIds** | [**int[]**](../Model/int.md)| Filter on stock locations | [optional] |
 | **isAcknowledged** | **bool**| Filter on acknowledged value | [optional] |
@@ -301,6 +302,66 @@ try {
 
 - **Content-Type**: Not defined
 - **Accept**: `application/pdf`, `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `orderMarkExportAsFailed()`
+
+```php
+orderMarkExportAsFailed($bulkMerchantMarkExportAsFailedForOrdersRequest): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
+```
+
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: apiKey
+$config = FriendsOfCE\Merchant\ApiClient\Configuration::getDefaultConfiguration()->setApiKey('apikey', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FriendsOfCE\Merchant\ApiClient\Configuration::getDefaultConfiguration()->setApiKeyPrefix('apikey', 'Bearer');
+
+
+$apiInstance = new FriendsOfCE\Merchant\ApiClient\Api\OrdersApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$bulkMerchantMarkExportAsFailedForOrdersRequest = new \FriendsOfCE\Merchant\ApiClient\Model\BulkMerchantMarkExportAsFailedForOrdersRequest(); // \FriendsOfCE\Merchant\ApiClient\Model\BulkMerchantMarkExportAsFailedForOrdersRequest
+
+try {
+    $result = $apiInstance->orderMarkExportAsFailed($bulkMerchantMarkExportAsFailedForOrdersRequest);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling OrdersApi->orderMarkExportAsFailed: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **bulkMerchantMarkExportAsFailedForOrdersRequest** | [**\FriendsOfCE\Merchant\ApiClient\Model\BulkMerchantMarkExportAsFailedForOrdersRequest**](../Model/BulkMerchantMarkExportAsFailedForOrdersRequest.md)|  | [optional] |
+
+### Return type
+
+[**\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse**](../Model/ApiResponse.md)
+
+### Authorization
+
+[apiKey](../../README.md#apiKey)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json-patch+json`, `application/json`, `application/*+json`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -506,7 +567,7 @@ orderUploadInvoiceAsString($merchantOrderNo, $merchantInvoiceUploadRequest): \Fr
 
 Uploads an order invoice PDF from Base64 string.
 
-Uploads an order invoice PDF from Base64 string.<br />Invoice size must be less than 1 mb.
+Uploads an order invoice PDF from Base64 string. <br />Invoice size must be less than 1 mb.
 
 ### Example
 

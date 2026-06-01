@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **postalCode** | **string** |  | [optional]
 **countryCode** | **string** |  | [optional]
 **phone** | **string** |  | [optional]
-**taxRegistrationType** | [**\FriendsOfCE\Merchant\ApiClient\Model\ModulesTaxRegistrationType**](ModulesTaxRegistrationType.md) |  | [optional]
+**taxRegistrationType** | **string** |  | [optional]
 **taxRegistrationNo** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

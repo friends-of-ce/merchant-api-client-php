@@ -5,8 +5,9 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**reportCreateSettlementsReport()**](ReportsApi.md#reportCreateSettlementsReport) | **POST** /v2/reports/settlements | Creates a settlement report |
-| [**reportGetReport()**](ReportsApi.md#reportGetReport) | **GET** /v2/reports/{reportId} | Gets a settlement report |
-| [**reportGetStatus()**](ReportsApi.md#reportGetStatus) | **GET** /v2/reports/{reportId}/status | Gets the status of a settlement report |
+| [**reportGetAvailableReports()**](ReportsApi.md#reportGetAvailableReports) | **GET** /v2/reports/available | Gets a report |
+| [**reportGetReport()**](ReportsApi.md#reportGetReport) | **GET** /v2/reports/{reportId} | Gets a report |
+| [**reportGetStatus()**](ReportsApi.md#reportGetStatus) | **GET** /v2/reports/{reportId}/status | Gets the status of a report |
 
 
 ## `reportCreateSettlementsReport()`
@@ -17,7 +18,7 @@ reportCreateSettlementsReport($merchantCreateSettlementsReportRequest): \Friends
 
 Creates a settlement report
 
-Creates a settlement report based on the **Settlement ID** provided. There are 3 types of reports:<br />**SUMMARY** - a high level financial overview.<br />**DETAILED** - a detailed report containing all transactions.<br />**CUSTOM_JSON** - a report grouped by orders, you can name the csv columns with a JSON file. This JSON file can be defined<br />in the settlement export plugin.<br /> <br />All the settlements are automatically acknowledged if that was not already the case.<br />**NB:** depending on the number of transactions within the settlement, it can take a few minutes for the report to be generated.
+Creates a settlement report based on the **Settlement ID** provided (maximum 10 IDs are allowed). There are 2 types of reports: <br />**DETAILED** - a detailed report containing all transactions. <br />**CUSTOM_JSON** - a report grouped by orders, you can name the csv columns with a JSON file. This JSON file should be defined <br />in the settlement export plugin. <br />**DETAILED_EXTENDED** - a detailed report containing all transactions, extended with additional information on the base settlement data. <br /> <br />All the settlements are automatically acknowledged if that was not already the case. <br />**NB:** depending on the number of transactions within the settlement, it can take a few minutes for the report to be generated.
 
 ### Example
 
@@ -38,7 +39,7 @@ $apiInstance = new FriendsOfCE\Merchant\ApiClient\Api\ReportsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$merchantCreateSettlementsReportRequest = new \FriendsOfCE\Merchant\ApiClient\Model\MerchantCreateSettlementsReportRequest(); // \FriendsOfCE\Merchant\ApiClient\Model\MerchantCreateSettlementsReportRequest | To provide settlementIds and type of report SUMMARY or DETAILED.
+$merchantCreateSettlementsReportRequest = new \FriendsOfCE\Merchant\ApiClient\Model\MerchantCreateSettlementsReportRequest(); // \FriendsOfCE\Merchant\ApiClient\Model\MerchantCreateSettlementsReportRequest | To provide settlementIds and type of report DETAILED, DETAILED_EXTENDED or CUSTOM_JSON.
 
 try {
     $result = $apiInstance->reportCreateSettlementsReport($merchantCreateSettlementsReportRequest);
@@ -52,7 +53,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **merchantCreateSettlementsReportRequest** | [**\FriendsOfCE\Merchant\ApiClient\Model\MerchantCreateSettlementsReportRequest**](../Model/MerchantCreateSettlementsReportRequest.md)| To provide settlementIds and type of report SUMMARY or DETAILED. | |
+| **merchantCreateSettlementsReportRequest** | [**\FriendsOfCE\Merchant\ApiClient\Model\MerchantCreateSettlementsReportRequest**](../Model/MerchantCreateSettlementsReportRequest.md)| To provide settlementIds and type of report DETAILED, DETAILED_EXTENDED or CUSTOM_JSON. | |
 
 ### Return type
 
@@ -71,15 +72,83 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `reportGetAvailableReports()`
+
+```php
+reportGetAvailableReports($reportType, $channelId, $createdFrom, $createdTo): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfString
+```
+
+Gets a report
+
+Get the available reports for a specific report type. <br />Please see the report documentation for more information on the report types.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: apiKey
+$config = FriendsOfCE\Merchant\ApiClient\Configuration::getDefaultConfiguration()->setApiKey('apikey', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FriendsOfCE\Merchant\ApiClient\Configuration::getDefaultConfiguration()->setApiKeyPrefix('apikey', 'Bearer');
+
+
+$apiInstance = new FriendsOfCE\Merchant\ApiClient\Api\ReportsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$reportType = 'reportType_example'; // string
+$channelId = 56; // int
+$createdFrom = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
+$createdTo = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
+
+try {
+    $result = $apiInstance->reportGetAvailableReports($reportType, $channelId, $createdFrom, $createdTo);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ReportsApi->reportGetAvailableReports: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **reportType** | **string**|  | |
+| **channelId** | **int**|  | [optional] |
+| **createdFrom** | **\DateTime**|  | [optional] |
+| **createdTo** | **\DateTime**|  | [optional] |
+
+### Return type
+
+[**\FriendsOfCE\Merchant\ApiClient\Model\CollectionOfString**](../Model/CollectionOfString.md)
+
+### Authorization
+
+[apiKey](../../README.md#apiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `reportGetReport()`
 
 ```php
 reportGetReport($reportId): \SplFileObject
 ```
 
-Gets a settlement report
+Gets a report
 
-Gets a settlement report based on the **Report ID** provided. The generated report is a CSV file with a semicolon (;) as a delimiter.<br />If a field has a comma (,) then it is enclosed in quotes (\"\").
+Gets a report based on the **Report ID** provided. <br />Please see the report documentation for more information on the report types.
 
 ### Example
 
@@ -127,7 +196,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `text/csv`, `application/json`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -139,9 +208,9 @@ try {
 reportGetStatus($reportId): \FriendsOfCE\Merchant\ApiClient\Model\MerchantGetReportStatusResponse
 ```
 
-Gets the status of a settlement report
+Gets the status of a report
 
-Returns a report status based on the **Report ID** provided. There are four statuses:<br />**IN_PROGRESS** - the report is still being created.<br />**DONE** - the report has been created.<br />**FAILED** - the report creation failed.<br />**NOT_FOUND** - the Report ID was not found.<br /> <br />**NB:** if the status is **DONE**, the response contains a URL with a download path.
+Returns a report status based on the **Report ID** provided. There are four statuses: <br />**IN_PROGRESS** - the report is still being created. <br />**DONE** - the report has been created. <br />**FAILED** - the report creation failed. <br />**NOT_FOUND** - the Report ID was not found. <br /> <br />**NB:** if the status is **DONE**, the response contains a URL with a download path.
 
 ### Example
 

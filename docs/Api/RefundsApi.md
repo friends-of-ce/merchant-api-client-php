@@ -4,10 +4,11 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**refundAcknowledge()**](RefundsApi.md#refundAcknowledge) | **POST** /v2.1/refunds/merchant/acknowledge | [CLOSED BETA] Acknowledge a refund |
-| [**refundCreate()**](RefundsApi.md#refundCreate) | **POST** /v2.1/refunds/merchant | [CLOSED BETA] Create a refund |
-| [**refundGet()**](RefundsApi.md#refundGet) | **GET** /v2.1/refunds/merchant/{identifier} | [CLOSED BETA] Get refund by identifier |
-| [**refundGetByFilter()**](RefundsApi.md#refundGetByFilter) | **GET** /v2.1/refunds/merchant | [CLOSED BETA] Get refunds by filter |
+| [**refundAcknowledge()**](RefundsApi.md#refundAcknowledge) | **POST** /v2.1/refunds/merchant/acknowledge | [CLOSED BETA - AUTHORIZED USERS ONLY] Acknowledge a refund |
+| [**refundCreate()**](RefundsApi.md#refundCreate) | **POST** /v2.1/refunds/merchant | [CLOSED BETA - AUTHORIZED USERS ONLY] Create a refund |
+| [**refundGet()**](RefundsApi.md#refundGet) | **GET** /v2.1/refunds/merchant/{identifier} | [CLOSED BETA - AUTHORIZED USERS ONLY] Get refund by identifier |
+| [**refundGetByFilter()**](RefundsApi.md#refundGetByFilter) | **GET** /v2.1/refunds/merchant | [CLOSED BETA - AUTHORIZED USERS ONLY] Get refunds by filter |
+| [**refundUpsertReturnExtraData()**](RefundsApi.md#refundUpsertReturnExtraData) | **PATCH** /v2.1/refunds/merchant/extra-data | [CLOSED BETA - AUTHORIZED USERS ONLY] Upsert extra data for a refund |
 
 
 ## `refundAcknowledge()`
@@ -16,9 +17,9 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 refundAcknowledge($singleMerchantAcknowledgeRefundRequest): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
 ```
 
-[CLOSED BETA] Acknowledge a refund
+[CLOSED BETA - AUTHORIZED USERS ONLY] Acknowledge a refund
 
-Acknowledges a refund<br /> <br />Beware, this endpoint is part of a closed beta and is only available for closed beta participants.
+Closed Beta - Authorized Users Only <br />This endpoint is under development and available only to approved beta participants. <br />Accounts without beta access will receive a forbidden response. <br /> <br />Acknowledges a refund
 
 ### Example
 
@@ -78,9 +79,9 @@ try {
 refundCreate($singleMerchantCreateRefundRequest): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
 ```
 
-[CLOSED BETA] Create a refund
+[CLOSED BETA - AUTHORIZED USERS ONLY] Create a refund
 
-Creates a new refund<br /> <br />Beware, this endpoint is part of a closed beta and is only available for closed beta participants.
+Closed Beta - Authorized Users Only <br />This endpoint is under development and available only to approved beta participants. <br />Accounts without beta access will receive a forbidden response. <br /> <br />Creates a new refund
 
 ### Example
 
@@ -140,9 +141,9 @@ try {
 refundGet($identifier, $type): \FriendsOfCE\Merchant\ApiClient\Model\SingleOfIRefund
 ```
 
-[CLOSED BETA] Get refund by identifier
+[CLOSED BETA - AUTHORIZED USERS ONLY] Get refund by identifier
 
-Gets a single refund by the given identifier<br /> <br />Beware, this endpoint is part of a closed beta and is only available for closed beta participants.
+Closed Beta - Authorized Users Only <br />This endpoint is under development and available only to approved beta participants. <br />Accounts without beta access will receive a forbidden response. <br /> <br />Gets a single refund by the given identifier
 
 ### Example
 
@@ -164,7 +165,7 @@ $apiInstance = new FriendsOfCE\Merchant\ApiClient\Api\RefundsApi(
     $config
 );
 $identifier = 'identifier_example'; // string | The identifier to search for
-$type = new \FriendsOfCE\Merchant\ApiClient\Model\RefundIdentifier(); // RefundIdentifier | Specify whether to search by ID, Merchant Refund No or Channel Refund No
+$type = 'REFUND_ID'; // string | Specify whether to search by ID, Merchant Refund No or Channel Refund No
 
 try {
     $result = $apiInstance->refundGet($identifier, $type);
@@ -179,7 +180,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **identifier** | **string**| The identifier to search for | |
-| **type** | [**RefundIdentifier**](../Model/.md)| Specify whether to search by ID, Merchant Refund No or Channel Refund No | [optional] |
+| **type** | **string**| Specify whether to search by ID, Merchant Refund No or Channel Refund No | [optional] [default to &#39;REFUND_ID&#39;] |
 
 ### Return type
 
@@ -201,12 +202,12 @@ try {
 ## `refundGetByFilter()`
 
 ```php
-refundGetByFilter($identifiersIdentifierType, $identifiersModels, $channelExportStatusStatuses, $channelExportStatusMaxNumberOfExportAttempts, $reasons, $createdDateRangeFromDate, $createdDateRangeToDate, $channelIds, $search, $isAcknowledgedByMerchant, $isAcknowledgedByChannel, $fulfillmentType, $creatorType, $externalBatchNos, $pageIndex, $pageSize): \FriendsOfCE\Merchant\ApiClient\Model\SingleOfIRefund
+refundGetByFilter($identifiersIdentifierType, $identifiersModels, $channelExportStatusStatuses, $channelExportStatusMaxNumberOfExportAttempts, $reasons, $createdDateRangeFromDate, $createdDateRangeToDate, $channelIds, $search, $isAcknowledgedByMerchant, $isAcknowledgedByChannel, $fulfillmentType, $creatorType, $externalBatchNos, $page): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfIRefund
 ```
 
-[CLOSED BETA] Get refunds by filter
+[CLOSED BETA - AUTHORIZED USERS ONLY] Get refunds by filter
 
-Gets multiple refunds by the given filter<br /> <br />Beware, this endpoint is part of a closed beta and is only available for closed beta participants.
+Closed Beta - Authorized Users Only <br />This endpoint is under development and available only to approved beta participants. <br />Accounts without beta access will receive a forbidden response. <br /> <br />Gets multiple refunds by the given filter
 
 ### Example
 
@@ -227,25 +228,24 @@ $apiInstance = new FriendsOfCE\Merchant\ApiClient\Api\RefundsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$identifiersIdentifierType = new \FriendsOfCE\Merchant\ApiClient\Model\RefundByFilterIdentifier(); // RefundByFilterIdentifier | The type of identifier: which identifier to filter on
+$identifiersIdentifierType = 'identifiersIdentifierType_example'; // string | The type of identifier: which identifier to filter on
 $identifiersModels = array('identifiersModels_example'); // string[] | The value (of the selected type) to filter on
-$channelExportStatusStatuses = array(new \FriendsOfCE\Merchant\ApiClient\Model\\FriendsOfCE\Merchant\ApiClient\Model\ChannelExportStatus()); // \FriendsOfCE\Merchant\ApiClient\Model\ChannelExportStatus[]
+$channelExportStatusStatuses = array('channelExportStatusStatuses_example'); // string[]
 $channelExportStatusMaxNumberOfExportAttempts = 56; // int
-$reasons = array(new \FriendsOfCE\Merchant\ApiClient\Model\\FriendsOfCE\Merchant\ApiClient\Model\RefundReason()); // \FriendsOfCE\Merchant\ApiClient\Model\RefundReason[]
+$reasons = array('reasons_example'); // string[]
 $createdDateRangeFromDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
 $createdDateRangeToDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
 $channelIds = array(56); // int[]
 $search = 'search_example'; // string
 $isAcknowledgedByMerchant = True; // bool
 $isAcknowledgedByChannel = True; // bool
-$fulfillmentType = new \FriendsOfCE\Merchant\ApiClient\Model\ModuleFulfillmentType(); // ModuleFulfillmentType
-$creatorType = new \FriendsOfCE\Merchant\ApiClient\Model\CreatorType(); // CreatorType
+$fulfillmentType = 'fulfillmentType_example'; // string
+$creatorType = 'creatorType_example'; // string
 $externalBatchNos = array('externalBatchNos_example'); // string[]
-$pageIndex = 56; // int
-$pageSize = 56; // int
+$page = 56; // int | Page number
 
 try {
-    $result = $apiInstance->refundGetByFilter($identifiersIdentifierType, $identifiersModels, $channelExportStatusStatuses, $channelExportStatusMaxNumberOfExportAttempts, $reasons, $createdDateRangeFromDate, $createdDateRangeToDate, $channelIds, $search, $isAcknowledgedByMerchant, $isAcknowledgedByChannel, $fulfillmentType, $creatorType, $externalBatchNos, $pageIndex, $pageSize);
+    $result = $apiInstance->refundGetByFilter($identifiersIdentifierType, $identifiersModels, $channelExportStatusStatuses, $channelExportStatusMaxNumberOfExportAttempts, $reasons, $createdDateRangeFromDate, $createdDateRangeToDate, $channelIds, $search, $isAcknowledgedByMerchant, $isAcknowledgedByChannel, $fulfillmentType, $creatorType, $externalBatchNos, $page);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling RefundsApi->refundGetByFilter: ', $e->getMessage(), PHP_EOL;
@@ -256,26 +256,25 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **identifiersIdentifierType** | [**RefundByFilterIdentifier**](../Model/.md)| The type of identifier: which identifier to filter on | [optional] |
+| **identifiersIdentifierType** | **string**| The type of identifier: which identifier to filter on | [optional] |
 | **identifiersModels** | [**string[]**](../Model/string.md)| The value (of the selected type) to filter on | [optional] |
-| **channelExportStatusStatuses** | [**\FriendsOfCE\Merchant\ApiClient\Model\ChannelExportStatus[]**](../Model/\FriendsOfCE\Merchant\ApiClient\Model\ChannelExportStatus.md)|  | [optional] |
+| **channelExportStatusStatuses** | [**string[]**](../Model/string.md)|  | [optional] |
 | **channelExportStatusMaxNumberOfExportAttempts** | **int**|  | [optional] |
-| **reasons** | [**\FriendsOfCE\Merchant\ApiClient\Model\RefundReason[]**](../Model/\FriendsOfCE\Merchant\ApiClient\Model\RefundReason.md)|  | [optional] |
+| **reasons** | [**string[]**](../Model/string.md)|  | [optional] |
 | **createdDateRangeFromDate** | **\DateTime**|  | [optional] |
 | **createdDateRangeToDate** | **\DateTime**|  | [optional] |
 | **channelIds** | [**int[]**](../Model/int.md)|  | [optional] |
 | **search** | **string**|  | [optional] |
 | **isAcknowledgedByMerchant** | **bool**|  | [optional] |
 | **isAcknowledgedByChannel** | **bool**|  | [optional] |
-| **fulfillmentType** | [**ModuleFulfillmentType**](../Model/.md)|  | [optional] |
-| **creatorType** | [**CreatorType**](../Model/.md)|  | [optional] |
+| **fulfillmentType** | **string**|  | [optional] |
+| **creatorType** | **string**|  | [optional] |
 | **externalBatchNos** | [**string[]**](../Model/string.md)|  | [optional] |
-| **pageIndex** | **int**|  | [optional] |
-| **pageSize** | **int**|  | [optional] |
+| **page** | **int**| Page number | [optional] |
 
 ### Return type
 
-[**\FriendsOfCE\Merchant\ApiClient\Model\SingleOfIRefund**](../Model/SingleOfIRefund.md)
+[**\FriendsOfCE\Merchant\ApiClient\Model\CollectionOfIRefund**](../Model/CollectionOfIRefund.md)
 
 ### Authorization
 
@@ -284,6 +283,68 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `refundUpsertReturnExtraData()`
+
+```php
+refundUpsertReturnExtraData($merchantUpsertRefundExtraDataRequest): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
+```
+
+[CLOSED BETA - AUTHORIZED USERS ONLY] Upsert extra data for a refund
+
+Closed Beta - Authorized Users Only <br />This endpoint is under development and available only to approved beta participants. <br />Accounts without beta access will receive a forbidden response. <br /> <br />Upserts extra data for a refund and its lines.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: apiKey
+$config = FriendsOfCE\Merchant\ApiClient\Configuration::getDefaultConfiguration()->setApiKey('apikey', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FriendsOfCE\Merchant\ApiClient\Configuration::getDefaultConfiguration()->setApiKeyPrefix('apikey', 'Bearer');
+
+
+$apiInstance = new FriendsOfCE\Merchant\ApiClient\Api\RefundsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$merchantUpsertRefundExtraDataRequest = new \FriendsOfCE\Merchant\ApiClient\Model\MerchantUpsertRefundExtraDataRequest(); // \FriendsOfCE\Merchant\ApiClient\Model\MerchantUpsertRefundExtraDataRequest | The refund extra data to upsert.
+
+try {
+    $result = $apiInstance->refundUpsertReturnExtraData($merchantUpsertRefundExtraDataRequest);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling RefundsApi->refundUpsertReturnExtraData: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **merchantUpsertRefundExtraDataRequest** | [**\FriendsOfCE\Merchant\ApiClient\Model\MerchantUpsertRefundExtraDataRequest**](../Model/MerchantUpsertRefundExtraDataRequest.md)| The refund extra data to upsert. | [optional] |
+
+### Return type
+
+[**\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse**](../Model/ApiResponse.md)
+
+### Authorization
+
+[apiKey](../../README.md#apiKey)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json-patch+json`, `application/json`, `application/*+json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

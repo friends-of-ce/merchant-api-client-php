@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | [**\FriendsOfCE\Merchant\ApiClient\Model\ModulesAllowanceDetailsType**](ModulesAllowanceDetailsType.md) |  | [optional]
+**type** | **string** |  | [optional]
 **description** | **string** |  | [optional]
 **chargeAmount** | **float** |  | [optional]
 **chargeAmountCurrencyCode** | **string** |  | [optional]

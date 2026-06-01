@@ -4,13 +4,79 @@ All URIs are relative to https://demo.channelengine.net/api, except if the opera
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**shipmentAirWaybillNo()**](ShipmentsApi.md#shipmentAirWaybillNo) | **GET** /v2/orders/{merchantShipmentNo}/airwaybillno | Get the Air Waybill No for a shipment |
 | [**shipmentCreate()**](ShipmentsApi.md#shipmentCreate) | **POST** /v2/shipments | Creates shipments |
 | [**shipmentCreateForChannelMethod()**](ShipmentsApi.md#shipmentCreateForChannelMethod) | **POST** /v2/shipments/channelmethod | Creates a shipment and initiates shipping label generation |
 | [**shipmentGetShipmentLabelCarriers()**](ShipmentsApi.md#shipmentGetShipmentLabelCarriers) | **POST** /v2/carriers/{merchantOrderNo} | Gets carriers providing shipping labels |
 | [**shipmentIndex()**](ShipmentsApi.md#shipmentIndex) | **GET** /v2/shipments/merchant | Gets shipments by filter |
+| [**shipmentMarkImportAsFailed()**](ShipmentsApi.md#shipmentMarkImportAsFailed) | **POST** /v2/shipments/mark-import-as-failed |  |
 | [**shipmentShippingLabel()**](ShipmentsApi.md#shipmentShippingLabel) | **GET** /v2/orders/{merchantShipmentNo}/shippinglabel | Gets a shipping label |
 | [**shipmentUpdate()**](ShipmentsApi.md#shipmentUpdate) | **PUT** /v2/shipments/{merchantShipmentNo} | Updates a shipment |
+| [**shipmentUploadProofOfDelivery()**](ShipmentsApi.md#shipmentUploadProofOfDelivery) | **POST** /v2/shipments/{merchantShipmentNo}/proof-of-delivery | Uploads a proof of delivery document |
+| [**shipmentUpsertDeliveryState()**](ShipmentsApi.md#shipmentUpsertDeliveryState) | **PUT** /v2/shipments/{merchantShipmentNo}/delivery-state |  |
 
+
+## `shipmentAirWaybillNo()`
+
+```php
+shipmentAirWaybillNo($merchantShipmentNo): \FriendsOfCE\Merchant\ApiClient\Model\SingleOfAirWaybillResponse
+```
+
+Get the Air Waybill No for a shipment
+
+Get the Air Waybill No for a shipment.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: apiKey
+$config = FriendsOfCE\Merchant\ApiClient\Configuration::getDefaultConfiguration()->setApiKey('apikey', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FriendsOfCE\Merchant\ApiClient\Configuration::getDefaultConfiguration()->setApiKeyPrefix('apikey', 'Bearer');
+
+
+$apiInstance = new FriendsOfCE\Merchant\ApiClient\Api\ShipmentsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$merchantShipmentNo = 'merchantShipmentNo_example'; // string | The unique shipment reference as used by the merchant.
+
+try {
+    $result = $apiInstance->shipmentAirWaybillNo($merchantShipmentNo);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ShipmentsApi->shipmentAirWaybillNo: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **merchantShipmentNo** | **string**| The unique shipment reference as used by the merchant. | |
+
+### Return type
+
+[**\FriendsOfCE\Merchant\ApiClient\Model\SingleOfAirWaybillResponse**](../Model/SingleOfAirWaybillResponse.md)
+
+### Authorization
+
+[apiKey](../../README.md#apiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `shipmentCreate()`
 
@@ -20,7 +86,7 @@ shipmentCreate($merchantShipmentRequest): \FriendsOfCE\Merchant\ApiClient\Model\
 
 Creates shipments
 
-Marks an order as fully or partially shipped, based on the order line and quantity input.<br />Indicate the **Stock location ID** if you make use of multiple stock locations.
+Marks an order as fully or partially shipped, based on the order line and quantity input. <br />Indicate the **Stock location ID** if you make use of multiple stock locations.
 
 ### Example
 
@@ -82,7 +148,7 @@ shipmentCreateForChannelMethod($merchantChannelLabelShipmentRequest): \FriendsOf
 
 Creates a shipment and initiates shipping label generation
 
-Marks an order as either fully or partially shipped, based on the order line and quantity input.<br />It also provides the marketplace with information necessary to generate a shipping label.<br />If you make use of multiple stock locations, indicate the **Stock location ID**.<br /> <br />**NB:** to request a shipping label, include information on the package size (i.e.: dimensions and weight).
+Marks an order as either fully or partially shipped, based on the order line and quantity input. <br />It also provides the marketplace with information necessary to generate a shipping label. <br />If you make use of multiple stock locations, indicate the **Stock location ID**. <br /> <br />**NB:** to request a shipping label, include information on the package size (i.e.: dimensions and weight).
 
 ### Example
 
@@ -144,7 +210,7 @@ shipmentGetShipmentLabelCarriers($merchantOrderNo, $merchantShipmentLabelCarrier
 
 Gets carriers providing shipping labels
 
-Posts a request to get the available marketplace carrier offers.<br /><br />**NB:** this endpoint is used to buy a shipping label through the marketplace.
+Posts a request to get the available marketplace carrier offers. <br /> <br />**NB:** this endpoint is used to buy a shipping label through the marketplace.
 
 ### Example
 
@@ -203,12 +269,12 @@ try {
 ## `shipmentIndex()`
 
 ```php
-shipmentIndex($merchantShipmentNos, $merchantOrderNos, $method, $shippedFromCountryCodes, $fromShipmentDate, $toShipmentDate, $fromCreateDate, $toCreateDate, $fromUpdateDate, $toUpdateDate, $fulfillmentType, $channelShipmentNos, $channelOrderNos, $page): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantShipmentResponse
+shipmentIndex($merchantShipmentNos, $merchantOrderNos, $method, $shippedFromCountryCodes, $fromShipmentDate, $toShipmentDate, $fromCreateDate, $toCreateDate, $fromUpdateDate, $toUpdateDate, $fulfillmentType, $channelShipmentNos, $channelOrderNos, $channelExportStatus, $channelExportAttempts, $fromDeliveredAt, $toDeliveredAt, $page): \FriendsOfCE\Merchant\ApiClient\Model\CollectionOfMerchantShipmentResponse
 ```
 
 Gets shipments by filter
 
-Gets the shipments based on the available filters.<br />Shipments are listed in chronological order, from old to new.
+Gets the shipments based on the available filters. <br />Shipments are listed in chronological order, from old to new.
 
 ### Example
 
@@ -239,13 +305,17 @@ $fromCreateDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Fil
 $toCreateDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Filter on the create date of the shipment in ChannelEngine, until this date. This date is exclusive.
 $fromUpdateDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Filter on the update date of the shipment in ChannelEngine, starting from this date. This date is inclusive.
 $toUpdateDate = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Filter on the update date of the shipment in ChannelEngine, until this date. This date is exclusive.
-$fulfillmentType = new \FriendsOfCE\Merchant\ApiClient\Model\ShipmentFulfillmentType(); // ShipmentFulfillmentType | Filter on the fulfillment type of the shipment.
+$fulfillmentType = 'fulfillmentType_example'; // string | Filter on the fulfillment type of the shipment.
 $channelShipmentNos = array('channelShipmentNos_example'); // string[] | Filter on the unique references (ids) as used by the channel.
 $channelOrderNos = array('channelOrderNos_example'); // string[] | Filter on the unique references (ids) of order as used by the channel.
+$channelExportStatus = 'channelExportStatus_example'; // string | Filter on the current status of the shipment.
+$channelExportAttempts = 56; // int | Filter on the amount of times the shipment has been attempted to be exported.
+$fromDeliveredAt = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Filter on the delivery date of the shipment in ChannelEngine, starting from this date. This date is inclusive.
+$toDeliveredAt = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Filter on the delivery date of the shipment in ChannelEngine, until this date. This date is exclusive.
 $page = 56; // int | The page to filter on. Starts at 1.
 
 try {
-    $result = $apiInstance->shipmentIndex($merchantShipmentNos, $merchantOrderNos, $method, $shippedFromCountryCodes, $fromShipmentDate, $toShipmentDate, $fromCreateDate, $toCreateDate, $fromUpdateDate, $toUpdateDate, $fulfillmentType, $channelShipmentNos, $channelOrderNos, $page);
+    $result = $apiInstance->shipmentIndex($merchantShipmentNos, $merchantOrderNos, $method, $shippedFromCountryCodes, $fromShipmentDate, $toShipmentDate, $fromCreateDate, $toCreateDate, $fromUpdateDate, $toUpdateDate, $fulfillmentType, $channelShipmentNos, $channelOrderNos, $channelExportStatus, $channelExportAttempts, $fromDeliveredAt, $toDeliveredAt, $page);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ShipmentsApi->shipmentIndex: ', $e->getMessage(), PHP_EOL;
@@ -266,9 +336,13 @@ try {
 | **toCreateDate** | **\DateTime**| Filter on the create date of the shipment in ChannelEngine, until this date. This date is exclusive. | [optional] |
 | **fromUpdateDate** | **\DateTime**| Filter on the update date of the shipment in ChannelEngine, starting from this date. This date is inclusive. | [optional] |
 | **toUpdateDate** | **\DateTime**| Filter on the update date of the shipment in ChannelEngine, until this date. This date is exclusive. | [optional] |
-| **fulfillmentType** | [**ShipmentFulfillmentType**](../Model/.md)| Filter on the fulfillment type of the shipment. | [optional] |
+| **fulfillmentType** | **string**| Filter on the fulfillment type of the shipment. | [optional] |
 | **channelShipmentNos** | [**string[]**](../Model/string.md)| Filter on the unique references (ids) as used by the channel. | [optional] |
 | **channelOrderNos** | [**string[]**](../Model/string.md)| Filter on the unique references (ids) of order as used by the channel. | [optional] |
+| **channelExportStatus** | **string**| Filter on the current status of the shipment. | [optional] |
+| **channelExportAttempts** | **int**| Filter on the amount of times the shipment has been attempted to be exported. | [optional] |
+| **fromDeliveredAt** | **\DateTime**| Filter on the delivery date of the shipment in ChannelEngine, starting from this date. This date is inclusive. | [optional] |
+| **toDeliveredAt** | **\DateTime**| Filter on the delivery date of the shipment in ChannelEngine, until this date. This date is exclusive. | [optional] |
 | **page** | **int**| The page to filter on. Starts at 1. | [optional] |
 
 ### Return type
@@ -288,6 +362,66 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `shipmentMarkImportAsFailed()`
+
+```php
+shipmentMarkImportAsFailed($bulkMerchantMarkImportAsFailedForShipmentsRequest): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
+```
+
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: apiKey
+$config = FriendsOfCE\Merchant\ApiClient\Configuration::getDefaultConfiguration()->setApiKey('apikey', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FriendsOfCE\Merchant\ApiClient\Configuration::getDefaultConfiguration()->setApiKeyPrefix('apikey', 'Bearer');
+
+
+$apiInstance = new FriendsOfCE\Merchant\ApiClient\Api\ShipmentsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$bulkMerchantMarkImportAsFailedForShipmentsRequest = new \FriendsOfCE\Merchant\ApiClient\Model\BulkMerchantMarkImportAsFailedForShipmentsRequest(); // \FriendsOfCE\Merchant\ApiClient\Model\BulkMerchantMarkImportAsFailedForShipmentsRequest
+
+try {
+    $result = $apiInstance->shipmentMarkImportAsFailed($bulkMerchantMarkImportAsFailedForShipmentsRequest);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ShipmentsApi->shipmentMarkImportAsFailed: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **bulkMerchantMarkImportAsFailedForShipmentsRequest** | [**\FriendsOfCE\Merchant\ApiClient\Model\BulkMerchantMarkImportAsFailedForShipmentsRequest**](../Model/BulkMerchantMarkImportAsFailedForShipmentsRequest.md)|  | [optional] |
+
+### Return type
+
+[**\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse**](../Model/ApiResponse.md)
+
+### Authorization
+
+[apiKey](../../README.md#apiKey)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json-patch+json`, `application/json`, `application/*+json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `shipmentShippingLabel()`
 
 ```php
@@ -296,7 +430,7 @@ shipmentShippingLabel($merchantShipmentNo): \SplFileObject
 
 Gets a shipping label
 
-Downloads the shipping label for the shipment.<br /> <br /> **NB:** it may take some time between the creation of the shipment and the availability of the label.<br />A \"404 not found\" error might indicate that the label is not available yet.<br />A \"410 gone\" the shipping label is not available anymore.
+Downloads the shipping label for the shipment. <br /> <br /> **NB:** it may take some time between the creation of the shipment and the availability of the label. <br />A \"404 not found\" error might indicate that the label is not available yet. <br />A \"410 gone\" the shipping label is not available anymore.
 
 ### Example
 
@@ -396,6 +530,134 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **merchantShipmentNo** | **string**| The merchant&#39;s shipment reference. | |
 | **merchantShipmentTrackingRequest** | [**\FriendsOfCE\Merchant\ApiClient\Model\MerchantShipmentTrackingRequest**](../Model/MerchantShipmentTrackingRequest.md)| The updated tracking information. | [optional] |
+
+### Return type
+
+[**\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse**](../Model/ApiResponse.md)
+
+### Authorization
+
+[apiKey](../../README.md#apiKey)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json-patch+json`, `application/json`, `application/*+json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `shipmentUploadProofOfDelivery()`
+
+```php
+shipmentUploadProofOfDelivery($merchantShipmentNo, $proofOfDeliveryFile, $proofOfDeliveryNumber): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
+```
+
+Uploads a proof of delivery document
+
+Uploads the proof of delivery for a shipment in PDF.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: apiKey
+$config = FriendsOfCE\Merchant\ApiClient\Configuration::getDefaultConfiguration()->setApiKey('apikey', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FriendsOfCE\Merchant\ApiClient\Configuration::getDefaultConfiguration()->setApiKeyPrefix('apikey', 'Bearer');
+
+
+$apiInstance = new FriendsOfCE\Merchant\ApiClient\Api\ShipmentsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$merchantShipmentNo = 'merchantShipmentNo_example'; // string | The unique order reference as used by the merchant.
+$proofOfDeliveryFile = "/path/to/file.txt"; // \SplFileObject | PDF proof of delivery file up to 1 MB with additional data.
+$proofOfDeliveryNumber = 'proofOfDeliveryNumber_example'; // string | The proof of delivery number used in the proof of delivery.
+
+try {
+    $result = $apiInstance->shipmentUploadProofOfDelivery($merchantShipmentNo, $proofOfDeliveryFile, $proofOfDeliveryNumber);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ShipmentsApi->shipmentUploadProofOfDelivery: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **merchantShipmentNo** | **string**| The unique order reference as used by the merchant. | |
+| **proofOfDeliveryFile** | **\SplFileObject****\SplFileObject**| PDF proof of delivery file up to 1 MB with additional data. | |
+| **proofOfDeliveryNumber** | **string**| The proof of delivery number used in the proof of delivery. | [optional] |
+
+### Return type
+
+[**\FriendsOfCE\Merchant\ApiClient\Model\ApiResponse**](../Model/ApiResponse.md)
+
+### Authorization
+
+[apiKey](../../README.md#apiKey)
+
+### HTTP request headers
+
+- **Content-Type**: `multipart/form-data`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `shipmentUpsertDeliveryState()`
+
+```php
+shipmentUpsertDeliveryState($merchantShipmentNo, $merchantShipmentDeliveryUpsert): \FriendsOfCE\Merchant\ApiClient\Model\ApiResponse
+```
+
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: apiKey
+$config = FriendsOfCE\Merchant\ApiClient\Configuration::getDefaultConfiguration()->setApiKey('apikey', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = FriendsOfCE\Merchant\ApiClient\Configuration::getDefaultConfiguration()->setApiKeyPrefix('apikey', 'Bearer');
+
+
+$apiInstance = new FriendsOfCE\Merchant\ApiClient\Api\ShipmentsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$merchantShipmentNo = 'merchantShipmentNo_example'; // string
+$merchantShipmentDeliveryUpsert = new \FriendsOfCE\Merchant\ApiClient\Model\MerchantShipmentDeliveryUpsert(); // \FriendsOfCE\Merchant\ApiClient\Model\MerchantShipmentDeliveryUpsert
+
+try {
+    $result = $apiInstance->shipmentUpsertDeliveryState($merchantShipmentNo, $merchantShipmentDeliveryUpsert);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ShipmentsApi->shipmentUpsertDeliveryState: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **merchantShipmentNo** | **string**|  | |
+| **merchantShipmentDeliveryUpsert** | [**\FriendsOfCE\Merchant\ApiClient\Model\MerchantShipmentDeliveryUpsert**](../Model/MerchantShipmentDeliveryUpsert.md)|  | [optional] |
 
 ### Return type
 
